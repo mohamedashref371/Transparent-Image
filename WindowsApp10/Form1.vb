@@ -1,47 +1,19 @@
 ﻿Public Class Form1
     Dim hm As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("0.0.0.0", "")
     Dim rd1 As New Random
-    Dim x8 As Integer
-    Dim x9 As Integer = 0
-    Dim pic1 As Bitmap
-    Dim pic2 As Bitmap
-    Dim pic3 As Bitmap
-    Dim pic4 As Bitmap
-    Dim pic5 As Bitmap
-    Dim w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, o1, o2, o3, qw, xmm, ymm, p21, p22, p31, p32, p41, p42, k1, k2 As Integer
-    Dim w0 As Decimal
-    Dim nl, gh, tt As String
-    Dim nmp1 As Decimal
-    Dim nmp2, nmp3 As Integer
-    Dim q1 As Integer = 0
-    Dim q2 As Integer = 0
+    Dim pic1, pic2, pic3, pic4, pic5 As Bitmap
     Dim folderPath, file As String
     Dim aaaa As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If My.Computer.FileSystem.FileExists(hm + "lang") Then
-            Lg2(sender, e)
-        End If
-        x8 = rd1.Next(0, 1.9)
-        If x8 = "1" Then
+        If My.Computer.FileSystem.FileExists(hm + "lang") Then Lg2(sender, e)
+
+        If rd1.Next(0, 2) = 1 Then
             Label1.BackColor = Color.Lime : Label3.BackColor = Color.Lime
             Label6.BackColor = Color.Yellow : Label7.BackColor = Color.Yellow
         End If
-        If My.Computer.FileSystem.FileExists(hm + "ab") Then
-            T2.Stop()
-        End If
-        If My.Computer.FileSystem.FileExists(hm + "err") Then
-            k1 = My.Computer.FileSystem.ReadAllText(hm + "err")
-            If k1 = -1 Then
-                cb6.Visible = True
-            Else
-                sr.Visible = True
-                num.Visible = True
-                num.SelectedIndex = k1
-            End If
-        Else
-            My.Computer.FileSystem.WriteAllText(hm + "err", "-1", False)
-        End If
+
+        If My.Computer.FileSystem.FileExists(hm + "ab") Then T2.Stop()
         T1.Start()
     End Sub
 
@@ -244,7 +216,7 @@
 
     Private Sub Lbl_Click(sender As Object, e As EventArgs) Handles lbl.Click
         T2.Stop()
-        html2.Show()
+        Html2.Show()
         My.Computer.FileSystem.WriteAllText(hm + "ab", "1", False)
     End Sub
 

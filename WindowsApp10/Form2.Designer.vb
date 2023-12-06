@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class html2
+Partial Class Html2
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -32,7 +32,6 @@ Partial Class html2
         Me.f2 = New System.Windows.Forms.Label()
         Me.f3 = New System.Windows.Forms.Label()
         Me.f4 = New System.Windows.Forms.Label()
-        Me.dy = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'LMhmd
@@ -64,7 +63,7 @@ Partial Class html2
         '
         'f1
         '
-        Me.f1.Image = My.Resources.Resources.FaceBook
+        Me.f1.Image = Global.transparent.My.Resources.Resources.FaceBook
         Me.f1.Location = New System.Drawing.Point(95, 61)
         Me.f1.Name = "f1"
         Me.f1.Size = New System.Drawing.Size(25, 25)
@@ -76,7 +75,7 @@ Partial Class html2
         Me.B.BackColor = System.Drawing.Color.Transparent
         Me.B.Cursor = System.Windows.Forms.Cursors.Hand
         Me.B.Font = New System.Drawing.Font("Tahoma", 27.0!)
-        Me.B.Image = My.Resources.Resources.Family_Kings_and_Queens_of_Computer2
+        Me.B.Image = Global.transparent.My.Resources.Resources.Family_Kings_and_Queens_of_Computer2
         Me.B.Location = New System.Drawing.Point(486, 69)
         Me.B.Name = "B"
         Me.B.Size = New System.Drawing.Size(52, 43)
@@ -89,7 +88,7 @@ Partial Class html2
         Me.A.BackColor = System.Drawing.Color.Transparent
         Me.A.Cursor = System.Windows.Forms.Cursors.Hand
         Me.A.Font = New System.Drawing.Font("Tahoma", 27.0!)
-        Me.A.Image = My.Resources.Resources.Family_Kings_and_Queens_of_Computer
+        Me.A.Image = Global.transparent.My.Resources.Resources.Family_Kings_and_Queens_of_Computer
         Me.A.Location = New System.Drawing.Point(12, 69)
         Me.A.Name = "A"
         Me.A.Size = New System.Drawing.Size(52, 43)
@@ -126,7 +125,7 @@ Partial Class html2
         '
         'f2
         '
-        Me.f2.Image = My.Resources.Resources.FaceBook
+        Me.f2.Image = Global.transparent.My.Resources.Resources.FaceBook
         Me.f2.Location = New System.Drawing.Point(434, 61)
         Me.f2.Name = "f2"
         Me.f2.Size = New System.Drawing.Size(25, 25)
@@ -134,7 +133,7 @@ Partial Class html2
         '
         'f3
         '
-        Me.f3.Image = My.Resources.Resources.FaceBook
+        Me.f3.Image = Global.transparent.My.Resources.Resources.FaceBook
         Me.f3.Location = New System.Drawing.Point(75, 85)
         Me.f3.Name = "f3"
         Me.f3.Size = New System.Drawing.Size(25, 25)
@@ -142,26 +141,13 @@ Partial Class html2
         '
         'f4
         '
-        Me.f4.Image = My.Resources.Resources.FaceBook
+        Me.f4.Image = Global.transparent.My.Resources.Resources.FaceBook
         Me.f4.Location = New System.Drawing.Point(450, 85)
         Me.f4.Name = "f4"
         Me.f4.Size = New System.Drawing.Size(25, 25)
         Me.f4.TabIndex = 37
         '
-        'dy
-        '
-        Me.dy.AutoSize = True
-        Me.dy.BackColor = System.Drawing.Color.Transparent
-        Me.dy.Font = New System.Drawing.Font("Tahoma", 17.0!)
-        Me.dy.ForeColor = System.Drawing.Color.White
-        Me.dy.Location = New System.Drawing.Point(133, 42)
-        Me.dy.Name = "dy"
-        Me.dy.Size = New System.Drawing.Size(282, 28)
-        Me.dy.TabIndex = 38
-        Me.dy.Text = "هذا اليوم هو يوم عيد ميلادي"
-        Me.dy.Visible = False
-        '
-        'html2
+        'Html2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -177,10 +163,9 @@ Partial Class html2
         Me.Controls.Add(Me.LMhmd)
         Me.Controls.Add(Me.I)
         Me.Controls.Add(Me.MyP)
-        Me.Controls.Add(Me.dy)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
-        Me.Name = "html2"
+        Me.Name = "Html2"
         Me.Text = "About"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -197,5 +182,4 @@ Partial Class html2
     Friend WithEvents f2 As Label
     Friend WithEvents f3 As Label
     Friend WithEvents f4 As Label
-    Friend WithEvents dy As Label
 End Class
