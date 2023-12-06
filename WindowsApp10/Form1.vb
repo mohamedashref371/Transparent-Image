@@ -14,10 +14,11 @@
         End If
 
         If My.Computer.FileSystem.FileExists(hm + "ab") Then T2.Stop()
-        T1.Start()
+        Lwh_Click(Nothing, Nothing)
+        imageFormat.SelectedIndex = 0
     End Sub
 
-    Private Sub Pg(sender As Object, e As KeyPressEventArgs) Handles x0.KeyPress, y0.KeyPress, x02.KeyPress, y02.KeyPress, x03.KeyPress, y03.KeyPress, x04.KeyPress, y04.KeyPress, r1.KeyPress, g1.KeyPress, b1.KeyPress, r2.KeyPress, g2.KeyPress, b2.KeyPress
+    Private Sub Pg_KeyPress(sender As Object, e As KeyPressEventArgs) Handles x0.KeyPress, y0.KeyPress, x02.KeyPress, y02.KeyPress, x03.KeyPress, y03.KeyPress, x04.KeyPress, y04.KeyPress, redDecimal2.KeyPress, greenDecimal2.KeyPress, blueDecimal2.KeyPress, redDecimal4.KeyPress, greenDecimal4.KeyPress, blueDecimal4.KeyPress
         If e.KeyChar = "0" Or e.KeyChar = "1" Or e.KeyChar = "2" Or e.KeyChar = "3" Or e.KeyChar = "4" Or e.KeyChar = "5" Or e.KeyChar = "6" Or e.KeyChar = "7" Or e.KeyChar = "8" Or e.KeyChar = "9" Or e.KeyChar = "" Then
             Exit Sub
         Else
@@ -25,7 +26,7 @@
         End If
     End Sub
 
-    Private Sub Pg2(sender As Object, e As KeyPressEventArgs) Handles r3.KeyPress, g3.KeyPress, b3.KeyPress, r4.KeyPress, g4.KeyPress, b4.KeyPress
+    Private Sub Pg2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles redHexadecimal2.KeyPress, greenHexadecimal2.KeyPress, blueHexadecimal2.KeyPress, redHexadecimal4.KeyPress, greenHexadecimal4.KeyPress, blueHexadecimal4.KeyPress
         If e.KeyChar = "0" Or e.KeyChar = "1" Or e.KeyChar = "2" Or e.KeyChar = "3" Or e.KeyChar = "4" Or e.KeyChar = "5" Or e.KeyChar = "6" Or e.KeyChar = "7" Or e.KeyChar = "8" Or e.KeyChar = "9" Or e.KeyChar = "a" Or e.KeyChar = "b" Or e.KeyChar = "c" Or e.KeyChar = "d" Or e.KeyChar = "e" Or e.KeyChar = "f" Or e.KeyChar = "A" Or e.KeyChar = "B" Or e.KeyChar = "C" Or e.KeyChar = "D" Or e.KeyChar = "E" Or e.KeyChar = "F" Or e.KeyChar = "" Then
             Exit Sub
         Else
@@ -33,30 +34,15 @@
         End If
     End Sub
 
-    Private Sub Pg3(sender As Object, e As KeyPressEventArgs) Handles cb3.KeyPress
-        e.KeyChar = ""
-    End Sub
-
-    Private Sub Wh1(sender As Object, e As EventArgs)
-        x8 = rd1.Next(0, 256)
-    End Sub
-
-    Private Sub Cb6_ChCh(sender As Object, e As EventArgs)
-        cb6.Visible = False
-        SR.Visible = True
-        num.Visible = True
-        My.Computer.FileSystem.WriteAllText(hm + "err", "9", False)
-    End Sub
-
     Private Sub start1_Click(sender As Object, e As EventArgs)
         pic1 = Image.FromFile(folderPath + "\" + ListBox1.Items(aaaa))
         aaaa += 1
-        PB1.BackgroundImage = pic1
-        PB1.Width = pic1.Width : PB1.Height = pic1.Height
+        image1.BackgroundImage = pic1
+        image1.Width = pic1.Width : image1.Height = pic1.Height
         MG5(sender, e)
         If mg3.Text = "1" Then
             If pic3.Width < pic1.Width Or pic3.Height < pic1.Height Then
-                PB3.BackgroundImage = Nothing : mg3.Text = "0" : x03.Text = "0" : y03.Text = "0" : x03.ReadOnly = True : y03.ReadOnly = True
+                image2.BackgroundImage = Nothing : mg3.Text = "0" : x03.Text = "0" : y03.Text = "0" : x03.ReadOnly = True : y03.ReadOnly = True
             End If
         End If
         x0.Text = "" : x0.Text = "0" : y0.Text = "0"
@@ -64,7 +50,7 @@
 
 
 
-        Img1.Enabled = False : Img2.Enabled = False : Img3.Enabled = False : Img4.Enabled = False : st.Enabled = False : sv.Enabled = False : num.Enabled = False : x0.Enabled = False : y0.Enabled = False : r1.Enabled = False : g1.Enabled = False : b1.Enabled = False : r2.Enabled = False : g2.Enabled = False : b2.Enabled = False : r3.Enabled = False : g3.Enabled = False : b3.Enabled = False : r4.Enabled = False : g4.Enabled = False : b4.Enabled = False
+        loadImage1.Enabled = False : loadBackground1.Enabled = False : loadImage2.Enabled = False : loadBackground2.Enabled = False : start.Enabled = False : save.Enabled = False : num.Enabled = False : x0.Enabled = False : y0.Enabled = False : redDecimal2.Enabled = False : greenDecimal2.Enabled = False : blueDecimal2.Enabled = False : redDecimal4.Enabled = False : greenDecimal4.Enabled = False : blueDecimal4.Enabled = False : redHexadecimal2.Enabled = False : greenHexadecimal2.Enabled = False : blueHexadecimal2.Enabled = False : redHexadecimal4.Enabled = False : greenHexadecimal4.Enabled = False : blueHexadecimal4.Enabled = False
         If x02.Text = "" Then
             x02.Text = "0"
         End If
@@ -135,97 +121,81 @@
         End If
     End Sub
 
-    Private Sub Lg2(sender As Object, e As EventArgs) Handles lg.Click
-        If lg.Text = "English" Then
-            lg.Text = "عربي"
+    Private Sub Lg2(sender As Object, e As EventArgs) Handles language.Click
+        If language.Text = "English" Then
+            language.Text = "عربي"
             My.Computer.FileSystem.WriteAllText(hm + "lang", "1", False)
 
-        ElseIf lg.Text = "عربي" Then
-            lg.Text = "English"
+        ElseIf language.Text = "عربي" Then
+            language.Text = "English"
             Kill(hm + "lang")
 
         End If
     End Sub
 
-    Private Sub Lwh_Click(sender As Object, e As EventArgs) Handles Lwh.Click
-        T1.Start()
-    End Sub
+    Private Sub Lwh_Click(sender As Object, e As EventArgs) Handles help.Click
+        If loadImage1.Enabled = True Then
 
-    Private Sub T1_Tick(sender As Object, e As EventArgs) Handles T1.Tick
-        T1.Stop()
-        If Img1.Enabled = True Then
-            If x9 = 0 Then
-                x9 = 1
-                Wh1(sender, e)
-                r1.Text = x8
-                Wh1(sender, e)
-                g1.Text = x8
-                Wh1(sender, e)
-                b1.Text = x8
-                Dim Bb5 As New Bitmap(256, 256)
-                Dim G5 As Graphics = Graphics.FromImage(Bb5)
-                G5.Clear(Color.FromArgb(r1.Text, g1.Text, b1.Text))
-                G5.DrawImage(My.Resources.zx0, 0, 0)
-                PB1.BackgroundImage = Bb5
-                pic1 = Bb5
-                T1.Start()
-            ElseIf x9 = 1 Then
-                x9 = 2
-                Wh1(sender, e)
-                r2.Text = x8
-                Wh1(sender, e)
-                g2.Text = x8
-                Wh1(sender, e)
-                b2.Text = x8
-                Dim Bb5 As New Bitmap(256, 256)
-                Dim G5 As Graphics = Graphics.FromImage(Bb5)
-                G5.Clear(Color.FromArgb(r2.Text, g2.Text, b2.Text))
-                G5.DrawImage(My.Resources.zx0, 0, 0)
-                PB3.BackgroundImage = Bb5 : mg3.Text = "1"
-                pic3 = Bb5
-                T1.Start()
-            ElseIf x9 = 2 Then
-                x9 = 0
-                Dim Bb5 As New Bitmap(256, 256)
-                Dim G5 As Graphics = Graphics.FromImage(Bb5)
-                G5.DrawImage(My.Resources.trpt2, 0, 0)
-                G5.DrawImage(My.Resources.zx0, 0, 0)
-                PB5.BackgroundImage = Bb5
-                pic5 = My.Resources.zx0
-            End If
+            redDecimal2.Text = rd1.Next(0, 256)
+            greenDecimal2.Text = rd1.Next(0, 256)
+            blueDecimal2.Text = rd1.Next(0, 256)
+            Dim Bb5 As New Bitmap(256, 256)
+            Dim G5 As Graphics = Graphics.FromImage(Bb5)
+            G5.Clear(Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text))
+            G5.DrawImage(My.Resources.zx0, 0, 0)
+            image1.BackgroundImage = Bb5
+            pic1 = Bb5
+
+            redDecimal4.Text = rd1.Next(0, 256)
+            greenDecimal4.Text = rd1.Next(0, 256)
+            blueDecimal4.Text = rd1.Next(0, 256)
+            Bb5 = New Bitmap(256, 256)
+            G5 = Graphics.FromImage(Bb5)
+            G5.Clear(Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text))
+            G5.DrawImage(My.Resources.zx0, 0, 0)
+            image2.BackgroundImage = Bb5 : mg3.Text = "1"
+            pic3 = Bb5
+
+            Bb5 = New Bitmap(256, 256)
+            G5 = Graphics.FromImage(Bb5)
+            G5.DrawImage(My.Resources.trpt2, 0, 0)
+            G5.DrawImage(My.Resources.zx0, 0, 0)
+            PB5.BackgroundImage = Bb5
+            pic5 = My.Resources.zx0
+
             y0.Text = "0"
             x0.Text = "0"
         End If
     End Sub
 
     Private Sub VSB_Scroll(sender As Object, e As ScrollEventArgs) Handles VSB.Scroll
-        PB1.Top = VSB.Value * (150 - PB1.Height) / 90
-        PB2.Top = VSB.Value * (150 - PB2.Height) / 90
-        PB3.Top = VSB.Value * (150 - PB3.Height) / 90
-        PB4.Top = VSB.Value * (150 - PB4.Height) / 90
+        image1.Top = VSB.Value * (150 - image1.Height) / 90
+        background1.Top = VSB.Value * (150 - background1.Height) / 90
+        image2.Top = VSB.Value * (150 - image2.Height) / 90
+        background2.Top = VSB.Value * (150 - background2.Height) / 90
         PB5.Top = VSB.Value * (150 - PB5.Height) / 90
     End Sub
 
     Private Sub HSB_Scroll(sender As Object, e As ScrollEventArgs) Handles HSB.Scroll
-        PB1.Left = HSB.Value * (150 - PB1.Width) / 90
-        PB2.Left = HSB.Value * (150 - PB2.Width) / 90
-        PB3.Left = HSB.Value * (150 - PB3.Width) / 90
-        PB4.Left = HSB.Value * (150 - PB4.Width) / 90
+        image1.Left = HSB.Value * (150 - image1.Width) / 90
+        background1.Left = HSB.Value * (150 - background1.Width) / 90
+        image2.Left = HSB.Value * (150 - image2.Width) / 90
+        background2.Left = HSB.Value * (150 - background2.Width) / 90
         PB5.Left = HSB.Value * (150 - PB5.Width) / 90
     End Sub
 
-    Private Sub Lbl_Click(sender As Object, e As EventArgs) Handles lbl.Click
+    Private Sub Lbl_Click(sender As Object, e As EventArgs) Handles about.Click
         T2.Stop()
         Html2.Show()
         My.Computer.FileSystem.WriteAllText(hm + "ab", "1", False)
     End Sub
 
-    Private Sub Sg_Click(sender As Object, e As EventArgs) Handles sg.Click
+    Private Sub Sg_Click(sender As Object, e As EventArgs) Handles seagaegy.Click
         Process.Start("http://www.mediafire.com/file/0wv97m4n96q5y0v")
     End Sub
 
-    Private Sub Sv_Click(sender As Object, e As EventArgs) Handles sv.Click
-        If cb3.Text = "ico" Then
+    Private Sub Sv_Click(sender As Object, e As EventArgs) Handles save.Click
+        If imageFormat.SelectedIndex = 1 Then
             SFD.Filter = "ICON Files|*.ico"
         Else
             SFD.Filter = "PNG Files|*.png"
@@ -242,9 +212,9 @@
         '   End If
     End Sub
 
-    Private Sub St_Click(sender As Object, e As EventArgs) Handles st.Click
+    Private Sub St_Click(sender As Object, e As EventArgs) Handles start.Click
         If mg3.Text = "1" Then
-            Img1.Enabled = False : Img2.Enabled = False : Img3.Enabled = False : Img4.Enabled = False : st.Enabled = False : sv.Enabled = False : num.Enabled = False : x0.Enabled = False : y0.Enabled = False : r1.Enabled = False : g1.Enabled = False : b1.Enabled = False : r2.Enabled = False : g2.Enabled = False : b2.Enabled = False : r3.Enabled = False : g3.Enabled = False : b3.Enabled = False : r4.Enabled = False : g4.Enabled = False : b4.Enabled = False
+            loadImage1.Enabled = False : loadBackground1.Enabled = False : loadImage2.Enabled = False : loadBackground2.Enabled = False : start.Enabled = False : save.Enabled = False : num.Enabled = False : x0.Enabled = False : y0.Enabled = False : redDecimal2.Enabled = False : greenDecimal2.Enabled = False : blueDecimal2.Enabled = False : redDecimal4.Enabled = False : greenDecimal4.Enabled = False : blueDecimal4.Enabled = False : redHexadecimal2.Enabled = False : greenHexadecimal2.Enabled = False : blueHexadecimal2.Enabled = False : redHexadecimal4.Enabled = False : greenHexadecimal4.Enabled = False : blueHexadecimal4.Enabled = False
             If x02.Text = "" Then
                 x02.Text = "0"
             End If
@@ -304,7 +274,7 @@
 
     Private Sub TF(sender As Object, e As EventArgs)
         Lb1.Text = "0" : Lb2.Text = "∞"
-        Img1.Enabled = True : Img2.Enabled = True : Img3.Enabled = True : Img4.Enabled = True : st.Enabled = True : sv.Enabled = True : num.Enabled = True : x0.Enabled = True : y0.Enabled = True : r1.Enabled = True : g1.Enabled = True : b1.Enabled = True : r2.Enabled = True : g2.Enabled = True : b2.Enabled = True : r3.Enabled = True : g3.Enabled = True : b3.Enabled = True : r4.Enabled = True : g4.Enabled = True : b4.Enabled = True
+        loadImage1.Enabled = True : loadBackground1.Enabled = True : loadImage2.Enabled = True : loadBackground2.Enabled = True : start.Enabled = True : save.Enabled = True : num.Enabled = True : x0.Enabled = True : y0.Enabled = True : redDecimal2.Enabled = True : greenDecimal2.Enabled = True : blueDecimal2.Enabled = True : redDecimal4.Enabled = True : greenDecimal4.Enabled = True : blueDecimal4.Enabled = True : redHexadecimal2.Enabled = True : greenHexadecimal2.Enabled = True : blueHexadecimal2.Enabled = True : redHexadecimal4.Enabled = True : greenHexadecimal4.Enabled = True : blueHexadecimal4.Enabled = True
     End Sub
 
     Private Sub RGB(sender As Object, e As EventArgs)
@@ -523,20 +493,20 @@
 
     Private Sub MG5(sender As Object, e As EventArgs)
         VSB.Value = 0 : HSB.Value = 0
-        PB1.Location = New Point(0, 0) : PB2.Location = New Point(0, 0) : PB3.Location = New Point(0, 0) : PB4.Location = New Point(0, 0) : PB5.Location = New Point(0, 0)
+        image1.Location = New Point(0, 0) : background1.Location = New Point(0, 0) : image2.Location = New Point(0, 0) : background2.Location = New Point(0, 0) : PB5.Location = New Point(0, 0)
     End Sub
 
-    Private Sub Img1_Click(sender As Object, e As EventArgs) Handles Img1.Click
+    Private Sub Img1_Click(sender As Object, e As EventArgs) Handles loadImage1.Click
         On Error Resume Next
         If OFD.ShowDialog() = DialogResult.OK Then
             If Image.FromFile(OFD.FileName).Width >= 16 And Image.FromFile(OFD.FileName).Height >= 16 Then
                 pic1 = Image.FromFile(OFD.FileName)
-                PB1.BackgroundImage = pic1
-                PB1.Width = pic1.Width : PB1.Height = pic1.Height
+                image1.BackgroundImage = pic1
+                image1.Width = pic1.Width : image1.Height = pic1.Height
                 MG5(sender, e)
                 If mg3.Text = "1" Then
                     If pic3.Width < pic1.Width Or pic3.Height < pic1.Height Then
-                        PB3.BackgroundImage = Nothing : mg3.Text = "0" : x03.Text = "0" : y03.Text = "0" : x03.ReadOnly = True : y03.ReadOnly = True
+                        image2.BackgroundImage = Nothing : mg3.Text = "0" : x03.Text = "0" : y03.Text = "0" : x03.ReadOnly = True : y03.ReadOnly = True
                     End If
                 End If
                 x0.Text = "" : x0.Text = "0" : y0.Text = "0"
@@ -547,7 +517,7 @@
         End If
     End Sub
 
-    Private Sub Img2_Click(sender As Object, e As EventArgs) Handles Img2.Click
+    Private Sub Img2_Click(sender As Object, e As EventArgs) Handles loadBackground1.Click
         On Error Resume Next
         If OFD.ShowDialog() = DialogResult.OK Then
             If Image.FromFile(OFD.FileName).Width >= 16 And Image.FromFile(OFD.FileName).Height >= 16 Then
@@ -555,9 +525,9 @@
                     MsgBox("الصورة أصغر من الصورة الرئيسية")
                 Else
                     pic2 = Image.FromFile(OFD.FileName)
-                    PB2.BackColor = Nothing
-                    PB2.BackgroundImage = pic2 : mg2.Text = 1
-                    PB2.Width = pic2.Width : PB2.Height = pic2.Height
+                    background1.BackColor = Nothing
+                    background1.BackgroundImage = pic2 : mg2.Text = 1
+                    background1.Width = pic2.Width : background1.Height = pic2.Height
                     x02.Text = "0" : y02.Text = "0"
                     If pic2.Width > pic1.Width Then
                         x02.ReadOnly = False
@@ -577,7 +547,7 @@
         End If
     End Sub
 
-    Private Sub Img3_Click(sender As Object, e As EventArgs) Handles Img3.Click
+    Private Sub Img3_Click(sender As Object, e As EventArgs) Handles loadImage2.Click
         On Error Resume Next
         If OFD.ShowDialog() = DialogResult.OK Then
             If Image.FromFile(OFD.FileName).Width >= 16 And Image.FromFile(OFD.FileName).Height >= 16 Then
@@ -585,8 +555,8 @@
                     MsgBox("الصورة أصغر من الصورة الرئيسية")
                 Else
                     pic3 = Image.FromFile(OFD.FileName)
-                    PB3.BackgroundImage = pic3
-                    PB3.Width = pic3.Width : PB3.Height = pic3.Height
+                    image2.BackgroundImage = pic3
+                    image2.Width = pic3.Width : image2.Height = pic3.Height
                     x03.Text = "0" : y03.Text = "0"
                     If pic3.Width > pic1.Width Then
                         x03.ReadOnly = False
@@ -607,16 +577,16 @@
         End If
     End Sub
 
-    Private Sub Img4_Click(sender As Object, e As EventArgs) Handles Img4.Click
+    Private Sub Img4_Click(sender As Object, e As EventArgs) Handles loadBackground2.Click
         If OFD.ShowDialog() = DialogResult.OK Then
             If Image.FromFile(OFD.FileName).Width >= 16 And Image.FromFile(OFD.FileName).Height >= 16 Then
                 If Image.FromFile(OFD.FileName).Width < pic1.Width Or Image.FromFile(OFD.FileName).Height < pic1.Height Then
                     MsgBox("الصورة أصغر من الصورة الرئيسية")
                 Else
                     pic4 = Image.FromFile(OFD.FileName)
-                    PB4.BackColor = Nothing
-                    PB4.BackgroundImage = pic4 : mg4.Text = 1
-                    PB4.Width = pic4.Width : PB4.Height = pic4.Height
+                    background2.BackColor = Nothing
+                    background2.BackgroundImage = pic4 : mg4.Text = 1
+                    background2.Width = pic4.Width : background2.Height = pic4.Height
                     x04.Text = "0" : y04.Text = "0"
                     If pic4.Width > pic1.Width Then
                         x04.ReadOnly = False
@@ -636,74 +606,74 @@
         End If
     End Sub
 
-    Private Sub RGB1(sender As Object, e As EventArgs) Handles r1.TextChanged, g1.TextChanged, b1.TextChanged
-        If r1.Text = "" Or g1.Text = "" Or b1.Text = "" Then
+    Private Sub RGB1(sender As Object, e As EventArgs) Handles redDecimal2.TextChanged, greenDecimal2.TextChanged, blueDecimal2.TextChanged
+        If redDecimal2.Text = "" Or greenDecimal2.Text = "" Or blueDecimal2.Text = "" Then
         Else
-            If r1.Text > 255 Then
-                r1.Text = 255
+            If redDecimal2.Text > 255 Then
+                redDecimal2.Text = 255
             End If
-            If g1.Text > 255 Then
-                g1.Text = 255
+            If greenDecimal2.Text > 255 Then
+                greenDecimal2.Text = 255
             End If
-            If b1.Text > 255 Then
-                b1.Text = 255
+            If blueDecimal2.Text > 255 Then
+                blueDecimal2.Text = 255
             End If
-            nl = r1.Text : Nuli(sender, e) : r3.Text = nl
-            nl = g1.Text : Nuli(sender, e) : g3.Text = nl
-            nl = b1.Text : Nuli(sender, e) : b3.Text = nl
+            nl = redDecimal2.Text : Nuli(sender, e) : redHexadecimal2.Text = nl
+            nl = greenDecimal2.Text : Nuli(sender, e) : greenHexadecimal2.Text = nl
+            nl = blueDecimal2.Text : Nuli(sender, e) : blueHexadecimal2.Text = nl
             pic2 = Nothing : mg2.Text = 0
-            PB2.BackgroundImage = Nothing : PB2.BackColor = Color.FromArgb(r1.Text, g1.Text, b1.Text)
+            background1.BackgroundImage = Nothing : background1.BackColor = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
             x02.Text = "0" : y02.Text = "0" : x02.ReadOnly = True : y02.ReadOnly = True
-            r5.Text = r1.Text : g5.Text = g1.Text : b5.Text = b1.Text
+            r5.Text = redDecimal2.Text : g5.Text = greenDecimal2.Text : b5.Text = blueDecimal2.Text
         End If
     End Sub
 
-    Private Sub RGB2(sender As Object, e As EventArgs) Handles r2.TextChanged, g2.TextChanged, b2.TextChanged
-        If r2.Text = "" Or g2.Text = "" Or b2.Text = "" Then
+    Private Sub RGB2(sender As Object, e As EventArgs) Handles redDecimal4.TextChanged, greenDecimal4.TextChanged, blueDecimal4.TextChanged
+        If redDecimal4.Text = "" Or greenDecimal4.Text = "" Or blueDecimal4.Text = "" Then
         Else
-            If r2.Text > 255 Then
-                r2.Text = 255
+            If redDecimal4.Text > 255 Then
+                redDecimal4.Text = 255
             End If
-            If g2.Text > 255 Then
-                g2.Text = 255
+            If greenDecimal4.Text > 255 Then
+                greenDecimal4.Text = 255
             End If
-            If b2.Text > 255 Then
-                b2.Text = 255
+            If blueDecimal4.Text > 255 Then
+                blueDecimal4.Text = 255
             End If
-            nl = r2.Text : Nuli(sender, e) : r4.Text = nl
-            nl = g2.Text : Nuli(sender, e) : g4.Text = nl
-            nl = b2.Text : Nuli(sender, e) : b4.Text = nl
+            nl = redDecimal4.Text : Nuli(sender, e) : redHexadecimal4.Text = nl
+            nl = greenDecimal4.Text : Nuli(sender, e) : greenHexadecimal4.Text = nl
+            nl = blueDecimal4.Text : Nuli(sender, e) : blueHexadecimal4.Text = nl
             pic4 = Nothing : mg4.Text = 0
-            PB4.BackgroundImage = Nothing : PB4.BackColor = Color.FromArgb(r2.Text, g2.Text, b2.Text)
+            background2.BackgroundImage = Nothing : background2.BackColor = Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text)
             x04.Text = "0" : y04.Text = "0" : x04.ReadOnly = True : y04.ReadOnly = True
-            r6.Text = r2.Text : g6.Text = g2.Text : b6.Text = b2.Text
+            r6.Text = redDecimal4.Text : g6.Text = greenDecimal4.Text : b6.Text = blueDecimal4.Text
         End If
     End Sub
 
-    Private Sub RGB3(sender As Object, e As EventArgs) Handles r3.TextChanged, g3.TextChanged, b3.TextChanged
-        If Len(Trim$(r3.Text)) = 2 And Len(Trim$(g3.Text)) = 2 And Len(Trim$(b3.Text)) = 2 Then
-            nl = r3.Text : Linu(sender, e) : r1.Text = nl
-            nl = g3.Text : Linu(sender, e) : g1.Text = nl
-            nl = b3.Text : Linu(sender, e) : b1.Text = nl
+    Private Sub RGB3(sender As Object, e As EventArgs) Handles redHexadecimal2.TextChanged, greenHexadecimal2.TextChanged, blueHexadecimal2.TextChanged
+        If Len(Trim$(redHexadecimal2.Text)) = 2 And Len(Trim$(greenHexadecimal2.Text)) = 2 And Len(Trim$(blueHexadecimal2.Text)) = 2 Then
+            nl = redHexadecimal2.Text : Linu(sender, e) : redDecimal2.Text = nl
+            nl = greenHexadecimal2.Text : Linu(sender, e) : greenDecimal2.Text = nl
+            nl = blueHexadecimal2.Text : Linu(sender, e) : blueDecimal2.Text = nl
         End If
     End Sub
 
-    Private Sub RGB4(sender As Object, e As EventArgs) Handles r4.TextChanged, g4.TextChanged, b4.TextChanged
-        If Len(Trim$(r4.Text)) = 2 And Len(Trim$(g4.Text)) = 2 And Len(Trim$(b4.Text)) = 2 Then
-            nl = r4.Text : Linu(sender, e) : r2.Text = nl
-            nl = g4.Text : Linu(sender, e) : g2.Text = nl
-            nl = b4.Text : Linu(sender, e) : b2.Text = nl
+    Private Sub RGB4(sender As Object, e As EventArgs) Handles redHexadecimal4.TextChanged, greenHexadecimal4.TextChanged, blueHexadecimal4.TextChanged
+        If Len(Trim$(redHexadecimal4.Text)) = 2 And Len(Trim$(greenHexadecimal4.Text)) = 2 And Len(Trim$(blueHexadecimal4.Text)) = 2 Then
+            nl = redHexadecimal4.Text : Linu(sender, e) : redDecimal4.Text = nl
+            nl = greenHexadecimal4.Text : Linu(sender, e) : greenDecimal4.Text = nl
+            nl = blueHexadecimal4.Text : Linu(sender, e) : blueDecimal4.Text = nl
         End If
     End Sub
 
     Private Sub XY0_TextChanged(sender As Object, e As EventArgs) Handles x0.TextChanged, y0.TextChanged
         If x0.Text = "" Or y0.Text = "" Then
-        ElseIf x0.Text >= PB2.Width Or y0.Text >= PB2.Height Or x0.Text >= PB4.Width Or y0.Text >= PB4.Height Then
+        ElseIf x0.Text >= background1.Width Or y0.Text >= background1.Height Or x0.Text >= background2.Width Or y0.Text >= background2.Height Then
 
         Else
             q1 = x0.Text : q2 = y0.Text
             Dim P5 As Color = pic1.GetPixel(q1, q2)
-            r1.Text = "" : r1.Text = P5.R : g1.Text = P5.G : b1.Text = P5.B
+            redDecimal2.Text = "" : redDecimal2.Text = P5.R : greenDecimal2.Text = P5.G : blueDecimal2.Text = P5.B
             If mg3.Text = "1" Then
                 If x03.Text = "" Then
                     x03.Text = "0"
@@ -719,34 +689,34 @@
                     p32 = pic3.Height - pic1.Height : y03.Text = p32
                 End If
                 Dim P6 As Color = pic3.GetPixel(q1 + p31, q2 + p32)
-                r2.Text = "" : r2.Text = P6.R : g2.Text = P6.G : b2.Text = P6.B
+                redDecimal4.Text = "" : redDecimal4.Text = P6.R : greenDecimal4.Text = P6.G : blueDecimal4.Text = P6.B
             Else
-                r2.Text = "" : r2.Text = "255" : g2.Text = "255" : b2.Text = "255"
+                redDecimal4.Text = "" : redDecimal4.Text = "255" : greenDecimal4.Text = "255" : blueDecimal4.Text = "255"
             End If
         End If
     End Sub
 
     Private Sub T2_Tick(sender As Object, e As EventArgs) Handles T2.Tick
-        If lbl.ForeColor = Color.Black Then
+        If about.ForeColor = Color.Black Then
             T2.Interval = 150
-            lbl.ForeColor = Color.Red
-        ElseIf lbl.ForeColor = Color.Red Then
-            lbl.ForeColor = Color.Orange
-        ElseIf lbl.ForeColor = Color.Orange Then
-            lbl.ForeColor = Color.Yellow
-        ElseIf lbl.ForeColor = Color.Yellow Then
-            lbl.ForeColor = Color.Green
-        ElseIf lbl.ForeColor = Color.Green Then
-            lbl.ForeColor = Color.Cyan
-        ElseIf lbl.ForeColor = Color.Cyan Then
-            lbl.ForeColor = Color.Blue
-        ElseIf lbl.ForeColor = Color.Blue Then
-            lbl.ForeColor = Color.Purple
-        ElseIf lbl.ForeColor = Color.Purple Then
-            lbl.ForeColor = Color.Magenta
-        ElseIf lbl.ForeColor = Color.Magenta Then
+            about.ForeColor = Color.Red
+        ElseIf about.ForeColor = Color.Red Then
+            about.ForeColor = Color.Orange
+        ElseIf about.ForeColor = Color.Orange Then
+            about.ForeColor = Color.Yellow
+        ElseIf about.ForeColor = Color.Yellow Then
+            about.ForeColor = Color.Green
+        ElseIf about.ForeColor = Color.Green Then
+            about.ForeColor = Color.Cyan
+        ElseIf about.ForeColor = Color.Cyan Then
+            about.ForeColor = Color.Blue
+        ElseIf about.ForeColor = Color.Blue Then
+            about.ForeColor = Color.Purple
+        ElseIf about.ForeColor = Color.Purple Then
+            about.ForeColor = Color.Magenta
+        ElseIf about.ForeColor = Color.Magenta Then
             T2.Interval = 4321
-            lbl.ForeColor = Color.Black
+            about.ForeColor = Color.Black
         End If
     End Sub
 

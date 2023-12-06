@@ -24,10 +24,10 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.Img1 = New System.Windows.Forms.Button()
-        Me.Img2 = New System.Windows.Forms.Button()
-        Me.Img4 = New System.Windows.Forms.Button()
-        Me.Img3 = New System.Windows.Forms.Button()
+        Me.loadImage1 = New System.Windows.Forms.Button()
+        Me.loadBackground1 = New System.Windows.Forms.Button()
+        Me.loadBackground2 = New System.Windows.Forms.Button()
+        Me.loadImage2 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -42,49 +42,48 @@ Partial Class Form1
         Me.Label10 = New System.Windows.Forms.Label()
         Me.VSB = New System.Windows.Forms.VScrollBar()
         Me.HSB = New System.Windows.Forms.HScrollBar()
-        Me.r1 = New System.Windows.Forms.TextBox()
-        Me.g1 = New System.Windows.Forms.TextBox()
-        Me.b1 = New System.Windows.Forms.TextBox()
+        Me.redDecimal2 = New System.Windows.Forms.TextBox()
+        Me.greenDecimal2 = New System.Windows.Forms.TextBox()
+        Me.blueDecimal2 = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.b2 = New System.Windows.Forms.TextBox()
-        Me.g2 = New System.Windows.Forms.TextBox()
-        Me.r2 = New System.Windows.Forms.TextBox()
-        Me.T1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Pa1 = New System.Windows.Forms.Panel()
-        Me.PB1 = New System.Windows.Forms.PictureBox()
-        Me.Pa2 = New System.Windows.Forms.Panel()
-        Me.PB2 = New System.Windows.Forms.PictureBox()
-        Me.Pa3 = New System.Windows.Forms.Panel()
-        Me.PB3 = New System.Windows.Forms.PictureBox()
-        Me.Pa4 = New System.Windows.Forms.Panel()
-        Me.PB4 = New System.Windows.Forms.PictureBox()
-        Me.Pa5 = New System.Windows.Forms.Panel()
+        Me.blueDecimal4 = New System.Windows.Forms.TextBox()
+        Me.greenDecimal4 = New System.Windows.Forms.TextBox()
+        Me.redDecimal4 = New System.Windows.Forms.TextBox()
+        Me.panel11 = New System.Windows.Forms.Panel()
+        Me.image1 = New System.Windows.Forms.PictureBox()
+        Me.panel12 = New System.Windows.Forms.Panel()
+        Me.background1 = New System.Windows.Forms.PictureBox()
+        Me.panel21 = New System.Windows.Forms.Panel()
+        Me.image2 = New System.Windows.Forms.PictureBox()
+        Me.panel22 = New System.Windows.Forms.Panel()
+        Me.background2 = New System.Windows.Forms.PictureBox()
+        Me.panel33 = New System.Windows.Forms.Panel()
         Me.PB5 = New System.Windows.Forms.PictureBox()
-        Me.sv = New System.Windows.Forms.Button()
+        Me.save = New System.Windows.Forms.Button()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.st = New System.Windows.Forms.Button()
+        Me.start = New System.Windows.Forms.Button()
         Me.y03 = New System.Windows.Forms.TextBox()
         Me.x03 = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
-        Me.b3 = New System.Windows.Forms.TextBox()
-        Me.g3 = New System.Windows.Forms.TextBox()
-        Me.r3 = New System.Windows.Forms.TextBox()
-        Me.b4 = New System.Windows.Forms.TextBox()
-        Me.g4 = New System.Windows.Forms.TextBox()
-        Me.r4 = New System.Windows.Forms.TextBox()
+        Me.blueHexadecimal2 = New System.Windows.Forms.TextBox()
+        Me.greenHexadecimal2 = New System.Windows.Forms.TextBox()
+        Me.redHexadecimal2 = New System.Windows.Forms.TextBox()
+        Me.blueHexadecimal4 = New System.Windows.Forms.TextBox()
+        Me.greenHexadecimal4 = New System.Windows.Forms.TextBox()
+        Me.redHexadecimal4 = New System.Windows.Forms.TextBox()
         Me.Lb1 = New System.Windows.Forms.Label()
         Me.Lb2 = New System.Windows.Forms.Label()
         Me.Lb3 = New System.Windows.Forms.Label()
-        Me.lbl = New System.Windows.Forms.Button()
+        Me.about = New System.Windows.Forms.Button()
         Me.T2 = New System.Windows.Forms.Timer(Me.components)
         Me.Label39 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
@@ -108,11 +107,11 @@ Partial Class Form1
         Me.x04 = New System.Windows.Forms.TextBox()
         Me.y04 = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
-        Me.lg = New System.Windows.Forms.Button()
-        Me.cb3 = New System.Windows.Forms.ComboBox()
+        Me.language = New System.Windows.Forms.Button()
+        Me.imageFormat = New System.Windows.Forms.ComboBox()
         Me.mg3 = New System.Windows.Forms.Label()
-        Me.Lwh = New System.Windows.Forms.Label()
-        Me.sg = New System.Windows.Forms.Button()
+        Me.help = New System.Windows.Forms.Label()
+        Me.seagaegy = New System.Windows.Forms.Button()
         Me.r5 = New System.Windows.Forms.Label()
         Me.g5 = New System.Windows.Forms.Label()
         Me.b5 = New System.Windows.Forms.Label()
@@ -121,53 +120,53 @@ Partial Class Form1
         Me.r6 = New System.Windows.Forms.Label()
         Me.folder = New System.Windows.Forms.Button()
         Me.FBD = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Pa1.SuspendLayout()
-        CType(Me.PB1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Pa2.SuspendLayout()
-        CType(Me.PB2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Pa3.SuspendLayout()
-        CType(Me.PB3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Pa4.SuspendLayout()
-        CType(Me.PB4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Pa5.SuspendLayout()
+        Me.panel11.SuspendLayout()
+        CType(Me.image1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel12.SuspendLayout()
+        CType(Me.background1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel21.SuspendLayout()
+        CType(Me.image2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel22.SuspendLayout()
+        CType(Me.background2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel33.SuspendLayout()
         CType(Me.PB5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Img1
+        'loadImage1
         '
-        Me.Img1.Location = New System.Drawing.Point(110, 25)
-        Me.Img1.Name = "Img1"
-        Me.Img1.Size = New System.Drawing.Size(75, 51)
-        Me.Img1.TabIndex = 4
-        Me.Img1.Text = "إستضافة الصورة الرئيسية"
-        Me.Img1.UseVisualStyleBackColor = True
+        Me.loadImage1.Location = New System.Drawing.Point(110, 25)
+        Me.loadImage1.Name = "loadImage1"
+        Me.loadImage1.Size = New System.Drawing.Size(75, 51)
+        Me.loadImage1.TabIndex = 4
+        Me.loadImage1.Text = "إستضافة الصورة الرئيسية"
+        Me.loadImage1.UseVisualStyleBackColor = True
         '
-        'Img2
+        'loadBackground1
         '
-        Me.Img2.Location = New System.Drawing.Point(266, 25)
-        Me.Img2.Name = "Img2"
-        Me.Img2.Size = New System.Drawing.Size(75, 51)
-        Me.Img2.TabIndex = 5
-        Me.Img2.Text = "إستضافة" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الخلفية" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الأولى"
-        Me.Img2.UseVisualStyleBackColor = True
+        Me.loadBackground1.Location = New System.Drawing.Point(266, 25)
+        Me.loadBackground1.Name = "loadBackground1"
+        Me.loadBackground1.Size = New System.Drawing.Size(75, 51)
+        Me.loadBackground1.TabIndex = 5
+        Me.loadBackground1.Text = "إستضافة" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الخلفية" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الأولى"
+        Me.loadBackground1.UseVisualStyleBackColor = True
         '
-        'Img4
+        'loadBackground2
         '
-        Me.Img4.Location = New System.Drawing.Point(266, 238)
-        Me.Img4.Name = "Img4"
-        Me.Img4.Size = New System.Drawing.Size(75, 40)
-        Me.Img4.TabIndex = 7
-        Me.Img4.Text = "الخلفية الثانية"
-        Me.Img4.UseVisualStyleBackColor = True
+        Me.loadBackground2.Location = New System.Drawing.Point(266, 238)
+        Me.loadBackground2.Name = "loadBackground2"
+        Me.loadBackground2.Size = New System.Drawing.Size(75, 40)
+        Me.loadBackground2.TabIndex = 7
+        Me.loadBackground2.Text = "الخلفية الثانية"
+        Me.loadBackground2.UseVisualStyleBackColor = True
         '
-        'Img3
+        'loadImage2
         '
-        Me.Img3.Location = New System.Drawing.Point(110, 238)
-        Me.Img3.Name = "Img3"
-        Me.Img3.Size = New System.Drawing.Size(75, 40)
-        Me.Img3.TabIndex = 6
-        Me.Img3.Text = "الصورة" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الثانية"
-        Me.Img3.UseVisualStyleBackColor = True
+        Me.loadImage2.Location = New System.Drawing.Point(110, 238)
+        Me.loadImage2.Name = "loadImage2"
+        Me.loadImage2.Size = New System.Drawing.Size(75, 40)
+        Me.loadImage2.TabIndex = 6
+        Me.loadImage2.Text = "الصورة" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الثانية"
+        Me.loadImage2.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -280,32 +279,32 @@ Partial Class Form1
         Me.HSB.Size = New System.Drawing.Size(495, 20)
         Me.HSB.TabIndex = 26
         '
-        'r1
+        'redDecimal2
         '
-        Me.r1.Location = New System.Drawing.Point(442, 103)
-        Me.r1.MaxLength = 3
-        Me.r1.Name = "r1"
-        Me.r1.Size = New System.Drawing.Size(30, 20)
-        Me.r1.TabIndex = 27
-        Me.r1.Text = "255"
+        Me.redDecimal2.Location = New System.Drawing.Point(442, 103)
+        Me.redDecimal2.MaxLength = 3
+        Me.redDecimal2.Name = "redDecimal2"
+        Me.redDecimal2.Size = New System.Drawing.Size(30, 20)
+        Me.redDecimal2.TabIndex = 27
+        Me.redDecimal2.Text = "255"
         '
-        'g1
+        'greenDecimal2
         '
-        Me.g1.Location = New System.Drawing.Point(442, 129)
-        Me.g1.MaxLength = 3
-        Me.g1.Name = "g1"
-        Me.g1.Size = New System.Drawing.Size(30, 20)
-        Me.g1.TabIndex = 28
-        Me.g1.Text = "255"
+        Me.greenDecimal2.Location = New System.Drawing.Point(442, 129)
+        Me.greenDecimal2.MaxLength = 3
+        Me.greenDecimal2.Name = "greenDecimal2"
+        Me.greenDecimal2.Size = New System.Drawing.Size(30, 20)
+        Me.greenDecimal2.TabIndex = 28
+        Me.greenDecimal2.Text = "255"
         '
-        'b1
+        'blueDecimal2
         '
-        Me.b1.Location = New System.Drawing.Point(442, 155)
-        Me.b1.MaxLength = 3
-        Me.b1.Name = "b1"
-        Me.b1.Size = New System.Drawing.Size(30, 20)
-        Me.b1.TabIndex = 29
-        Me.b1.Text = "255"
+        Me.blueDecimal2.Location = New System.Drawing.Point(442, 155)
+        Me.blueDecimal2.MaxLength = 3
+        Me.blueDecimal2.Name = "blueDecimal2"
+        Me.blueDecimal2.Size = New System.Drawing.Size(30, 20)
+        Me.blueDecimal2.TabIndex = 29
+        Me.blueDecimal2.Text = "255"
         '
         'Label12
         '
@@ -361,118 +360,114 @@ Partial Class Form1
         Me.Label17.TabIndex = 36
         Me.Label17.Text = "R"
         '
-        'b2
+        'blueDecimal4
         '
-        Me.b2.Location = New System.Drawing.Point(442, 351)
-        Me.b2.MaxLength = 3
-        Me.b2.Name = "b2"
-        Me.b2.Size = New System.Drawing.Size(30, 20)
-        Me.b2.TabIndex = 35
-        Me.b2.Text = "255"
+        Me.blueDecimal4.Location = New System.Drawing.Point(442, 351)
+        Me.blueDecimal4.MaxLength = 3
+        Me.blueDecimal4.Name = "blueDecimal4"
+        Me.blueDecimal4.Size = New System.Drawing.Size(30, 20)
+        Me.blueDecimal4.TabIndex = 35
+        Me.blueDecimal4.Text = "255"
         '
-        'g2
+        'greenDecimal4
         '
-        Me.g2.Location = New System.Drawing.Point(442, 325)
-        Me.g2.MaxLength = 3
-        Me.g2.Name = "g2"
-        Me.g2.Size = New System.Drawing.Size(30, 20)
-        Me.g2.TabIndex = 34
-        Me.g2.Text = "255"
+        Me.greenDecimal4.Location = New System.Drawing.Point(442, 325)
+        Me.greenDecimal4.MaxLength = 3
+        Me.greenDecimal4.Name = "greenDecimal4"
+        Me.greenDecimal4.Size = New System.Drawing.Size(30, 20)
+        Me.greenDecimal4.TabIndex = 34
+        Me.greenDecimal4.Text = "255"
         '
-        'r2
+        'redDecimal4
         '
-        Me.r2.Location = New System.Drawing.Point(442, 299)
-        Me.r2.MaxLength = 3
-        Me.r2.Name = "r2"
-        Me.r2.Size = New System.Drawing.Size(30, 20)
-        Me.r2.TabIndex = 33
-        Me.r2.Text = "255"
+        Me.redDecimal4.Location = New System.Drawing.Point(442, 299)
+        Me.redDecimal4.MaxLength = 3
+        Me.redDecimal4.Name = "redDecimal4"
+        Me.redDecimal4.Size = New System.Drawing.Size(30, 20)
+        Me.redDecimal4.TabIndex = 33
+        Me.redDecimal4.Text = "255"
         '
-        'T1
+        'panel11
         '
-        Me.T1.Interval = 1
+        Me.panel11.BackColor = System.Drawing.Color.White
+        Me.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.panel11.Controls.Add(Me.image1)
+        Me.panel11.Location = New System.Drawing.Point(110, 76)
+        Me.panel11.Name = "panel11"
+        Me.panel11.Size = New System.Drawing.Size(150, 150)
+        Me.panel11.TabIndex = 39
         '
-        'Pa1
+        'image1
         '
-        Me.Pa1.BackColor = System.Drawing.Color.White
-        Me.Pa1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Pa1.Controls.Add(Me.PB1)
-        Me.Pa1.Location = New System.Drawing.Point(110, 76)
-        Me.Pa1.Name = "Pa1"
-        Me.Pa1.Size = New System.Drawing.Size(150, 150)
-        Me.Pa1.TabIndex = 39
+        Me.image1.Location = New System.Drawing.Point(0, 0)
+        Me.image1.Name = "image1"
+        Me.image1.Size = New System.Drawing.Size(256, 256)
+        Me.image1.TabIndex = 0
+        Me.image1.TabStop = False
         '
-        'PB1
+        'panel12
         '
-        Me.PB1.Location = New System.Drawing.Point(0, 0)
-        Me.PB1.Name = "PB1"
-        Me.PB1.Size = New System.Drawing.Size(256, 256)
-        Me.PB1.TabIndex = 0
-        Me.PB1.TabStop = False
+        Me.panel12.BackColor = System.Drawing.Color.White
+        Me.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.panel12.Controls.Add(Me.background1)
+        Me.panel12.Location = New System.Drawing.Point(266, 76)
+        Me.panel12.Name = "panel12"
+        Me.panel12.Size = New System.Drawing.Size(150, 150)
+        Me.panel12.TabIndex = 40
         '
-        'Pa2
+        'background1
         '
-        Me.Pa2.BackColor = System.Drawing.Color.White
-        Me.Pa2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Pa2.Controls.Add(Me.PB2)
-        Me.Pa2.Location = New System.Drawing.Point(266, 76)
-        Me.Pa2.Name = "Pa2"
-        Me.Pa2.Size = New System.Drawing.Size(150, 150)
-        Me.Pa2.TabIndex = 40
+        Me.background1.Location = New System.Drawing.Point(0, 0)
+        Me.background1.Name = "background1"
+        Me.background1.Size = New System.Drawing.Size(256, 256)
+        Me.background1.TabIndex = 0
+        Me.background1.TabStop = False
         '
-        'PB2
+        'panel21
         '
-        Me.PB2.Location = New System.Drawing.Point(0, 0)
-        Me.PB2.Name = "PB2"
-        Me.PB2.Size = New System.Drawing.Size(256, 256)
-        Me.PB2.TabIndex = 0
-        Me.PB2.TabStop = False
+        Me.panel21.BackColor = System.Drawing.Color.White
+        Me.panel21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.panel21.Controls.Add(Me.image2)
+        Me.panel21.Location = New System.Drawing.Point(110, 278)
+        Me.panel21.Name = "panel21"
+        Me.panel21.Size = New System.Drawing.Size(150, 150)
+        Me.panel21.TabIndex = 41
         '
-        'Pa3
+        'image2
         '
-        Me.Pa3.BackColor = System.Drawing.Color.White
-        Me.Pa3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Pa3.Controls.Add(Me.PB3)
-        Me.Pa3.Location = New System.Drawing.Point(110, 278)
-        Me.Pa3.Name = "Pa3"
-        Me.Pa3.Size = New System.Drawing.Size(150, 150)
-        Me.Pa3.TabIndex = 41
+        Me.image2.Location = New System.Drawing.Point(0, 0)
+        Me.image2.Name = "image2"
+        Me.image2.Size = New System.Drawing.Size(256, 256)
+        Me.image2.TabIndex = 0
+        Me.image2.TabStop = False
         '
-        'PB3
+        'panel22
         '
-        Me.PB3.Location = New System.Drawing.Point(0, 0)
-        Me.PB3.Name = "PB3"
-        Me.PB3.Size = New System.Drawing.Size(256, 256)
-        Me.PB3.TabIndex = 0
-        Me.PB3.TabStop = False
+        Me.panel22.BackColor = System.Drawing.Color.White
+        Me.panel22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.panel22.Controls.Add(Me.background2)
+        Me.panel22.Location = New System.Drawing.Point(266, 278)
+        Me.panel22.Name = "panel22"
+        Me.panel22.Size = New System.Drawing.Size(150, 150)
+        Me.panel22.TabIndex = 42
         '
-        'Pa4
+        'background2
         '
-        Me.Pa4.BackColor = System.Drawing.Color.White
-        Me.Pa4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Pa4.Controls.Add(Me.PB4)
-        Me.Pa4.Location = New System.Drawing.Point(266, 278)
-        Me.Pa4.Name = "Pa4"
-        Me.Pa4.Size = New System.Drawing.Size(150, 150)
-        Me.Pa4.TabIndex = 42
+        Me.background2.Location = New System.Drawing.Point(0, 0)
+        Me.background2.Name = "background2"
+        Me.background2.Size = New System.Drawing.Size(256, 256)
+        Me.background2.TabIndex = 0
+        Me.background2.TabStop = False
         '
-        'PB4
+        'panel33
         '
-        Me.PB4.Location = New System.Drawing.Point(0, 0)
-        Me.PB4.Name = "PB4"
-        Me.PB4.Size = New System.Drawing.Size(256, 256)
-        Me.PB4.TabIndex = 0
-        Me.PB4.TabStop = False
-        '
-        'Pa5
-        '
-        Me.Pa5.BackColor = System.Drawing.Color.White
-        Me.Pa5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Pa5.Controls.Add(Me.PB5)
-        Me.Pa5.Location = New System.Drawing.Point(452, 387)
-        Me.Pa5.Name = "Pa5"
-        Me.Pa5.Size = New System.Drawing.Size(150, 150)
-        Me.Pa5.TabIndex = 43
+        Me.panel33.BackColor = System.Drawing.Color.White
+        Me.panel33.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.panel33.Controls.Add(Me.PB5)
+        Me.panel33.Location = New System.Drawing.Point(452, 387)
+        Me.panel33.Name = "panel33"
+        Me.panel33.Size = New System.Drawing.Size(150, 150)
+        Me.panel33.TabIndex = 43
         '
         'PB5
         '
@@ -482,14 +477,14 @@ Partial Class Form1
         Me.PB5.TabIndex = 0
         Me.PB5.TabStop = False
         '
-        'sv
+        'save
         '
-        Me.sv.Location = New System.Drawing.Point(528, 343)
-        Me.sv.Name = "sv"
-        Me.sv.Size = New System.Drawing.Size(74, 40)
-        Me.sv.TabIndex = 44
-        Me.sv.Text = "حفظ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الصورة"
-        Me.sv.UseVisualStyleBackColor = True
+        Me.save.Location = New System.Drawing.Point(528, 343)
+        Me.save.Name = "save"
+        Me.save.Size = New System.Drawing.Size(74, 40)
+        Me.save.TabIndex = 44
+        Me.save.Text = "حفظ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "الصورة"
+        Me.save.UseVisualStyleBackColor = True
         '
         'Label18
         '
@@ -513,15 +508,15 @@ Partial Class Form1
         Me.Label11.Text = "لون الخلفية"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'st
+        'start
         '
-        Me.st.Font = New System.Drawing.Font("Tahoma", 15.0!)
-        Me.st.Location = New System.Drawing.Point(121, 496)
-        Me.st.Name = "st"
-        Me.st.Size = New System.Drawing.Size(75, 40)
-        Me.st.TabIndex = 48
-        Me.st.Text = "إبدأ"
-        Me.st.UseVisualStyleBackColor = True
+        Me.start.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.start.Location = New System.Drawing.Point(121, 496)
+        Me.start.Name = "start"
+        Me.start.Size = New System.Drawing.Size(75, 40)
+        Me.start.TabIndex = 48
+        Me.start.Text = "إبدأ"
+        Me.start.UseVisualStyleBackColor = True
         '
         'y03
         '
@@ -580,59 +575,59 @@ Partial Class Form1
         Me.Label38.Text = "يجب أن تكون الخلفيتان" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "المستضافتان مختلفتين تماما"
         Me.Label38.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'b3
+        'blueHexadecimal2
         '
-        Me.b3.Location = New System.Drawing.Point(478, 155)
-        Me.b3.MaxLength = 2
-        Me.b3.Name = "b3"
-        Me.b3.Size = New System.Drawing.Size(20, 20)
-        Me.b3.TabIndex = 87
-        Me.b3.Text = "ff"
+        Me.blueHexadecimal2.Location = New System.Drawing.Point(478, 155)
+        Me.blueHexadecimal2.MaxLength = 2
+        Me.blueHexadecimal2.Name = "blueHexadecimal2"
+        Me.blueHexadecimal2.Size = New System.Drawing.Size(20, 20)
+        Me.blueHexadecimal2.TabIndex = 87
+        Me.blueHexadecimal2.Text = "ff"
         '
-        'g3
+        'greenHexadecimal2
         '
-        Me.g3.Location = New System.Drawing.Point(478, 129)
-        Me.g3.MaxLength = 2
-        Me.g3.Name = "g3"
-        Me.g3.Size = New System.Drawing.Size(20, 20)
-        Me.g3.TabIndex = 86
-        Me.g3.Text = "ff"
+        Me.greenHexadecimal2.Location = New System.Drawing.Point(478, 129)
+        Me.greenHexadecimal2.MaxLength = 2
+        Me.greenHexadecimal2.Name = "greenHexadecimal2"
+        Me.greenHexadecimal2.Size = New System.Drawing.Size(20, 20)
+        Me.greenHexadecimal2.TabIndex = 86
+        Me.greenHexadecimal2.Text = "ff"
         '
-        'r3
+        'redHexadecimal2
         '
-        Me.r3.Location = New System.Drawing.Point(478, 103)
-        Me.r3.MaxLength = 2
-        Me.r3.Name = "r3"
-        Me.r3.Size = New System.Drawing.Size(20, 20)
-        Me.r3.TabIndex = 85
-        Me.r3.Text = "ff"
+        Me.redHexadecimal2.Location = New System.Drawing.Point(478, 103)
+        Me.redHexadecimal2.MaxLength = 2
+        Me.redHexadecimal2.Name = "redHexadecimal2"
+        Me.redHexadecimal2.Size = New System.Drawing.Size(20, 20)
+        Me.redHexadecimal2.TabIndex = 85
+        Me.redHexadecimal2.Text = "ff"
         '
-        'b4
+        'blueHexadecimal4
         '
-        Me.b4.Location = New System.Drawing.Point(478, 351)
-        Me.b4.MaxLength = 2
-        Me.b4.Name = "b4"
-        Me.b4.Size = New System.Drawing.Size(20, 20)
-        Me.b4.TabIndex = 90
-        Me.b4.Text = "ff"
+        Me.blueHexadecimal4.Location = New System.Drawing.Point(478, 351)
+        Me.blueHexadecimal4.MaxLength = 2
+        Me.blueHexadecimal4.Name = "blueHexadecimal4"
+        Me.blueHexadecimal4.Size = New System.Drawing.Size(20, 20)
+        Me.blueHexadecimal4.TabIndex = 90
+        Me.blueHexadecimal4.Text = "ff"
         '
-        'g4
+        'greenHexadecimal4
         '
-        Me.g4.Location = New System.Drawing.Point(478, 325)
-        Me.g4.MaxLength = 2
-        Me.g4.Name = "g4"
-        Me.g4.Size = New System.Drawing.Size(20, 20)
-        Me.g4.TabIndex = 89
-        Me.g4.Text = "ff"
+        Me.greenHexadecimal4.Location = New System.Drawing.Point(478, 325)
+        Me.greenHexadecimal4.MaxLength = 2
+        Me.greenHexadecimal4.Name = "greenHexadecimal4"
+        Me.greenHexadecimal4.Size = New System.Drawing.Size(20, 20)
+        Me.greenHexadecimal4.TabIndex = 89
+        Me.greenHexadecimal4.Text = "ff"
         '
-        'r4
+        'redHexadecimal4
         '
-        Me.r4.Location = New System.Drawing.Point(478, 299)
-        Me.r4.MaxLength = 2
-        Me.r4.Name = "r4"
-        Me.r4.Size = New System.Drawing.Size(20, 20)
-        Me.r4.TabIndex = 88
-        Me.r4.Text = "ff"
+        Me.redHexadecimal4.Location = New System.Drawing.Point(478, 299)
+        Me.redHexadecimal4.MaxLength = 2
+        Me.redHexadecimal4.Name = "redHexadecimal4"
+        Me.redHexadecimal4.Size = New System.Drawing.Size(20, 20)
+        Me.redHexadecimal4.TabIndex = 88
+        Me.redHexadecimal4.Text = "ff"
         '
         'Lb1
         '
@@ -667,16 +662,16 @@ Partial Class Form1
         Me.Lb3.TabIndex = 93
         Me.Lb3.Text = ": "
         '
-        'lbl
+        'about
         '
-        Me.lbl.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lbl.ForeColor = System.Drawing.Color.Black
-        Me.lbl.Location = New System.Drawing.Point(12, 417)
-        Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(85, 30)
-        Me.lbl.TabIndex = 94
-        Me.lbl.Text = "عن المصمم"
-        Me.lbl.UseVisualStyleBackColor = True
+        Me.about.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.about.ForeColor = System.Drawing.Color.Black
+        Me.about.Location = New System.Drawing.Point(12, 417)
+        Me.about.Name = "about"
+        Me.about.Size = New System.Drawing.Size(85, 30)
+        Me.about.TabIndex = 94
+        Me.about.Text = "عن المصمم"
+        Me.about.UseVisualStyleBackColor = True
         '
         'T2
         '
@@ -882,27 +877,27 @@ Partial Class Form1
         Me.Label26.Text = "لو أكبر من الصورة الرئيسية"
         Me.Label26.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'lg
+        'language
         '
-        Me.lg.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.lg.ForeColor = System.Drawing.Color.Blue
-        Me.lg.Location = New System.Drawing.Point(12, 117)
-        Me.lg.Name = "lg"
-        Me.lg.Size = New System.Drawing.Size(82, 32)
-        Me.lg.TabIndex = 123
-        Me.lg.Text = "English"
-        Me.lg.UseVisualStyleBackColor = True
-        Me.lg.Visible = False
+        Me.language.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.language.ForeColor = System.Drawing.Color.Blue
+        Me.language.Location = New System.Drawing.Point(12, 117)
+        Me.language.Name = "language"
+        Me.language.Size = New System.Drawing.Size(82, 32)
+        Me.language.TabIndex = 123
+        Me.language.Text = "English"
+        Me.language.UseVisualStyleBackColor = True
+        Me.language.Visible = False
         '
-        'cb3
+        'imageFormat
         '
-        Me.cb3.FormattingEnabled = True
-        Me.cb3.Items.AddRange(New Object() {"png", "ico"})
-        Me.cb3.Location = New System.Drawing.Point(536, 320)
-        Me.cb3.Name = "cb3"
-        Me.cb3.Size = New System.Drawing.Size(60, 21)
-        Me.cb3.TabIndex = 127
-        Me.cb3.Text = "png"
+        Me.imageFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.imageFormat.FormattingEnabled = True
+        Me.imageFormat.Items.AddRange(New Object() {"png", "ico"})
+        Me.imageFormat.Location = New System.Drawing.Point(536, 320)
+        Me.imageFormat.Name = "imageFormat"
+        Me.imageFormat.Size = New System.Drawing.Size(60, 21)
+        Me.imageFormat.TabIndex = 127
         '
         'mg3
         '
@@ -914,27 +909,27 @@ Partial Class Form1
         Me.mg3.Text = "0"
         Me.mg3.Visible = False
         '
-        'Lwh
+        'help
         '
-        Me.Lwh.BackColor = System.Drawing.Color.Transparent
-        Me.Lwh.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Lwh.Image = Global.transparent.My.Resources.Resources.a1
-        Me.Lwh.Location = New System.Drawing.Point(574, 9)
-        Me.Lwh.Name = "Lwh"
-        Me.Lwh.Size = New System.Drawing.Size(48, 48)
-        Me.Lwh.TabIndex = 24
+        Me.help.BackColor = System.Drawing.Color.Transparent
+        Me.help.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.help.Image = Global.transparent.My.Resources.Resources.a1
+        Me.help.Location = New System.Drawing.Point(574, 9)
+        Me.help.Name = "help"
+        Me.help.Size = New System.Drawing.Size(48, 48)
+        Me.help.TabIndex = 24
         '
-        'sg
+        'seagaegy
         '
-        Me.sg.BackColor = System.Drawing.Color.Transparent
-        Me.sg.BackgroundImage = Global.transparent.My.Resources.Resources.zx0
-        Me.sg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.sg.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.sg.Location = New System.Drawing.Point(6, 453)
-        Me.sg.Name = "sg"
-        Me.sg.Size = New System.Drawing.Size(100, 100)
-        Me.sg.TabIndex = 46
-        Me.sg.UseVisualStyleBackColor = False
+        Me.seagaegy.BackColor = System.Drawing.Color.Transparent
+        Me.seagaegy.BackgroundImage = Global.transparent.My.Resources.Resources.zx0
+        Me.seagaegy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.seagaegy.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.seagaegy.Location = New System.Drawing.Point(6, 453)
+        Me.seagaegy.Name = "seagaegy"
+        Me.seagaegy.Size = New System.Drawing.Size(100, 100)
+        Me.seagaegy.TabIndex = 46
+        Me.seagaegy.UseVisualStyleBackColor = False
         '
         'r5
         '
@@ -1018,10 +1013,10 @@ Partial Class Form1
         Me.Controls.Add(Me.g5)
         Me.Controls.Add(Me.r5)
         Me.Controls.Add(Me.mg3)
-        Me.Controls.Add(Me.cb3)
-        Me.Controls.Add(Me.lg)
+        Me.Controls.Add(Me.imageFormat)
+        Me.Controls.Add(Me.language)
         Me.Controls.Add(Me.Label26)
-        Me.Controls.Add(Me.Lwh)
+        Me.Controls.Add(Me.help)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.Label48)
         Me.Controls.Add(Me.Label47)
@@ -1029,16 +1024,16 @@ Partial Class Form1
         Me.Controls.Add(Me.xm)
         Me.Controls.Add(Me.mg4)
         Me.Controls.Add(Me.mg2)
-        Me.Controls.Add(Me.lbl)
+        Me.Controls.Add(Me.about)
         Me.Controls.Add(Me.Lb1)
         Me.Controls.Add(Me.Lb2)
         Me.Controls.Add(Me.Lb3)
-        Me.Controls.Add(Me.b4)
-        Me.Controls.Add(Me.g4)
-        Me.Controls.Add(Me.r4)
-        Me.Controls.Add(Me.b3)
-        Me.Controls.Add(Me.g3)
-        Me.Controls.Add(Me.r3)
+        Me.Controls.Add(Me.blueHexadecimal4)
+        Me.Controls.Add(Me.greenHexadecimal4)
+        Me.Controls.Add(Me.redHexadecimal4)
+        Me.Controls.Add(Me.blueHexadecimal2)
+        Me.Controls.Add(Me.greenHexadecimal2)
+        Me.Controls.Add(Me.redHexadecimal2)
         Me.Controls.Add(Me.y03)
         Me.Controls.Add(Me.x03)
         Me.Controls.Add(Me.Label29)
@@ -1050,28 +1045,28 @@ Partial Class Form1
         Me.Controls.Add(Me.y02)
         Me.Controls.Add(Me.x02)
         Me.Controls.Add(Me.Label23)
-        Me.Controls.Add(Me.st)
+        Me.Controls.Add(Me.start)
         Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.sg)
+        Me.Controls.Add(Me.seagaegy)
         Me.Controls.Add(Me.Label18)
-        Me.Controls.Add(Me.sv)
-        Me.Controls.Add(Me.Pa5)
-        Me.Controls.Add(Me.Pa4)
-        Me.Controls.Add(Me.Pa3)
-        Me.Controls.Add(Me.Pa2)
-        Me.Controls.Add(Me.Pa1)
+        Me.Controls.Add(Me.save)
+        Me.Controls.Add(Me.panel33)
+        Me.Controls.Add(Me.panel22)
+        Me.Controls.Add(Me.panel21)
+        Me.Controls.Add(Me.panel12)
+        Me.Controls.Add(Me.panel11)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.Label17)
-        Me.Controls.Add(Me.b2)
-        Me.Controls.Add(Me.g2)
-        Me.Controls.Add(Me.r2)
+        Me.Controls.Add(Me.blueDecimal4)
+        Me.Controls.Add(Me.greenDecimal4)
+        Me.Controls.Add(Me.redDecimal4)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.b1)
-        Me.Controls.Add(Me.g1)
-        Me.Controls.Add(Me.r1)
+        Me.Controls.Add(Me.blueDecimal2)
+        Me.Controls.Add(Me.greenDecimal2)
+        Me.Controls.Add(Me.redDecimal2)
         Me.Controls.Add(Me.HSB)
         Me.Controls.Add(Me.VSB)
         Me.Controls.Add(Me.y0)
@@ -1084,10 +1079,10 @@ Partial Class Form1
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Img4)
-        Me.Controls.Add(Me.Img3)
-        Me.Controls.Add(Me.Img2)
-        Me.Controls.Add(Me.Img1)
+        Me.Controls.Add(Me.loadBackground2)
+        Me.Controls.Add(Me.loadImage2)
+        Me.Controls.Add(Me.loadBackground1)
+        Me.Controls.Add(Me.loadImage1)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label19)
@@ -1101,26 +1096,26 @@ Partial Class Form1
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "Convert a normal image to transparent by two different images v0 (trial version)"
-        Me.Pa1.ResumeLayout(False)
-        CType(Me.PB1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Pa2.ResumeLayout(False)
-        CType(Me.PB2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Pa3.ResumeLayout(False)
-        CType(Me.PB3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Pa4.ResumeLayout(False)
-        CType(Me.PB4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Pa5.ResumeLayout(False)
+        Me.panel11.ResumeLayout(False)
+        CType(Me.image1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel12.ResumeLayout(False)
+        CType(Me.background1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel21.ResumeLayout(False)
+        CType(Me.image2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel22.ResumeLayout(False)
+        CType(Me.background2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel33.ResumeLayout(False)
         CType(Me.PB5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents PB1 As PictureBox
-    Friend WithEvents Img1 As Button
-    Friend WithEvents Img2 As Button
-    Friend WithEvents Img4 As Button
-    Friend WithEvents Img3 As Button
+    Friend WithEvents image1 As PictureBox
+    Friend WithEvents loadImage1 As Button
+    Friend WithEvents loadBackground1 As Button
+    Friend WithEvents loadBackground2 As Button
+    Friend WithEvents loadImage2 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
@@ -1133,52 +1128,51 @@ Partial Class Form1
     Friend WithEvents x0 As TextBox
     Friend WithEvents y0 As TextBox
     Friend WithEvents Label10 As Label
-    Friend WithEvents Lwh As Label
+    Friend WithEvents help As Label
     Friend WithEvents VSB As VScrollBar
     Friend WithEvents HSB As HScrollBar
-    Friend WithEvents r1 As TextBox
-    Friend WithEvents g1 As TextBox
-    Friend WithEvents b1 As TextBox
+    Friend WithEvents redDecimal2 As TextBox
+    Friend WithEvents greenDecimal2 As TextBox
+    Friend WithEvents blueDecimal2 As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents Label17 As Label
-    Friend WithEvents b2 As TextBox
-    Friend WithEvents g2 As TextBox
-    Friend WithEvents r2 As TextBox
-    Friend WithEvents T1 As Timer
-    Friend WithEvents Pa1 As Panel
-    Friend WithEvents Pa2 As Panel
-    Friend WithEvents PB2 As PictureBox
-    Friend WithEvents Pa3 As Panel
-    Friend WithEvents PB3 As PictureBox
-    Friend WithEvents Pa4 As Panel
-    Friend WithEvents PB4 As PictureBox
-    Friend WithEvents Pa5 As Panel
+    Friend WithEvents blueDecimal4 As TextBox
+    Friend WithEvents greenDecimal4 As TextBox
+    Friend WithEvents redDecimal4 As TextBox
+    Friend WithEvents panel11 As Panel
+    Friend WithEvents panel12 As Panel
+    Friend WithEvents background1 As PictureBox
+    Friend WithEvents panel21 As Panel
+    Friend WithEvents image2 As PictureBox
+    Friend WithEvents panel22 As Panel
+    Friend WithEvents background2 As PictureBox
+    Friend WithEvents panel33 As Panel
     Friend WithEvents PB5 As PictureBox
-    Friend WithEvents sv As Button
+    Friend WithEvents save As Button
     Friend WithEvents Label18 As Label
-    Friend WithEvents sg As Button
+    Friend WithEvents seagaegy As Button
     Friend WithEvents Label11 As Label
-    Friend WithEvents st As Button
+    Friend WithEvents start As Button
     Friend WithEvents y03 As TextBox
     Friend WithEvents x03 As TextBox
     Friend WithEvents Label29 As Label
     Friend WithEvents Label31 As Label
     Friend WithEvents Label32 As Label
     Friend WithEvents Label38 As Label
-    Friend WithEvents b3 As TextBox
-    Friend WithEvents g3 As TextBox
-    Friend WithEvents r3 As TextBox
-    Friend WithEvents b4 As TextBox
-    Friend WithEvents g4 As TextBox
-    Friend WithEvents r4 As TextBox
+    Friend WithEvents blueHexadecimal2 As TextBox
+    Friend WithEvents greenHexadecimal2 As TextBox
+    Friend WithEvents redHexadecimal2 As TextBox
+    Friend WithEvents blueHexadecimal4 As TextBox
+    Friend WithEvents greenHexadecimal4 As TextBox
+    Friend WithEvents redHexadecimal4 As TextBox
     Friend WithEvents Lb1 As Label
     Friend WithEvents Lb2 As Label
     Friend WithEvents Lb3 As Label
-    Friend WithEvents lbl As Button
+    Friend WithEvents about As Button
     Friend WithEvents T2 As Timer
     Friend WithEvents Label39 As Label
     Friend WithEvents Label40 As Label
@@ -1202,8 +1196,8 @@ Partial Class Form1
     Friend WithEvents x04 As TextBox
     Friend WithEvents y04 As TextBox
     Friend WithEvents Label26 As Label
-    Friend WithEvents lg As Button
-    Friend WithEvents cb3 As ComboBox
+    Friend WithEvents language As Button
+    Friend WithEvents imageFormat As ComboBox
     Friend WithEvents mg3 As Label
     Friend WithEvents r5 As Label
     Friend WithEvents g5 As Label
