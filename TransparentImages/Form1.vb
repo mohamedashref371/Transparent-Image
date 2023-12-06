@@ -2,7 +2,8 @@
     Dim hm As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("0.0.0.0", "")
     Dim rd1 As New Random
     Dim pic1, pic2, pic3, pic4, pic5 As Bitmap
-    Dim folderPath, file As String
+    Dim file As String
+    Dim listOfFiles As New List(Of String)
     Dim aaaa As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -18,7 +19,7 @@
         imageFormat.SelectedIndex = 0
     End Sub
 
-    Private Sub Pg_KeyPress(sender As Object, e As KeyPressEventArgs) Handles x0.KeyPress, y0.KeyPress, x02.KeyPress, y02.KeyPress, x03.KeyPress, y03.KeyPress, x04.KeyPress, y04.KeyPress, redDecimal2.KeyPress, greenDecimal2.KeyPress, blueDecimal2.KeyPress, redDecimal4.KeyPress, greenDecimal4.KeyPress, blueDecimal4.KeyPress
+    Private Sub Pg_KeyPress(sender As Object, e As KeyPressEventArgs) Handles x0.KeyPress, y0.KeyPress, x2.KeyPress, y2.KeyPress, x03.KeyPress, y03.KeyPress, x4.KeyPress, y4.KeyPress, redDecimal2.KeyPress, greenDecimal2.KeyPress, blueDecimal2.KeyPress, redDecimal4.KeyPress, greenDecimal4.KeyPress, blueDecimal4.KeyPress
         If e.KeyChar = "0" Or e.KeyChar = "1" Or e.KeyChar = "2" Or e.KeyChar = "3" Or e.KeyChar = "4" Or e.KeyChar = "5" Or e.KeyChar = "6" Or e.KeyChar = "7" Or e.KeyChar = "8" Or e.KeyChar = "9" Or e.KeyChar = "" Then
             Exit Sub
         Else
@@ -46,16 +47,14 @@
             End If
         End If
         x0.Text = "" : x0.Text = "0" : y0.Text = "0"
-        xm.Text = pic1.Width : ym.Text = pic1.Height
-
-
+        xMax.Text = pic1.Width : yMax.Text = pic1.Height
 
         loadImage1.Enabled = False : loadBackground1.Enabled = False : loadImage2.Enabled = False : loadBackground2.Enabled = False : start.Enabled = False : save.Enabled = False : num.Enabled = False : x0.Enabled = False : y0.Enabled = False : redDecimal2.Enabled = False : greenDecimal2.Enabled = False : blueDecimal2.Enabled = False : redDecimal4.Enabled = False : greenDecimal4.Enabled = False : blueDecimal4.Enabled = False : redHexadecimal2.Enabled = False : greenHexadecimal2.Enabled = False : blueHexadecimal2.Enabled = False : redHexadecimal4.Enabled = False : greenHexadecimal4.Enabled = False : blueHexadecimal4.Enabled = False
-        If x02.Text = "" Then
-            x02.Text = "0"
+        If x2.Text = "" Then
+            x2.Text = "0"
         End If
-        If y02.Text = "" Then
-            y02.Text = "0"
+        If y2.Text = "" Then
+            y2.Text = "0"
         End If
         If x03.Text = "" Then
             x03.Text = "0"
@@ -63,13 +62,13 @@
         If y03.Text = "" Then
             y03.Text = "0"
         End If
-        If x04.Text = "" Then
-            x04.Text = "0"
+        If x4.Text = "" Then
+            x4.Text = "0"
         End If
-        If y04.Text = "" Then
-            y04.Text = "0"
+        If y4.Text = "" Then
+            y4.Text = "0"
         End If
-        p21 = x02.Text : p22 = y02.Text : p31 = x03.Text : p32 = y03.Text : p41 = x04.Text : p42 = y04.Text
+        p21 = x2.Text : p22 = y2.Text : p31 = x03.Text : p32 = y03.Text : p41 = x4.Text : p42 = y4.Text
         If p31 + pic1.Width > pic3.Width Then
             p31 = pic3.Width - pic1.Width : x03.Text = p31
         End If
@@ -78,47 +77,37 @@
         End If
         If mg2.Text = "1" Then
             If p21 + pic1.Width > pic2.Width Then
-                p21 = pic2.Width - pic1.Width : x02.Text = p21
+                p21 = pic2.Width - pic1.Width : x2.Text = p21
             End If
             If p22 + pic1.Height > pic2.Height Then
-                p22 = pic2.Height - pic1.Height : y02.Text = p22
+                p22 = pic2.Height - pic1.Height : y2.Text = p22
             End If
         End If
         If mg4.Text = "1" Then
             If p41 + pic1.Width > pic4.Width Then
-                p41 = pic4.Width - pic1.Width : x04.Text = p41
+                p41 = pic4.Width - pic1.Width : x4.Text = p41
             End If
             If p42 + pic1.Height > pic4.Height Then
-                p42 = pic4.Height - pic1.Height : y04.Text = p42
+                p42 = pic4.Height - pic1.Height : y4.Text = p42
             End If
         End If
-        PB5.BackgroundImage = Nothing
-        qw = 0 : xmm = xm.Text : ymm = ym.Text
+        finalImage.BackgroundImage = Nothing
+        qw = 0 : xmm = xMax.Text : ymm = yMax.Text
         q1 = (xmm * ymm) / ((num.SelectedIndex + 1) * 100)
         Lb2.Text = q1
         q1 = 0 : q2 = 0
         Dim Bb5 As New Bitmap(xmm, ymm)
         Dim G5 As Graphics = Graphics.FromImage(Bb5)
         G5.DrawImage(My.Resources.trpt2, 0, 0)
-        PB5.BackgroundImage = Bb5 : PB5.Width = xmm : PB5.Height = ymm
-        pic5 = PB5.BackgroundImage : nl = "" : k2 = 0
+        finalImage.BackgroundImage = Bb5 : finalImage.Width = xmm : finalImage.Height = ymm
+        pic5 = finalImage.BackgroundImage : nl = "" : k2 = 0
         T3.Start()
-
-
-
 
     End Sub
 
     Private Sub Folder_Click(sender As Object, e As EventArgs) Handles folder.Click
-        If FBD.ShowDialog = DialogResult.OK Then
-            folderPath = FBD.SelectedPath
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(folderPath)
-                file = My.Computer.FileSystem.GetName(foundFile)
-                Dim fi As New IO.FileInfo(file)
-                ' format = fi.Extension.ToLower
-                ListBox1.Items.Add(file)
-            Next
-        End If
+        listOfFiles.Clear()
+        If FBD.ShowDialog = DialogResult.OK Then listOfFiles = My.Computer.FileSystem.GetFiles(FBD.SelectedPath).ToList()
     End Sub
 
     Private Sub Lg2(sender As Object, e As EventArgs) Handles language.Click
@@ -160,7 +149,7 @@
             G5 = Graphics.FromImage(Bb5)
             G5.DrawImage(My.Resources.trpt2, 0, 0)
             G5.DrawImage(My.Resources.zx0, 0, 0)
-            PB5.BackgroundImage = Bb5
+            finalImage.BackgroundImage = Bb5
             pic5 = My.Resources.zx0
 
             y0.Text = "0"
@@ -173,7 +162,7 @@
         background1.Top = VSB.Value * (150 - background1.Height) / 90
         image2.Top = VSB.Value * (150 - image2.Height) / 90
         background2.Top = VSB.Value * (150 - background2.Height) / 90
-        PB5.Top = VSB.Value * (150 - PB5.Height) / 90
+        finalImage.Top = VSB.Value * (150 - finalImage.Height) / 90
     End Sub
 
     Private Sub HSB_Scroll(sender As Object, e As ScrollEventArgs) Handles HSB.Scroll
@@ -181,7 +170,7 @@
         background1.Left = HSB.Value * (150 - background1.Width) / 90
         image2.Left = HSB.Value * (150 - image2.Width) / 90
         background2.Left = HSB.Value * (150 - background2.Width) / 90
-        PB5.Left = HSB.Value * (150 - PB5.Width) / 90
+        finalImage.Left = HSB.Value * (150 - finalImage.Width) / 90
     End Sub
 
     Private Sub Lbl_Click(sender As Object, e As EventArgs) Handles about.Click
@@ -215,11 +204,11 @@
     Private Sub St_Click(sender As Object, e As EventArgs) Handles start.Click
         If mg3.Text = "1" Then
             loadImage1.Enabled = False : loadBackground1.Enabled = False : loadImage2.Enabled = False : loadBackground2.Enabled = False : start.Enabled = False : save.Enabled = False : num.Enabled = False : x0.Enabled = False : y0.Enabled = False : redDecimal2.Enabled = False : greenDecimal2.Enabled = False : blueDecimal2.Enabled = False : redDecimal4.Enabled = False : greenDecimal4.Enabled = False : blueDecimal4.Enabled = False : redHexadecimal2.Enabled = False : greenHexadecimal2.Enabled = False : blueHexadecimal2.Enabled = False : redHexadecimal4.Enabled = False : greenHexadecimal4.Enabled = False : blueHexadecimal4.Enabled = False
-            If x02.Text = "" Then
-                x02.Text = "0"
+            If x2.Text = "" Then
+                x2.Text = "0"
             End If
-            If y02.Text = "" Then
-                y02.Text = "0"
+            If y2.Text = "" Then
+                y2.Text = "0"
             End If
             If x03.Text = "" Then
                 x03.Text = "0"
@@ -227,13 +216,13 @@
             If y03.Text = "" Then
                 y03.Text = "0"
             End If
-            If x04.Text = "" Then
-                x04.Text = "0"
+            If x4.Text = "" Then
+                x4.Text = "0"
             End If
-            If y04.Text = "" Then
-                y04.Text = "0"
+            If y4.Text = "" Then
+                y4.Text = "0"
             End If
-            p21 = x02.Text : p22 = y02.Text : p31 = x03.Text : p32 = y03.Text : p41 = x04.Text : p42 = y04.Text
+            p21 = x2.Text : p22 = y2.Text : p31 = x03.Text : p32 = y03.Text : p41 = x4.Text : p42 = y4.Text
             If p31 + pic1.Width > pic3.Width Then
                 p31 = pic3.Width - pic1.Width : x03.Text = p31
             End If
@@ -242,30 +231,30 @@
             End If
             If mg2.Text = "1" Then
                 If p21 + pic1.Width > pic2.Width Then
-                    p21 = pic2.Width - pic1.Width : x02.Text = p21
+                    p21 = pic2.Width - pic1.Width : x2.Text = p21
                 End If
                 If p22 + pic1.Height > pic2.Height Then
-                    p22 = pic2.Height - pic1.Height : y02.Text = p22
+                    p22 = pic2.Height - pic1.Height : y2.Text = p22
                 End If
             End If
             If mg4.Text = "1" Then
                 If p41 + pic1.Width > pic4.Width Then
-                    p41 = pic4.Width - pic1.Width : x04.Text = p41
+                    p41 = pic4.Width - pic1.Width : x4.Text = p41
                 End If
                 If p42 + pic1.Height > pic4.Height Then
-                    p42 = pic4.Height - pic1.Height : y04.Text = p42
+                    p42 = pic4.Height - pic1.Height : y4.Text = p42
                 End If
             End If
-            PB5.BackgroundImage = Nothing
-            qw = 0 : xmm = xm.Text : ymm = ym.Text
+            finalImage.BackgroundImage = Nothing
+            qw = 0 : xmm = xMax.Text : ymm = yMax.Text
             q1 = (xmm * ymm) / ((num.SelectedIndex + 1) * 100)
             Lb2.Text = q1
             q1 = 0 : q2 = 0
             Dim Bb5 As New Bitmap(xmm, ymm)
             Dim G5 As Graphics = Graphics.FromImage(Bb5)
             G5.DrawImage(My.Resources.trpt2, 0, 0)
-            PB5.BackgroundImage = Bb5 : PB5.Width = xmm : PB5.Height = ymm
-            pic5 = PB5.BackgroundImage : nl = "" : k2 = 0
+            finalImage.BackgroundImage = Bb5 : finalImage.Width = xmm : finalImage.Height = ymm
+            pic5 = finalImage.BackgroundImage : nl = "" : k2 = 0
             T3.Start()
         Else
             MsgBox("أضف الصورة الثانية أولاً")
@@ -481,7 +470,7 @@
         Dim G5 As Graphics = Graphics.FromImage(Bb5)
         G5.DrawImage(My.Resources.trpt2, 0, 0)
         G5.DrawImage(pic5, 0, 0)
-        PB5.BackgroundImage = Bb5 : TF(sender, e)
+        finalImage.BackgroundImage = Bb5 : TF(sender, e)
         pic5.Save("C:\Users\Mohamed\Desktop\noon\" + ListBox1.Items(aaaa - 1), Imaging.ImageFormat.Png)
         start1_Click(sender, e)
         '  If nl = "" Then
@@ -493,7 +482,7 @@
 
     Private Sub MG5(sender As Object, e As EventArgs)
         VSB.Value = 0 : HSB.Value = 0
-        image1.Location = New Point(0, 0) : background1.Location = New Point(0, 0) : image2.Location = New Point(0, 0) : background2.Location = New Point(0, 0) : PB5.Location = New Point(0, 0)
+        image1.Location = New Point(0, 0) : background1.Location = New Point(0, 0) : image2.Location = New Point(0, 0) : background2.Location = New Point(0, 0) : finalImage.Location = New Point(0, 0)
     End Sub
 
     Private Sub Img1_Click(sender As Object, e As EventArgs) Handles loadImage1.Click
@@ -510,7 +499,7 @@
                     End If
                 End If
                 x0.Text = "" : x0.Text = "0" : y0.Text = "0"
-                xm.Text = pic1.Width : ym.Text = pic1.Height
+                xMax.Text = pic1.Width : yMax.Text = pic1.Height
             Else
                 MsgBox("غير مسموح بصورة أقل من 16*16")
             End If
@@ -528,16 +517,16 @@
                     background1.BackColor = Nothing
                     background1.BackgroundImage = pic2 : mg2.Text = 1
                     background1.Width = pic2.Width : background1.Height = pic2.Height
-                    x02.Text = "0" : y02.Text = "0"
+                    x2.Text = "0" : y2.Text = "0"
                     If pic2.Width > pic1.Width Then
-                        x02.ReadOnly = False
+                        x2.ReadOnly = False
                     Else
-                        x02.ReadOnly = True
+                        x2.ReadOnly = True
                     End If
                     If pic2.Height > pic1.Height Then
-                        y02.ReadOnly = False
+                        y2.ReadOnly = False
                     Else
-                        y02.ReadOnly = True
+                        y2.ReadOnly = True
                     End If
                     MG5(sender, e)
                 End If
@@ -587,16 +576,16 @@
                     background2.BackColor = Nothing
                     background2.BackgroundImage = pic4 : mg4.Text = 1
                     background2.Width = pic4.Width : background2.Height = pic4.Height
-                    x04.Text = "0" : y04.Text = "0"
+                    x4.Text = "0" : y4.Text = "0"
                     If pic4.Width > pic1.Width Then
-                        x04.ReadOnly = False
+                        x4.ReadOnly = False
                     Else
-                        x04.ReadOnly = True
+                        x4.ReadOnly = True
                     End If
                     If pic4.Height > pic1.Height Then
-                        y04.ReadOnly = False
+                        y4.ReadOnly = False
                     Else
-                        y04.ReadOnly = True
+                        y4.ReadOnly = True
                     End If
                     MG5(sender, e)
                 End If
@@ -623,7 +612,7 @@
             nl = blueDecimal2.Text : Nuli(sender, e) : blueHexadecimal2.Text = nl
             pic2 = Nothing : mg2.Text = 0
             background1.BackgroundImage = Nothing : background1.BackColor = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
-            x02.Text = "0" : y02.Text = "0" : x02.ReadOnly = True : y02.ReadOnly = True
+            x2.Text = "0" : y2.Text = "0" : x2.ReadOnly = True : y2.ReadOnly = True
             r5.Text = redDecimal2.Text : g5.Text = greenDecimal2.Text : b5.Text = blueDecimal2.Text
         End If
     End Sub
@@ -645,7 +634,7 @@
             nl = blueDecimal4.Text : Nuli(sender, e) : blueHexadecimal4.Text = nl
             pic4 = Nothing : mg4.Text = 0
             background2.BackgroundImage = Nothing : background2.BackColor = Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text)
-            x04.Text = "0" : y04.Text = "0" : x04.ReadOnly = True : y04.ReadOnly = True
+            x4.Text = "0" : y4.Text = "0" : x4.ReadOnly = True : y4.ReadOnly = True
             r6.Text = redDecimal4.Text : g6.Text = greenDecimal4.Text : b6.Text = blueDecimal4.Text
         End If
     End Sub

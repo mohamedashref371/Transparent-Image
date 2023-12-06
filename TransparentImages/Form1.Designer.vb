@@ -63,7 +63,7 @@ Partial Class Form1
         Me.panel22 = New System.Windows.Forms.Panel()
         Me.background2 = New System.Windows.Forms.PictureBox()
         Me.panel33 = New System.Windows.Forms.Panel()
-        Me.PB5 = New System.Windows.Forms.PictureBox()
+        Me.finalImage = New System.Windows.Forms.PictureBox()
         Me.save = New System.Windows.Forms.Button()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -92,20 +92,20 @@ Partial Class Form1
         Me.mg2 = New System.Windows.Forms.Label()
         Me.mg4 = New System.Windows.Forms.Label()
         Me.T3 = New System.Windows.Forms.Timer(Me.components)
-        Me.xm = New System.Windows.Forms.Label()
-        Me.ym = New System.Windows.Forms.Label()
+        Me.xMax = New System.Windows.Forms.Label()
+        Me.yMax = New System.Windows.Forms.Label()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.x02 = New System.Windows.Forms.TextBox()
-        Me.y02 = New System.Windows.Forms.TextBox()
+        Me.x2 = New System.Windows.Forms.TextBox()
+        Me.y2 = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.x04 = New System.Windows.Forms.TextBox()
-        Me.y04 = New System.Windows.Forms.TextBox()
+        Me.x4 = New System.Windows.Forms.TextBox()
+        Me.y4 = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.language = New System.Windows.Forms.Button()
         Me.imageFormat = New System.Windows.Forms.ComboBox()
@@ -129,7 +129,7 @@ Partial Class Form1
         Me.panel22.SuspendLayout()
         CType(Me.background2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel33.SuspendLayout()
-        CType(Me.PB5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.finalImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'loadImage1
@@ -463,19 +463,19 @@ Partial Class Form1
         '
         Me.panel33.BackColor = System.Drawing.Color.White
         Me.panel33.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.panel33.Controls.Add(Me.PB5)
+        Me.panel33.Controls.Add(Me.finalImage)
         Me.panel33.Location = New System.Drawing.Point(452, 387)
         Me.panel33.Name = "panel33"
         Me.panel33.Size = New System.Drawing.Size(150, 150)
         Me.panel33.TabIndex = 43
         '
-        'PB5
+        'finalImage
         '
-        Me.PB5.Location = New System.Drawing.Point(0, 0)
-        Me.PB5.Name = "PB5"
-        Me.PB5.Size = New System.Drawing.Size(256, 256)
-        Me.PB5.TabIndex = 0
-        Me.PB5.TabStop = False
+        Me.finalImage.Location = New System.Drawing.Point(0, 0)
+        Me.finalImage.Name = "finalImage"
+        Me.finalImage.Size = New System.Drawing.Size(256, 256)
+        Me.finalImage.TabIndex = 0
+        Me.finalImage.TabStop = False
         '
         'save
         '
@@ -729,27 +729,27 @@ Partial Class Form1
         '
         Me.T3.Interval = 1
         '
-        'xm
+        'xMax
         '
-        Me.xm.AutoSize = True
-        Me.xm.BackColor = System.Drawing.Color.Transparent
-        Me.xm.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.xm.Location = New System.Drawing.Point(110, 462)
-        Me.xm.Name = "xm"
-        Me.xm.Size = New System.Drawing.Size(33, 19)
-        Me.xm.TabIndex = 112
-        Me.xm.Text = "256"
+        Me.xMax.AutoSize = True
+        Me.xMax.BackColor = System.Drawing.Color.Transparent
+        Me.xMax.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.xMax.Location = New System.Drawing.Point(110, 462)
+        Me.xMax.Name = "xMax"
+        Me.xMax.Size = New System.Drawing.Size(33, 19)
+        Me.xMax.TabIndex = 112
+        Me.xMax.Text = "256"
         '
-        'ym
+        'yMax
         '
-        Me.ym.AutoSize = True
-        Me.ym.BackColor = System.Drawing.Color.Transparent
-        Me.ym.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ym.Location = New System.Drawing.Point(178, 462)
-        Me.ym.Name = "ym"
-        Me.ym.Size = New System.Drawing.Size(33, 19)
-        Me.ym.TabIndex = 113
-        Me.ym.Text = "256"
+        Me.yMax.AutoSize = True
+        Me.yMax.BackColor = System.Drawing.Color.Transparent
+        Me.yMax.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.yMax.Location = New System.Drawing.Point(178, 462)
+        Me.yMax.Name = "yMax"
+        Me.yMax.Size = New System.Drawing.Size(33, 19)
+        Me.yMax.TabIndex = 113
+        Me.yMax.Text = "256"
         '
         'Label49
         '
@@ -812,23 +812,23 @@ Partial Class Form1
         Me.Label23.TabIndex = 52
         Me.Label23.Text = "y˳"
         '
-        'x02
+        'x2
         '
-        Me.x02.Location = New System.Drawing.Point(359, 55)
-        Me.x02.Name = "x02"
-        Me.x02.ReadOnly = True
-        Me.x02.Size = New System.Drawing.Size(30, 20)
-        Me.x02.TabIndex = 54
-        Me.x02.Text = "0"
+        Me.x2.Location = New System.Drawing.Point(359, 55)
+        Me.x2.Name = "x2"
+        Me.x2.ReadOnly = True
+        Me.x2.Size = New System.Drawing.Size(30, 20)
+        Me.x2.TabIndex = 54
+        Me.x2.Text = "0"
         '
-        'y02
+        'y2
         '
-        Me.y02.Location = New System.Drawing.Point(414, 55)
-        Me.y02.Name = "y02"
-        Me.y02.ReadOnly = True
-        Me.y02.Size = New System.Drawing.Size(30, 20)
-        Me.y02.TabIndex = 55
-        Me.y02.Text = "0"
+        Me.y2.Location = New System.Drawing.Point(414, 55)
+        Me.y2.Name = "y2"
+        Me.y2.ReadOnly = True
+        Me.y2.Size = New System.Drawing.Size(30, 20)
+        Me.y2.TabIndex = 55
+        Me.y2.Text = "0"
         '
         'Label27
         '
@@ -848,23 +848,23 @@ Partial Class Form1
         Me.Label25.TabIndex = 60
         Me.Label25.Text = "y˳"
         '
-        'x04
+        'x4
         '
-        Me.x04.Location = New System.Drawing.Point(359, 257)
-        Me.x04.Name = "x04"
-        Me.x04.ReadOnly = True
-        Me.x04.Size = New System.Drawing.Size(30, 20)
-        Me.x04.TabIndex = 62
-        Me.x04.Text = "0"
+        Me.x4.Location = New System.Drawing.Point(359, 257)
+        Me.x4.Name = "x4"
+        Me.x4.ReadOnly = True
+        Me.x4.Size = New System.Drawing.Size(30, 20)
+        Me.x4.TabIndex = 62
+        Me.x4.Text = "0"
         '
-        'y04
+        'y4
         '
-        Me.y04.Location = New System.Drawing.Point(414, 257)
-        Me.y04.Name = "y04"
-        Me.y04.ReadOnly = True
-        Me.y04.Size = New System.Drawing.Size(30, 20)
-        Me.y04.TabIndex = 63
-        Me.y04.Text = "0"
+        Me.y4.Location = New System.Drawing.Point(414, 257)
+        Me.y4.Name = "y4"
+        Me.y4.ReadOnly = True
+        Me.y4.Size = New System.Drawing.Size(30, 20)
+        Me.y4.TabIndex = 63
+        Me.y4.Text = "0"
         '
         'Label26
         '
@@ -1021,7 +1021,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label48)
         Me.Controls.Add(Me.Label47)
         Me.Controls.Add(Me.Label49)
-        Me.Controls.Add(Me.xm)
+        Me.Controls.Add(Me.xMax)
         Me.Controls.Add(Me.mg4)
         Me.Controls.Add(Me.mg2)
         Me.Controls.Add(Me.about)
@@ -1038,12 +1038,12 @@ Partial Class Form1
         Me.Controls.Add(Me.x03)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.Label31)
-        Me.Controls.Add(Me.y04)
-        Me.Controls.Add(Me.x04)
+        Me.Controls.Add(Me.y4)
+        Me.Controls.Add(Me.x4)
         Me.Controls.Add(Me.Label25)
         Me.Controls.Add(Me.Label27)
-        Me.Controls.Add(Me.y02)
-        Me.Controls.Add(Me.x02)
+        Me.Controls.Add(Me.y2)
+        Me.Controls.Add(Me.x2)
         Me.Controls.Add(Me.Label23)
         Me.Controls.Add(Me.start)
         Me.Controls.Add(Me.Label11)
@@ -1089,7 +1089,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.Label39)
         Me.Controls.Add(Me.Label40)
-        Me.Controls.Add(Me.ym)
+        Me.Controls.Add(Me.yMax)
         Me.Controls.Add(Me.Label32)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1105,7 +1105,7 @@ Partial Class Form1
         Me.panel22.ResumeLayout(False)
         CType(Me.background2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel33.ResumeLayout(False)
-        CType(Me.PB5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.finalImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1151,7 +1151,7 @@ Partial Class Form1
     Friend WithEvents panel22 As Panel
     Friend WithEvents background2 As PictureBox
     Friend WithEvents panel33 As Panel
-    Friend WithEvents PB5 As PictureBox
+    Friend WithEvents finalImage As PictureBox
     Friend WithEvents save As Button
     Friend WithEvents Label18 As Label
     Friend WithEvents seagaegy As Button
@@ -1181,20 +1181,20 @@ Partial Class Form1
     Friend WithEvents mg2 As Label
     Friend WithEvents mg4 As Label
     Friend WithEvents T3 As Timer
-    Friend WithEvents xm As Label
-    Friend WithEvents ym As Label
+    Friend WithEvents xMax As Label
+    Friend WithEvents yMax As Label
     Friend WithEvents Label49 As Label
     Friend WithEvents Label47 As Label
     Friend WithEvents Label48 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents Label19 As Label
     Friend WithEvents Label23 As Label
-    Friend WithEvents x02 As TextBox
-    Friend WithEvents y02 As TextBox
+    Friend WithEvents x2 As TextBox
+    Friend WithEvents y2 As TextBox
     Friend WithEvents Label27 As Label
     Friend WithEvents Label25 As Label
-    Friend WithEvents x04 As TextBox
-    Friend WithEvents y04 As TextBox
+    Friend WithEvents x4 As TextBox
+    Friend WithEvents y4 As TextBox
     Friend WithEvents Label26 As Label
     Friend WithEvents language As Button
     Friend WithEvents imageFormat As ComboBox
