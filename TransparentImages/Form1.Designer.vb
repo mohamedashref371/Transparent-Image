@@ -37,8 +37,8 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.x0 = New System.Windows.Forms.TextBox()
-        Me.y0 = New System.Windows.Forms.TextBox()
+        Me.x1 = New System.Windows.Forms.TextBox()
+        Me.y1 = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.VSB = New System.Windows.Forms.VScrollBar()
         Me.HSB = New System.Windows.Forms.HScrollBar()
@@ -96,17 +96,20 @@ Partial Class Form1
         Me.seagaegy = New System.Windows.Forms.Button()
         Me.folder = New System.Windows.Forms.Button()
         Me.FBD = New System.Windows.Forms.FolderBrowserDialog()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.blueHexadecimal3 = New System.Windows.Forms.TextBox()
+        Me.greenHexadecimal3 = New System.Windows.Forms.TextBox()
+        Me.redHexadecimal3 = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.blueDecimal3 = New System.Windows.Forms.TextBox()
+        Me.greenDecimal3 = New System.Windows.Forms.TextBox()
+        Me.redDecimal3 = New System.Windows.Forms.TextBox()
         Me.backColorFromImage1 = New System.Windows.Forms.Button()
         Me.backColorFromImage2 = New System.Windows.Forms.Button()
+        Me.setBackcolorForBackground1 = New System.Windows.Forms.Button()
+        Me.setBackcolorForBackground2 = New System.Windows.Forms.Button()
+        Me.setBackcolorForImage2 = New System.Windows.Forms.Button()
         Me.panel11.SuspendLayout()
         CType(Me.image1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel12.SuspendLayout()
@@ -227,21 +230,21 @@ Partial Class Form1
         Me.Label9.Size = New System.Drawing.Size(10, 65)
         Me.Label9.TabIndex = 17
         '
-        'x0
+        'x1
         '
-        Me.x0.Location = New System.Drawing.Point(30, 156)
-        Me.x0.Name = "x0"
-        Me.x0.Size = New System.Drawing.Size(30, 20)
-        Me.x0.TabIndex = 18
-        Me.x0.Text = "0"
+        Me.x1.Location = New System.Drawing.Point(30, 156)
+        Me.x1.Name = "x1"
+        Me.x1.Size = New System.Drawing.Size(30, 20)
+        Me.x1.TabIndex = 18
+        Me.x1.Text = "0"
         '
-        'y0
+        'y1
         '
-        Me.y0.Location = New System.Drawing.Point(69, 156)
-        Me.y0.Name = "y0"
-        Me.y0.Size = New System.Drawing.Size(30, 20)
-        Me.y0.TabIndex = 19
-        Me.y0.Text = "0"
+        Me.y1.Location = New System.Drawing.Point(69, 156)
+        Me.y1.Name = "y1"
+        Me.y1.Size = New System.Drawing.Size(30, 20)
+        Me.y1.TabIndex = 19
+        Me.y1.Text = "0"
         '
         'Label10
         '
@@ -269,7 +272,7 @@ Partial Class Form1
         '
         'redDecimal2
         '
-        Me.redDecimal2.Location = New System.Drawing.Point(442, 108)
+        Me.redDecimal2.Location = New System.Drawing.Point(442, 99)
         Me.redDecimal2.MaxLength = 3
         Me.redDecimal2.Name = "redDecimal2"
         Me.redDecimal2.Size = New System.Drawing.Size(30, 20)
@@ -278,7 +281,7 @@ Partial Class Form1
         '
         'greenDecimal2
         '
-        Me.greenDecimal2.Location = New System.Drawing.Point(442, 134)
+        Me.greenDecimal2.Location = New System.Drawing.Point(442, 125)
         Me.greenDecimal2.MaxLength = 3
         Me.greenDecimal2.Name = "greenDecimal2"
         Me.greenDecimal2.Size = New System.Drawing.Size(30, 20)
@@ -287,7 +290,7 @@ Partial Class Form1
         '
         'blueDecimal2
         '
-        Me.blueDecimal2.Location = New System.Drawing.Point(442, 160)
+        Me.blueDecimal2.Location = New System.Drawing.Point(442, 151)
         Me.blueDecimal2.MaxLength = 3
         Me.blueDecimal2.Name = "blueDecimal2"
         Me.blueDecimal2.Size = New System.Drawing.Size(30, 20)
@@ -297,7 +300,7 @@ Partial Class Form1
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(422, 111)
+        Me.Label12.Location = New System.Drawing.Point(422, 102)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(14, 13)
         Me.Label12.TabIndex = 30
@@ -306,7 +309,7 @@ Partial Class Form1
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(422, 137)
+        Me.Label13.Location = New System.Drawing.Point(422, 128)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(14, 13)
         Me.Label13.TabIndex = 31
@@ -315,7 +318,7 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(422, 163)
+        Me.Label14.Location = New System.Drawing.Point(422, 154)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(13, 13)
         Me.Label14.TabIndex = 32
@@ -324,7 +327,7 @@ Partial Class Form1
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(422, 362)
+        Me.Label15.Location = New System.Drawing.Point(422, 343)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(13, 13)
         Me.Label15.TabIndex = 38
@@ -333,7 +336,7 @@ Partial Class Form1
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(422, 336)
+        Me.Label16.Location = New System.Drawing.Point(422, 317)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(14, 13)
         Me.Label16.TabIndex = 37
@@ -342,7 +345,7 @@ Partial Class Form1
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(422, 310)
+        Me.Label17.Location = New System.Drawing.Point(422, 291)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(14, 13)
         Me.Label17.TabIndex = 36
@@ -350,7 +353,7 @@ Partial Class Form1
         '
         'blueDecimal4
         '
-        Me.blueDecimal4.Location = New System.Drawing.Point(442, 359)
+        Me.blueDecimal4.Location = New System.Drawing.Point(442, 340)
         Me.blueDecimal4.MaxLength = 3
         Me.blueDecimal4.Name = "blueDecimal4"
         Me.blueDecimal4.Size = New System.Drawing.Size(30, 20)
@@ -359,7 +362,7 @@ Partial Class Form1
         '
         'greenDecimal4
         '
-        Me.greenDecimal4.Location = New System.Drawing.Point(442, 333)
+        Me.greenDecimal4.Location = New System.Drawing.Point(442, 314)
         Me.greenDecimal4.MaxLength = 3
         Me.greenDecimal4.Name = "greenDecimal4"
         Me.greenDecimal4.Size = New System.Drawing.Size(30, 20)
@@ -368,7 +371,7 @@ Partial Class Form1
         '
         'redDecimal4
         '
-        Me.redDecimal4.Location = New System.Drawing.Point(442, 307)
+        Me.redDecimal4.Location = New System.Drawing.Point(442, 288)
         Me.redDecimal4.MaxLength = 3
         Me.redDecimal4.Name = "redDecimal4"
         Me.redDecimal4.Size = New System.Drawing.Size(30, 20)
@@ -489,7 +492,7 @@ Partial Class Form1
         '
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Location = New System.Drawing.Point(438, 92)
+        Me.Label11.Location = New System.Drawing.Point(438, 83)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(58, 13)
         Me.Label11.TabIndex = 47
@@ -519,7 +522,7 @@ Partial Class Form1
         '
         'blueHexadecimal2
         '
-        Me.blueHexadecimal2.Location = New System.Drawing.Point(478, 160)
+        Me.blueHexadecimal2.Location = New System.Drawing.Point(478, 151)
         Me.blueHexadecimal2.MaxLength = 2
         Me.blueHexadecimal2.Name = "blueHexadecimal2"
         Me.blueHexadecimal2.Size = New System.Drawing.Size(20, 20)
@@ -528,7 +531,7 @@ Partial Class Form1
         '
         'greenHexadecimal2
         '
-        Me.greenHexadecimal2.Location = New System.Drawing.Point(478, 134)
+        Me.greenHexadecimal2.Location = New System.Drawing.Point(478, 125)
         Me.greenHexadecimal2.MaxLength = 2
         Me.greenHexadecimal2.Name = "greenHexadecimal2"
         Me.greenHexadecimal2.Size = New System.Drawing.Size(20, 20)
@@ -537,7 +540,7 @@ Partial Class Form1
         '
         'redHexadecimal2
         '
-        Me.redHexadecimal2.Location = New System.Drawing.Point(478, 108)
+        Me.redHexadecimal2.Location = New System.Drawing.Point(478, 99)
         Me.redHexadecimal2.MaxLength = 2
         Me.redHexadecimal2.Name = "redHexadecimal2"
         Me.redHexadecimal2.Size = New System.Drawing.Size(20, 20)
@@ -546,7 +549,7 @@ Partial Class Form1
         '
         'blueHexadecimal4
         '
-        Me.blueHexadecimal4.Location = New System.Drawing.Point(478, 359)
+        Me.blueHexadecimal4.Location = New System.Drawing.Point(478, 340)
         Me.blueHexadecimal4.MaxLength = 2
         Me.blueHexadecimal4.Name = "blueHexadecimal4"
         Me.blueHexadecimal4.Size = New System.Drawing.Size(20, 20)
@@ -555,7 +558,7 @@ Partial Class Form1
         '
         'greenHexadecimal4
         '
-        Me.greenHexadecimal4.Location = New System.Drawing.Point(478, 333)
+        Me.greenHexadecimal4.Location = New System.Drawing.Point(478, 314)
         Me.greenHexadecimal4.MaxLength = 2
         Me.greenHexadecimal4.Name = "greenHexadecimal4"
         Me.greenHexadecimal4.Size = New System.Drawing.Size(20, 20)
@@ -564,7 +567,7 @@ Partial Class Form1
         '
         'redHexadecimal4
         '
-        Me.redHexadecimal4.Location = New System.Drawing.Point(478, 307)
+        Me.redHexadecimal4.Location = New System.Drawing.Point(478, 288)
         Me.redHexadecimal4.MaxLength = 2
         Me.redHexadecimal4.Name = "redHexadecimal4"
         Me.redHexadecimal4.Size = New System.Drawing.Size(20, 20)
@@ -758,37 +761,37 @@ Partial Class Form1
         Me.folder.Text = "استضافة مجلد"
         Me.folder.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'blueHexadecimal3
         '
-        Me.TextBox1.Location = New System.Drawing.Point(80, 374)
-        Me.TextBox1.MaxLength = 2
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(20, 20)
-        Me.TextBox1.TabIndex = 145
-        Me.TextBox1.Text = "ff"
+        Me.blueHexadecimal3.Location = New System.Drawing.Point(79, 341)
+        Me.blueHexadecimal3.MaxLength = 2
+        Me.blueHexadecimal3.Name = "blueHexadecimal3"
+        Me.blueHexadecimal3.Size = New System.Drawing.Size(20, 20)
+        Me.blueHexadecimal3.TabIndex = 145
+        Me.blueHexadecimal3.Text = "ff"
         '
-        'TextBox2
+        'greenHexadecimal3
         '
-        Me.TextBox2.Location = New System.Drawing.Point(80, 348)
-        Me.TextBox2.MaxLength = 2
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(20, 20)
-        Me.TextBox2.TabIndex = 144
-        Me.TextBox2.Text = "ff"
+        Me.greenHexadecimal3.Location = New System.Drawing.Point(79, 315)
+        Me.greenHexadecimal3.MaxLength = 2
+        Me.greenHexadecimal3.Name = "greenHexadecimal3"
+        Me.greenHexadecimal3.Size = New System.Drawing.Size(20, 20)
+        Me.greenHexadecimal3.TabIndex = 144
+        Me.greenHexadecimal3.Text = "ff"
         '
-        'TextBox3
+        'redHexadecimal3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(80, 322)
-        Me.TextBox3.MaxLength = 2
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(20, 20)
-        Me.TextBox3.TabIndex = 143
-        Me.TextBox3.Text = "ff"
+        Me.redHexadecimal3.Location = New System.Drawing.Point(79, 289)
+        Me.redHexadecimal3.MaxLength = 2
+        Me.redHexadecimal3.Name = "redHexadecimal3"
+        Me.redHexadecimal3.Size = New System.Drawing.Size(20, 20)
+        Me.redHexadecimal3.TabIndex = 143
+        Me.redHexadecimal3.Text = "ff"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(24, 377)
+        Me.Label19.Location = New System.Drawing.Point(23, 344)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(13, 13)
         Me.Label19.TabIndex = 142
@@ -797,7 +800,7 @@ Partial Class Form1
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(24, 351)
+        Me.Label20.Location = New System.Drawing.Point(23, 318)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(14, 13)
         Me.Label20.TabIndex = 141
@@ -806,38 +809,38 @@ Partial Class Form1
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(24, 325)
+        Me.Label21.Location = New System.Drawing.Point(23, 292)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(14, 13)
         Me.Label21.TabIndex = 140
         Me.Label21.Text = "R"
         '
-        'TextBox4
+        'blueDecimal3
         '
-        Me.TextBox4.Location = New System.Drawing.Point(44, 374)
-        Me.TextBox4.MaxLength = 3
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(30, 20)
-        Me.TextBox4.TabIndex = 139
-        Me.TextBox4.Text = "255"
+        Me.blueDecimal3.Location = New System.Drawing.Point(43, 341)
+        Me.blueDecimal3.MaxLength = 3
+        Me.blueDecimal3.Name = "blueDecimal3"
+        Me.blueDecimal3.Size = New System.Drawing.Size(30, 20)
+        Me.blueDecimal3.TabIndex = 139
+        Me.blueDecimal3.Text = "255"
         '
-        'TextBox5
+        'greenDecimal3
         '
-        Me.TextBox5.Location = New System.Drawing.Point(44, 348)
-        Me.TextBox5.MaxLength = 3
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(30, 20)
-        Me.TextBox5.TabIndex = 138
-        Me.TextBox5.Text = "255"
+        Me.greenDecimal3.Location = New System.Drawing.Point(43, 315)
+        Me.greenDecimal3.MaxLength = 3
+        Me.greenDecimal3.Name = "greenDecimal3"
+        Me.greenDecimal3.Size = New System.Drawing.Size(30, 20)
+        Me.greenDecimal3.TabIndex = 138
+        Me.greenDecimal3.Text = "255"
         '
-        'TextBox6
+        'redDecimal3
         '
-        Me.TextBox6.Location = New System.Drawing.Point(44, 322)
-        Me.TextBox6.MaxLength = 3
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(30, 20)
-        Me.TextBox6.TabIndex = 137
-        Me.TextBox6.Text = "255"
+        Me.redDecimal3.Location = New System.Drawing.Point(43, 289)
+        Me.redDecimal3.MaxLength = 3
+        Me.redDecimal3.Name = "redDecimal3"
+        Me.redDecimal3.Size = New System.Drawing.Size(30, 20)
+        Me.redDecimal3.TabIndex = 137
+        Me.redDecimal3.Text = "255"
         '
         'backColorFromImage1
         '
@@ -850,29 +853,59 @@ Partial Class Form1
         '
         'backColorFromImage2
         '
-        Me.backColorFromImage2.Location = New System.Drawing.Point(27, 280)
+        Me.backColorFromImage2.Location = New System.Drawing.Point(29, 211)
         Me.backColorFromImage2.Name = "backColorFromImage2"
         Me.backColorFromImage2.Size = New System.Drawing.Size(75, 23)
         Me.backColorFromImage2.TabIndex = 147
         Me.backColorFromImage2.Text = "لون الخلفية 2"
         Me.backColorFromImage2.UseVisualStyleBackColor = True
         '
+        'setBackcolorForBackground1
+        '
+        Me.setBackcolorForBackground1.Location = New System.Drawing.Point(428, 176)
+        Me.setBackcolorForBackground1.Name = "setBackcolorForBackground1"
+        Me.setBackcolorForBackground1.Size = New System.Drawing.Size(75, 23)
+        Me.setBackcolorForBackground1.TabIndex = 148
+        Me.setBackcolorForBackground1.Text = "لون الخلفية"
+        Me.setBackcolorForBackground1.UseVisualStyleBackColor = True
+        '
+        'setBackcolorForBackground2
+        '
+        Me.setBackcolorForBackground2.Location = New System.Drawing.Point(428, 363)
+        Me.setBackcolorForBackground2.Name = "setBackcolorForBackground2"
+        Me.setBackcolorForBackground2.Size = New System.Drawing.Size(75, 23)
+        Me.setBackcolorForBackground2.TabIndex = 149
+        Me.setBackcolorForBackground2.Text = "لون الخلفية"
+        Me.setBackcolorForBackground2.UseVisualStyleBackColor = True
+        '
+        'setBackcolorForImage2
+        '
+        Me.setBackcolorForImage2.Location = New System.Drawing.Point(29, 367)
+        Me.setBackcolorForImage2.Name = "setBackcolorForImage2"
+        Me.setBackcolorForImage2.Size = New System.Drawing.Size(75, 23)
+        Me.setBackcolorForImage2.TabIndex = 150
+        Me.setBackcolorForImage2.Text = "لون الصورة"
+        Me.setBackcolorForImage2.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(634, 565)
+        Me.Controls.Add(Me.setBackcolorForImage2)
+        Me.Controls.Add(Me.setBackcolorForBackground2)
+        Me.Controls.Add(Me.setBackcolorForBackground1)
         Me.Controls.Add(Me.backColorFromImage2)
         Me.Controls.Add(Me.backColorFromImage1)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.blueHexadecimal3)
+        Me.Controls.Add(Me.greenHexadecimal3)
+        Me.Controls.Add(Me.redHexadecimal3)
         Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.Label21)
-        Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.TextBox5)
-        Me.Controls.Add(Me.TextBox6)
+        Me.Controls.Add(Me.blueDecimal3)
+        Me.Controls.Add(Me.greenDecimal3)
+        Me.Controls.Add(Me.redDecimal3)
         Me.Controls.Add(Me.folder)
         Me.Controls.Add(Me.imageFormat)
         Me.Controls.Add(Me.language)
@@ -916,8 +949,8 @@ Partial Class Form1
         Me.Controls.Add(Me.redDecimal2)
         Me.Controls.Add(Me.HSB)
         Me.Controls.Add(Me.VSB)
-        Me.Controls.Add(Me.y0)
-        Me.Controls.Add(Me.x0)
+        Me.Controls.Add(Me.y1)
+        Me.Controls.Add(Me.x1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
@@ -969,8 +1002,8 @@ Partial Class Form1
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents x0 As TextBox
-    Friend WithEvents y0 As TextBox
+    Friend WithEvents x1 As TextBox
+    Friend WithEvents y1 As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents help As Label
     Friend WithEvents VSB As VScrollBar
@@ -1027,15 +1060,18 @@ Partial Class Form1
     Friend WithEvents imageFormat As ComboBox
     Friend WithEvents folder As Button
     Friend WithEvents FBD As FolderBrowserDialog
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents blueHexadecimal3 As TextBox
+    Friend WithEvents greenHexadecimal3 As TextBox
+    Friend WithEvents redHexadecimal3 As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents Label21 As Label
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents blueDecimal3 As TextBox
+    Friend WithEvents greenDecimal3 As TextBox
+    Friend WithEvents redDecimal3 As TextBox
     Friend WithEvents backColorFromImage1 As Button
     Friend WithEvents backColorFromImage2 As Button
+    Friend WithEvents setBackcolorForBackground1 As Button
+    Friend WithEvents setBackcolorForBackground2 As Button
+    Friend WithEvents setBackcolorForImage2 As Button
 End Class

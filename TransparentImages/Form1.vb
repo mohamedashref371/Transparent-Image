@@ -19,7 +19,7 @@
         imageFormat.SelectedIndex = 0
     End Sub
 
-    Private Sub Pg_KeyPress(sender As Object, e As KeyPressEventArgs) Handles x0.KeyPress, y0.KeyPress, redDecimal2.KeyPress, greenDecimal2.KeyPress, blueDecimal2.KeyPress, redDecimal4.KeyPress, greenDecimal4.KeyPress, blueDecimal4.KeyPress
+    Private Sub Pg_KeyPress(sender As Object, e As KeyPressEventArgs) Handles x1.KeyPress, y1.KeyPress, redDecimal2.KeyPress, greenDecimal2.KeyPress, blueDecimal2.KeyPress, redDecimal4.KeyPress, greenDecimal4.KeyPress, blueDecimal4.KeyPress
         If e.KeyChar = "0" Or e.KeyChar = "1" Or e.KeyChar = "2" Or e.KeyChar = "3" Or e.KeyChar = "4" Or e.KeyChar = "5" Or e.KeyChar = "6" Or e.KeyChar = "7" Or e.KeyChar = "8" Or e.KeyChar = "9" Or e.KeyChar = "" Then
             Exit Sub
         Else
@@ -151,23 +151,27 @@
     End Sub
 
     Private Sub BackColorFromImage1_Click(sender As Object, e As EventArgs) Handles backColorFromImage1.Click
-        If x0.Text = "" Then x0.Text = "0"
-        If y0.Text = "" Then y0.Text = "0"
-        If img1 IsNot Nothing AndAlso x0.Text < img1.Width AndAlso y0.Text < img1.Height Then
+        If x1.Text = "" Then x1.Text = "0"
+        If y1.Text = "" Then y1.Text = "0"
+        If img1 IsNot Nothing AndAlso x1.Text < img1.Width AndAlso y1.Text < img1.Height Then
             back1 = Nothing
             background1.BackgroundImage = Nothing
-            background1.BackColor = img1.GetPixel(x0.Text, y0.Text)
+            Dim clr As Color = img1.GetPixel(x1.Text, y1.Text)
+            redDecimal2.Text = clr.R : greenDecimal2.Text = clr.G : blueDecimal2.Text = clr.B
+            background1.BackColor = clr
         End If
     End Sub
 
     Private Sub BackColorFromImage2_Click(sender As Object, e As EventArgs) Handles backColorFromImage2.Click
-        If x0.Text = "" Then x0.Text = "0"
-        If y0.Text = "" Then y0.Text = "0"
+        If x1.Text = "" Then x1.Text = "0"
+        If y1.Text = "" Then y1.Text = "0"
 
-        If img2 IsNot Nothing AndAlso x0.Text < img2.Width AndAlso y0.Text < img2.Height Then
+        If img2 IsNot Nothing AndAlso x1.Text < img2.Width AndAlso y1.Text < img2.Height Then
             back2 = Nothing
             background2.BackgroundImage = Nothing
-            background2.BackColor = img2.GetPixel(x0.Text, y0.Text)
+            Dim clr As Color = img2.GetPixel(x1.Text, y1.Text)
+            redDecimal4.Text = clr.R : greenDecimal4.Text = clr.G : blueDecimal4.Text = clr.B
+            background2.BackColor = clr
         End If
     End Sub
 
@@ -260,7 +264,7 @@
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
                     Else
                         back2 = temp
-                        background2.BackColor = Nothing
+                        background2.BackColor = Nothing 
                         background2.BackgroundImage = back2
                         background2.Width = back2.Width : background2.Height = back2.Height
                         LocationZero(sender, e)
@@ -272,6 +276,143 @@
         Catch
             MsgBox("حدث خطأ")
         End Try
+    End Sub
+
+    '---------------------------------------------
+
+    Private Sub SetBackcolorForBackground1_Click(sender As Object, e As EventArgs) Handles setBackcolorForBackground1.Click
+        back1 = Nothing
+        background1.BackgroundImage = Nothing
+        background1.BackColor = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
+    End Sub
+
+    Private Sub SetBackcolorForImage2_Click(sender As Object, e As EventArgs) Handles setBackcolorForImage2.Click
+        img2 = Nothing
+        image2.BackgroundImage = Nothing
+        image2.BackColor = Color.FromArgb(redDecimal3.Text, greenDecimal3.Text, blueDecimal3.Text)
+    End Sub
+
+    Private Sub SetBackcolorForBackground2_Click(sender As Object, e As EventArgs) Handles setBackcolorForBackground2.Click
+        back2 = Nothing
+        background2.BackgroundImage = Nothing
+        background2.BackColor = Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text)
+    End Sub
+
+    Private Sub RedDecimal2_TextChanged(sender As Object, e As EventArgs) Handles redDecimal2.TextChanged
+        If redDecimal2.Text = "" Then
+            redDecimal2.Text = 0
+        ElseIf redDecimal2.Text > 255 Then
+            redDecimal2.Text = 255
+        End If
+        redHexadecimal2.Text = Convert.ToInt32(redDecimal2.Text).ToString("X")
+    End Sub
+
+    Private Sub RedHexadecimal2_TextChanged(sender As Object, e As EventArgs) Handles redHexadecimal2.TextChanged
+        redDecimal2.Text = Convert.ToInt32("0" + redHexadecimal2.Text, 16)
+    End Sub
+
+    Private Sub GreenDecimal2_TextChanged(sender As Object, e As EventArgs) Handles greenDecimal2.TextChanged
+        If greenDecimal2.Text = "" Then
+            greenDecimal2.Text = 0
+        ElseIf greenDecimal2.Text > 255 Then
+            greenDecimal2.Text = 255
+        End If
+        greenHexadecimal2.Text = Convert.ToInt32(greenDecimal2.Text).ToString("X")
+    End Sub
+
+    Private Sub GreenHexadecimal2_TextChanged(sender As Object, e As EventArgs) Handles greenHexadecimal2.TextChanged
+        greenDecimal2.Text = Convert.ToInt32("0" + greenHexadecimal2.Text, 16)
+    End Sub
+
+    Private Sub BlueDecimal2_TextChanged(sender As Object, e As EventArgs) Handles blueDecimal2.TextChanged
+        If blueDecimal2.Text = "" Then
+            blueDecimal2.Text = 0
+        ElseIf blueDecimal2.Text > 255 Then
+            blueDecimal2.Text = 255
+        End If
+        blueHexadecimal2.Text = Convert.ToInt32(blueDecimal2.Text).ToString("X")
+    End Sub
+
+    Private Sub BlueHexadecimal2_TextChanged(sender As Object, e As EventArgs) Handles blueHexadecimal2.TextChanged
+        blueDecimal2.Text = Convert.ToInt32("0" + blueHexadecimal2.Text, 16)
+    End Sub
+
+    Private Sub RedDecimal3_TextChanged(sender As Object, e As EventArgs) Handles redDecimal3.TextChanged
+        If redDecimal3.Text = "" Then
+            redDecimal3.Text = 0
+        ElseIf redDecimal3.Text > 255 Then
+            redDecimal3.Text = 255
+        End If
+        redHexadecimal3.Text = Convert.ToInt32(redDecimal3.Text).ToString("X")
+    End Sub
+
+    Private Sub RedHexadecimal3_TextChanged(sender As Object, e As EventArgs) Handles redHexadecimal3.TextChanged
+        redDecimal3.Text = Convert.ToInt32("0" + redHexadecimal3.Text, 16)
+    End Sub
+
+    Private Sub GreenDecimal3_TextChanged(sender As Object, e As EventArgs) Handles greenDecimal3.TextChanged
+        If greenDecimal3.Text = "" Then
+            greenDecimal3.Text = 0
+        ElseIf greenDecimal3.Text > 255 Then
+            greenDecimal3.Text = 255
+        End If
+        greenHexadecimal3.Text = Convert.ToInt32(greenDecimal3.Text).ToString("X")
+    End Sub
+
+    Private Sub GreenHexadecimal3_TextChanged(sender As Object, e As EventArgs) Handles greenHexadecimal3.TextChanged
+        greenDecimal3.Text = Convert.ToInt32("0" + greenHexadecimal3.Text, 16)
+    End Sub
+
+    Private Sub BlueDecimal3_TextChanged(sender As Object, e As EventArgs) Handles blueDecimal3.TextChanged
+        If blueDecimal3.Text = "" Then
+            blueDecimal3.Text = 0
+        ElseIf blueDecimal3.Text > 255 Then
+            blueDecimal3.Text = 255
+        End If
+        blueHexadecimal3.Text = Convert.ToInt32(blueDecimal3.Text).ToString("X")
+    End Sub
+
+    Private Sub BlueHexadecimal3_TextChanged(sender As Object, e As EventArgs) Handles blueHexadecimal3.TextChanged
+        blueDecimal3.Text = Convert.ToInt32("0" + blueHexadecimal3.Text, 16)
+    End Sub
+
+    Private Sub RedDecimal4_TextChanged(sender As Object, e As EventArgs) Handles redDecimal4.TextChanged
+        If redDecimal4.Text = "" Then
+            redDecimal4.Text = 0
+        ElseIf redDecimal4.Text > 255 Then
+            redDecimal4.Text = 255
+        End If
+        redHexadecimal4.Text = Convert.ToInt32(redDecimal4.Text).ToString("X")
+    End Sub
+
+    Private Sub RedHexadecimal4_TextChanged(sender As Object, e As EventArgs) Handles redHexadecimal4.TextChanged
+        redDecimal4.Text = Convert.ToInt32("0" + redHexadecimal4.Text, 16)
+    End Sub
+
+    Private Sub GreenDecimal4_TextChanged(sender As Object, e As EventArgs) Handles greenDecimal4.TextChanged
+        If greenDecimal4.Text = "" Then
+            greenDecimal4.Text = 0
+        ElseIf greenDecimal4.Text > 255 Then
+            greenDecimal4.Text = 255
+        End If
+        greenHexadecimal4.Text = Convert.ToInt32(greenDecimal4.Text).ToString("X")
+    End Sub
+
+    Private Sub GreenHexadecimal4_TextChanged(sender As Object, e As EventArgs) Handles greenHexadecimal4.TextChanged
+        greenDecimal4.Text = Convert.ToInt32("0" + greenHexadecimal4.Text, 16)
+    End Sub
+
+    Private Sub BlueDecimal4_TextChanged(sender As Object, e As EventArgs) Handles blueDecimal4.TextChanged
+        If blueDecimal4.Text = "" Then
+            blueDecimal4.Text = 0
+        ElseIf blueDecimal4.Text > 255 Then
+            blueDecimal4.Text = 255
+        End If
+        blueHexadecimal4.Text = Convert.ToInt32(blueDecimal4.Text).ToString("X")
+    End Sub
+
+    Private Sub BlueHexadecimal4_TextChanged(sender As Object, e As EventArgs) Handles blueHexadecimal4.TextChanged
+        blueDecimal4.Text = Convert.ToInt32("0" + blueHexadecimal4.Text, 16)
     End Sub
 
     Private Sub T2_Tick(sender As Object, e As EventArgs) Handles T2.Tick
