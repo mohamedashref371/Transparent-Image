@@ -2,7 +2,7 @@
     Dim hm As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("0.0.0.0", "")
     Dim rd1 As New Random
     Dim img1, back1, img2, back2, pic, temp As Bitmap
-    Dim file As String
+    Dim folderOpen, folderSave, file As String
     Dim listOfFiles As New List(Of String)
     Dim aaaa As Integer = 0
 
@@ -37,7 +37,10 @@
 
     Private Sub Folder_Click(sender As Object, e As EventArgs) Handles folder.Click
         listOfFiles.Clear()
-        If FBD.ShowDialog = DialogResult.OK Then listOfFiles = My.Computer.FileSystem.GetFiles(FBD.SelectedPath).ToList()
+        If FBD.ShowDialog = DialogResult.OK Then
+            folderOpen = FBD.SelectedPath
+            listOfFiles = My.Computer.FileSystem.GetFiles(folderOpen).ToList()
+        End If
     End Sub
 
     Private Sub Lg2(sender As Object, e As EventArgs) Handles language.Click
@@ -52,6 +55,10 @@
         End If
     End Sub
 
+    Private Sub Start_Click(sender As Object, e As EventArgs) Handles start.Click
+
+    End Sub
+
     Private Sub Lwh_Click(sender As Object, e As EventArgs) Handles help.Click
         If loadImage1.Enabled = True Then
 
@@ -64,6 +71,7 @@
             G5.DrawImage(My.Resources.zx0, 0, 0)
             image1.BackgroundImage = Bb5
             img1 = Bb5
+            BackColorFromImage1_Click(Nothing, Nothing)
 
             redDecimal4.Text = rd1.Next(0, 256)
             greenDecimal4.Text = rd1.Next(0, 256)
@@ -74,6 +82,7 @@
             G5.DrawImage(My.Resources.zx0, 0, 0)
             image2.BackgroundImage = Bb5
             img2 = Bb5
+            BackColorFromImage2_Click(Nothing, Nothing)
 
             Bb5 = New Bitmap(256, 256)
             G5 = Graphics.FromImage(Bb5)
@@ -81,9 +90,6 @@
             G5.DrawImage(My.Resources.zx0, 0, 0)
             finalImage.BackgroundImage = Bb5
             pic = My.Resources.zx0
-
-            y0.Text = "0"
-            x0.Text = "0"
         End If
     End Sub
 
@@ -113,18 +119,28 @@
         Process.Start("http://www.mediafire.com/file/0wv97m4n96q5y0v")
     End Sub
 
-    Private Sub Sv_Click(sender As Object, e As EventArgs) Handles save.Click
-        If imageFormat.SelectedIndex = 1 Then
-            SFD.Filter = "ICON Files|*.ico"
-        Else
-            SFD.Filter = "PNG Files|*.png"
-        End If
-
-        If SFD.ShowDialog() = DialogResult.OK Then
+    Private Sub Save_Click(sender As Object, e As EventArgs) Handles save.Click
+        If listOfFiles.Count = 0 Then
             If imageFormat.SelectedIndex = 1 Then
-                pic.Save(SFD.FileName, Imaging.ImageFormat.Icon)
+                SFD.Filter = "ICON Files|*.ico"
             Else
-                pic.Save(SFD.FileName, Imaging.ImageFormat.Png)
+                SFD.Filter = "PNG Files|*.png"
+            End If
+
+            If SFD.ShowDialog() = DialogResult.OK Then
+                If imageFormat.SelectedIndex = 1 Then
+                    pic.Save(SFD.FileName, Imaging.ImageFormat.Icon)
+                Else
+                    pic.Save(SFD.FileName, Imaging.ImageFormat.Png)
+                End If
+            End If
+        Else
+            If FBD.ShowDialog = DialogResult.OK Then
+                If FBD.SelectedPath = folderOpen Then
+                    MsgBox("اختر مجلدا آخر")
+                Else
+                    folderSave = FBD.SelectedPath
+                End If
             End If
         End If
     End Sub
@@ -134,19 +150,51 @@
         image1.Location = New Point(0, 0) : background1.Location = New Point(0, 0) : image2.Location = New Point(0, 0) : background2.Location = New Point(0, 0) : finalImage.Location = New Point(0, 0)
     End Sub
 
+    Private Sub BackColorFromImage1_Click(sender As Object, e As EventArgs) Handles backColorFromImage1.Click
+        If x0.Text = "" Then x0.Text = "0"
+        If y0.Text = "" Then y0.Text = "0"
+        If img1 IsNot Nothing AndAlso x0.Text < img1.Width AndAlso y0.Text < img1.Height Then
+            back1 = Nothing
+            background1.BackgroundImage = Nothing
+            background1.BackColor = img1.GetPixel(x0.Text, y0.Text)
+        End If
+    End Sub
+
+    Private Sub BackColorFromImage2_Click(sender As Object, e As EventArgs) Handles backColorFromImage2.Click
+        If x0.Text = "" Then x0.Text = "0"
+        If y0.Text = "" Then y0.Text = "0"
+
+        If img2 IsNot Nothing AndAlso x0.Text < img2.Width AndAlso y0.Text < img2.Height Then
+            back2 = Nothing
+            background2.BackgroundImage = Nothing
+            background2.BackColor = img2.GetPixel(x0.Text, y0.Text)
+        End If
+    End Sub
+
     Private Sub LoadImage1_Click(sender As Object, e As EventArgs) Handles loadImage1.Click
         Try
             If OFD.ShowDialog() = DialogResult.OK Then
+                listOfFiles.Clear()
                 temp = Image.FromFile(OFD.FileName)
                 If temp.Width >= 16 And temp.Height >= 16 Then
                     img1 = temp
                     image1.BackgroundImage = img1
                     image1.Width = img1.Width : image1.Height = img1.Height
                     LocationZero(sender, e)
+                    If back1 IsNot Nothing AndAlso (back1.Width < img1.Width OrElse back1.Height < img1.Height) Then
+                        back1 = Nothing
+                        background1.BackgroundImage = Nothing
+                    End If
+                    If back1 Is Nothing Then BackColorFromImage1_Click(Nothing, Nothing)
                     If img2 IsNot Nothing AndAlso (img2.Width < img1.Width OrElse img2.Height < img1.Height) Then
+                        img2 = Nothing
                         image2.BackgroundImage = Nothing
                     End If
-                    x0.Text = "0" : y0.Text = "0"
+                    If back2 IsNot Nothing AndAlso (back2.Width < img1.Width OrElse back2.Height < img1.Height) Then
+                        back2 = Nothing
+                        background2.BackgroundImage = Nothing
+                    End If
+                    If back2 Is Nothing Then BackColorFromImage2_Click(Nothing, Nothing)
                     xMax.Text = img1.Width : yMax.Text = img1.Height
                 Else
                     MsgBox("غير مسموح بصورة أقل من 16*16")
@@ -191,6 +239,7 @@
                         img2 = temp
                         image2.BackgroundImage = img2
                         image2.Width = img2.Width : image2.Height = img2.Height
+                        If back2 Is Nothing Then BackColorFromImage2_Click(Nothing, Nothing)
                         LocationZero(sender, e)
                     End If
                 Else
