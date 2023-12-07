@@ -1,10 +1,9 @@
 ﻿Public Class Form1
-    Dim hm As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("0.0.0.0", "")
-    Dim rd1 As New Random
-    Dim img1, back1, img2, back2, pic, temp As Bitmap
-    Dim folderOpen, folderSave, file As String
+    ReadOnly hm As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("0.0.0.0", "")
+    ReadOnly rd1 As New Random
+    Dim img1, back1, img2, back2, finalImg, temp As Bitmap
+    Dim folderOpen, folderSave As String
     Dim listOfFiles As New List(Of String)
-    Dim aaaa As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Computer.FileSystem.FileExists(hm + "lang") Then Lg2(sender, e)
@@ -56,7 +55,13 @@
     End Sub
 
     Private Sub Start_Click(sender As Object, e As EventArgs) Handles start.Click
+        finalImg = New Bitmap(img1.Width, img1.Height)
+        For i = 0 To img1.Width
+            For j = 0 To img1.Height
 
+            Next
+        Next
+        finalImage.BackgroundImage = finalImg
     End Sub
 
     Private Sub Lwh_Click(sender As Object, e As EventArgs) Handles help.Click
@@ -89,7 +94,7 @@
             G5.DrawImage(My.Resources.trpt2, 0, 0)
             G5.DrawImage(My.Resources.zx0, 0, 0)
             finalImage.BackgroundImage = Bb5
-            pic = My.Resources.zx0
+            finalImg = My.Resources.zx0
         End If
     End Sub
 
@@ -129,9 +134,9 @@
 
             If SFD.ShowDialog() = DialogResult.OK Then
                 If imageFormat.SelectedIndex = 1 Then
-                    pic.Save(SFD.FileName, Imaging.ImageFormat.Icon)
+                    finalImg.Save(SFD.FileName, Imaging.ImageFormat.Icon)
                 Else
-                    pic.Save(SFD.FileName, Imaging.ImageFormat.Png)
+                    finalImg.Save(SFD.FileName, Imaging.ImageFormat.Png)
                 End If
             End If
         Else
@@ -218,7 +223,7 @@
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
                     Else
                         back1 = temp
-                        background1.BackColor = Nothing
+                        background1.BackColor = Color.White
                         background1.BackgroundImage = back1
                         background1.Width = back1.Width : background1.Height = back1.Height
                         LocationZero(sender, e)
@@ -264,7 +269,7 @@
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
                     Else
                         back2 = temp
-                        background2.BackColor = Nothing 
+                        background2.BackColor = Color.White
                         background2.BackgroundImage = back2
                         background2.Width = back2.Width : background2.Height = back2.Height
                         LocationZero(sender, e)

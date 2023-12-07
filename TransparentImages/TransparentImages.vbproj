@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img.png" />
+    <Content Include="NotMyCode\FastPixel.cs" />
     <Content Include="trans.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
