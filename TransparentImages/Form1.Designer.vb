@@ -68,11 +68,6 @@ Partial Class Form1
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.start = New System.Windows.Forms.Button()
-        Me.y03 = New System.Windows.Forms.TextBox()
-        Me.x03 = New System.Windows.Forms.TextBox()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Label32 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.blueHexadecimal2 = New System.Windows.Forms.TextBox()
         Me.greenHexadecimal2 = New System.Windows.Forms.TextBox()
@@ -89,37 +84,27 @@ Partial Class Form1
         Me.Label40 = New System.Windows.Forms.Label()
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.SFD = New System.Windows.Forms.SaveFileDialog()
-        Me.mg2 = New System.Windows.Forms.Label()
-        Me.mg4 = New System.Windows.Forms.Label()
         Me.T3 = New System.Windows.Forms.Timer(Me.components)
         Me.xMax = New System.Windows.Forms.Label()
         Me.yMax = New System.Windows.Forms.Label()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.Label48 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.x2 = New System.Windows.Forms.TextBox()
-        Me.y2 = New System.Windows.Forms.TextBox()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.x4 = New System.Windows.Forms.TextBox()
-        Me.y4 = New System.Windows.Forms.TextBox()
-        Me.Label26 = New System.Windows.Forms.Label()
         Me.language = New System.Windows.Forms.Button()
         Me.imageFormat = New System.Windows.Forms.ComboBox()
-        Me.mg3 = New System.Windows.Forms.Label()
         Me.help = New System.Windows.Forms.Label()
         Me.seagaegy = New System.Windows.Forms.Button()
-        Me.r5 = New System.Windows.Forms.Label()
-        Me.g5 = New System.Windows.Forms.Label()
-        Me.b5 = New System.Windows.Forms.Label()
-        Me.b6 = New System.Windows.Forms.Label()
-        Me.g6 = New System.Windows.Forms.Label()
-        Me.r6 = New System.Windows.Forms.Label()
         Me.folder = New System.Windows.Forms.Button()
         Me.FBD = New System.Windows.Forms.FolderBrowserDialog()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.panel11.SuspendLayout()
         CType(Me.image1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel12.SuspendLayout()
@@ -195,15 +180,15 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.BackColor = System.Drawing.Color.Red
-        Me.Label4.Location = New System.Drawing.Point(186, 0)
+        Me.Label4.Location = New System.Drawing.Point(223, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(369, 10)
+        Me.Label4.Size = New System.Drawing.Size(332, 10)
         Me.Label4.TabIndex = 12
         '
         'Label5
         '
         Me.Label5.BackColor = System.Drawing.Color.Red
-        Me.Label5.Location = New System.Drawing.Point(186, 9)
+        Me.Label5.Location = New System.Drawing.Point(223, 9)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(10, 67)
         Me.Label5.TabIndex = 13
@@ -242,14 +227,15 @@ Partial Class Form1
         '
         'x0
         '
-        Me.x0.Location = New System.Drawing.Point(191, 52)
+        Me.x0.Location = New System.Drawing.Point(36, 159)
         Me.x0.Name = "x0"
         Me.x0.Size = New System.Drawing.Size(30, 20)
         Me.x0.TabIndex = 18
+        Me.x0.Text = "0"
         '
         'y0
         '
-        Me.y0.Location = New System.Drawing.Point(230, 52)
+        Me.y0.Location = New System.Drawing.Point(75, 159)
         Me.y0.Name = "y0"
         Me.y0.Size = New System.Drawing.Size(30, 20)
         Me.y0.TabIndex = 19
@@ -259,11 +245,11 @@ Partial Class Form1
         '
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Location = New System.Drawing.Point(221, 55)
+        Me.Label10.Location = New System.Drawing.Point(66, 162)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(11, 13)
         Me.Label10.TabIndex = 20
-        Me.Label10.Text = ";"
+        Me.Label10.Text = ","
         '
         'VSB
         '
@@ -490,7 +476,7 @@ Partial Class Form1
         '
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.Transparent
-        Me.Label18.Location = New System.Drawing.Point(198, 12)
+        Me.Label18.Location = New System.Drawing.Point(43, 119)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(58, 26)
         Me.Label18.TabIndex = 45
@@ -501,7 +487,7 @@ Partial Class Form1
         '
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Location = New System.Drawing.Point(422, 87)
+        Me.Label11.Location = New System.Drawing.Point(438, 87)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(58, 13)
         Me.Label11.TabIndex = 47
@@ -517,52 +503,6 @@ Partial Class Form1
         Me.start.TabIndex = 48
         Me.start.Text = "إبدأ"
         Me.start.UseVisualStyleBackColor = True
-        '
-        'y03
-        '
-        Me.y03.Location = New System.Drawing.Point(76, 355)
-        Me.y03.Name = "y03"
-        Me.y03.ReadOnly = True
-        Me.y03.Size = New System.Drawing.Size(30, 20)
-        Me.y03.TabIndex = 71
-        Me.y03.Text = "0"
-        '
-        'x03
-        '
-        Me.x03.Location = New System.Drawing.Point(19, 355)
-        Me.x03.Name = "x03"
-        Me.x03.ReadOnly = True
-        Me.x03.Size = New System.Drawing.Size(30, 20)
-        Me.x03.TabIndex = 70
-        Me.x03.Text = "0"
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(59, 357)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(19, 13)
-        Me.Label29.TabIndex = 68
-        Me.Label29.Text = "y˳"
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(2, 357)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(19, 13)
-        Me.Label31.TabIndex = 66
-        Me.Label31.Text = "x˳"
-        '
-        'Label32
-        '
-        Me.Label32.BackColor = System.Drawing.Color.Transparent
-        Me.Label32.Location = New System.Drawing.Point(0, 299)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(112, 52)
-        Me.Label32.TabIndex = 74
-        Me.Label32.Text = "إذا كان حجم الصورة أكبر من الرئيسية ولم تكن بدايتها هيا المرادة فلتقم بتغييرها"
-        Me.Label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label38
         '
@@ -681,7 +621,7 @@ Partial Class Form1
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(202, 38)
+        Me.Label39.Location = New System.Drawing.Point(47, 145)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(13, 13)
         Me.Label39.TabIndex = 95
@@ -690,7 +630,7 @@ Partial Class Form1
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(237, 38)
+        Me.Label40.Location = New System.Drawing.Point(82, 145)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(13, 13)
         Me.Label40.TabIndex = 96
@@ -704,26 +644,6 @@ Partial Class Form1
         '
         Me.SFD.FileName = "Image1"
         Me.SFD.Filter = "PNG Files|*.png"
-        '
-        'mg2
-        '
-        Me.mg2.AutoSize = True
-        Me.mg2.Location = New System.Drawing.Point(422, 180)
-        Me.mg2.Name = "mg2"
-        Me.mg2.Size = New System.Drawing.Size(13, 13)
-        Me.mg2.TabIndex = 97
-        Me.mg2.Text = "0"
-        Me.mg2.Visible = False
-        '
-        'mg4
-        '
-        Me.mg4.AutoSize = True
-        Me.mg4.Location = New System.Drawing.Point(422, 374)
-        Me.mg4.Name = "mg4"
-        Me.mg4.Size = New System.Drawing.Size(13, 13)
-        Me.mg4.TabIndex = 98
-        Me.mg4.Text = "0"
-        Me.mg4.Visible = False
         '
         'T3
         '
@@ -783,105 +703,11 @@ Partial Class Form1
         Me.Label48.TabIndex = 116
         Me.Label48.Text = "y max"
         '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(342, 58)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(19, 13)
-        Me.Label20.TabIndex = 50
-        Me.Label20.Text = "x˳"
-        '
-        'Label19
-        '
-        Me.Label19.BackColor = System.Drawing.Color.Transparent
-        Me.Label19.Location = New System.Drawing.Point(335, 11)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(177, 39)
-        Me.Label19.TabIndex = 49
-        Me.Label19.Text = "لو حجم الخلفية المستضافة أكبر من الصورة الرئيسية ولم تكن بدايتها هيا المرادة فلتق" &
-    "م بتغييرها"
-        Me.Label19.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(397, 58)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(19, 13)
-        Me.Label23.TabIndex = 52
-        Me.Label23.Text = "y˳"
-        '
-        'x2
-        '
-        Me.x2.Location = New System.Drawing.Point(359, 55)
-        Me.x2.Name = "x2"
-        Me.x2.ReadOnly = True
-        Me.x2.Size = New System.Drawing.Size(30, 20)
-        Me.x2.TabIndex = 54
-        Me.x2.Text = "0"
-        '
-        'y2
-        '
-        Me.y2.Location = New System.Drawing.Point(414, 55)
-        Me.y2.Name = "y2"
-        Me.y2.ReadOnly = True
-        Me.y2.Size = New System.Drawing.Size(30, 20)
-        Me.y2.TabIndex = 55
-        Me.y2.Text = "0"
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(342, 260)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(19, 13)
-        Me.Label27.TabIndex = 58
-        Me.Label27.Text = "x˳"
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(397, 260)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(19, 13)
-        Me.Label25.TabIndex = 60
-        Me.Label25.Text = "y˳"
-        '
-        'x4
-        '
-        Me.x4.Location = New System.Drawing.Point(359, 257)
-        Me.x4.Name = "x4"
-        Me.x4.ReadOnly = True
-        Me.x4.Size = New System.Drawing.Size(30, 20)
-        Me.x4.TabIndex = 62
-        Me.x4.Text = "0"
-        '
-        'y4
-        '
-        Me.y4.Location = New System.Drawing.Point(414, 257)
-        Me.y4.Name = "y4"
-        Me.y4.ReadOnly = True
-        Me.y4.Size = New System.Drawing.Size(30, 20)
-        Me.y4.TabIndex = 63
-        Me.y4.Text = "0"
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.BackColor = System.Drawing.Color.Transparent
-        Me.Label26.Location = New System.Drawing.Point(340, 234)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(127, 13)
-        Me.Label26.TabIndex = 122
-        Me.Label26.Text = "لو أكبر من الصورة الرئيسية"
-        Me.Label26.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
         'language
         '
         Me.language.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.language.ForeColor = System.Drawing.Color.Blue
-        Me.language.Location = New System.Drawing.Point(12, 117)
+        Me.language.Location = New System.Drawing.Point(12, 245)
         Me.language.Name = "language"
         Me.language.Size = New System.Drawing.Size(82, 32)
         Me.language.TabIndex = 123
@@ -898,16 +724,6 @@ Partial Class Form1
         Me.imageFormat.Name = "imageFormat"
         Me.imageFormat.Size = New System.Drawing.Size(60, 21)
         Me.imageFormat.TabIndex = 127
-        '
-        'mg3
-        '
-        Me.mg3.AutoSize = True
-        Me.mg3.Location = New System.Drawing.Point(93, 401)
-        Me.mg3.Name = "mg3"
-        Me.mg3.Size = New System.Drawing.Size(13, 13)
-        Me.mg3.TabIndex = 128
-        Me.mg3.Text = "0"
-        Me.mg3.Visible = False
         '
         'help
         '
@@ -931,66 +747,6 @@ Partial Class Form1
         Me.seagaegy.TabIndex = 46
         Me.seagaegy.UseVisualStyleBackColor = False
         '
-        'r5
-        '
-        Me.r5.AutoSize = True
-        Me.r5.Location = New System.Drawing.Point(504, 106)
-        Me.r5.Name = "r5"
-        Me.r5.Size = New System.Drawing.Size(25, 13)
-        Me.r5.TabIndex = 130
-        Me.r5.Text = "255"
-        Me.r5.Visible = False
-        '
-        'g5
-        '
-        Me.g5.AutoSize = True
-        Me.g5.Location = New System.Drawing.Point(504, 132)
-        Me.g5.Name = "g5"
-        Me.g5.Size = New System.Drawing.Size(25, 13)
-        Me.g5.TabIndex = 131
-        Me.g5.Text = "255"
-        Me.g5.Visible = False
-        '
-        'b5
-        '
-        Me.b5.AutoSize = True
-        Me.b5.Location = New System.Drawing.Point(504, 158)
-        Me.b5.Name = "b5"
-        Me.b5.Size = New System.Drawing.Size(25, 13)
-        Me.b5.TabIndex = 132
-        Me.b5.Text = "255"
-        Me.b5.Visible = False
-        '
-        'b6
-        '
-        Me.b6.AutoSize = True
-        Me.b6.Location = New System.Drawing.Point(504, 354)
-        Me.b6.Name = "b6"
-        Me.b6.Size = New System.Drawing.Size(25, 13)
-        Me.b6.TabIndex = 135
-        Me.b6.Text = "255"
-        Me.b6.Visible = False
-        '
-        'g6
-        '
-        Me.g6.AutoSize = True
-        Me.g6.Location = New System.Drawing.Point(504, 328)
-        Me.g6.Name = "g6"
-        Me.g6.Size = New System.Drawing.Size(25, 13)
-        Me.g6.TabIndex = 134
-        Me.g6.Text = "255"
-        Me.g6.Visible = False
-        '
-        'r6
-        '
-        Me.r6.AutoSize = True
-        Me.r6.Location = New System.Drawing.Point(504, 302)
-        Me.r6.Name = "r6"
-        Me.r6.Size = New System.Drawing.Size(25, 13)
-        Me.r6.TabIndex = 133
-        Me.r6.Text = "255"
-        Me.r6.Visible = False
-        '
         'folder
         '
         Me.folder.Location = New System.Drawing.Point(31, 25)
@@ -1000,30 +756,110 @@ Partial Class Form1
         Me.folder.Text = "استضافة مجلد"
         Me.folder.UseVisualStyleBackColor = True
         '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(82, 351)
+        Me.TextBox1.MaxLength = 2
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(20, 20)
+        Me.TextBox1.TabIndex = 145
+        Me.TextBox1.Text = "ff"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(82, 325)
+        Me.TextBox2.MaxLength = 2
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(20, 20)
+        Me.TextBox2.TabIndex = 144
+        Me.TextBox2.Text = "ff"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(82, 299)
+        Me.TextBox3.MaxLength = 2
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(20, 20)
+        Me.TextBox3.TabIndex = 143
+        Me.TextBox3.Text = "ff"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(26, 354)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(13, 13)
+        Me.Label19.TabIndex = 142
+        Me.Label19.Text = "B"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(26, 328)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(14, 13)
+        Me.Label20.TabIndex = 141
+        Me.Label20.Text = "G"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(26, 302)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(14, 13)
+        Me.Label21.TabIndex = 140
+        Me.Label21.Text = "R"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(46, 351)
+        Me.TextBox4.MaxLength = 3
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(30, 20)
+        Me.TextBox4.TabIndex = 139
+        Me.TextBox4.Text = "255"
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(46, 325)
+        Me.TextBox5.MaxLength = 3
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(30, 20)
+        Me.TextBox5.TabIndex = 138
+        Me.TextBox5.Text = "255"
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(46, 299)
+        Me.TextBox6.MaxLength = 3
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(30, 20)
+        Me.TextBox6.TabIndex = 137
+        Me.TextBox6.Text = "255"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(634, 565)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.Label19)
+        Me.Controls.Add(Me.Label20)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.TextBox6)
         Me.Controls.Add(Me.folder)
-        Me.Controls.Add(Me.b6)
-        Me.Controls.Add(Me.g6)
-        Me.Controls.Add(Me.r6)
-        Me.Controls.Add(Me.b5)
-        Me.Controls.Add(Me.g5)
-        Me.Controls.Add(Me.r5)
-        Me.Controls.Add(Me.mg3)
         Me.Controls.Add(Me.imageFormat)
         Me.Controls.Add(Me.language)
-        Me.Controls.Add(Me.Label26)
         Me.Controls.Add(Me.help)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.Label48)
         Me.Controls.Add(Me.Label47)
         Me.Controls.Add(Me.Label49)
         Me.Controls.Add(Me.xMax)
-        Me.Controls.Add(Me.mg4)
-        Me.Controls.Add(Me.mg2)
         Me.Controls.Add(Me.about)
         Me.Controls.Add(Me.Lb1)
         Me.Controls.Add(Me.Lb2)
@@ -1034,17 +870,6 @@ Partial Class Form1
         Me.Controls.Add(Me.blueHexadecimal2)
         Me.Controls.Add(Me.greenHexadecimal2)
         Me.Controls.Add(Me.redHexadecimal2)
-        Me.Controls.Add(Me.y03)
-        Me.Controls.Add(Me.x03)
-        Me.Controls.Add(Me.Label29)
-        Me.Controls.Add(Me.Label31)
-        Me.Controls.Add(Me.y4)
-        Me.Controls.Add(Me.x4)
-        Me.Controls.Add(Me.Label25)
-        Me.Controls.Add(Me.Label27)
-        Me.Controls.Add(Me.y2)
-        Me.Controls.Add(Me.x2)
-        Me.Controls.Add(Me.Label23)
         Me.Controls.Add(Me.start)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.seagaegy)
@@ -1085,17 +910,14 @@ Partial Class Form1
         Me.Controls.Add(Me.loadImage1)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label19)
-        Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.Label39)
         Me.Controls.Add(Me.Label40)
         Me.Controls.Add(Me.yMax)
-        Me.Controls.Add(Me.Label32)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Convert a normal image to transparent by two different images v0 (trial version)"
+        Me.Text = "Convert a normal image to transparent by two different images"
         Me.panel11.ResumeLayout(False)
         CType(Me.image1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel12.ResumeLayout(False)
@@ -1157,11 +979,6 @@ Partial Class Form1
     Friend WithEvents seagaegy As Button
     Friend WithEvents Label11 As Label
     Friend WithEvents start As Button
-    Friend WithEvents y03 As TextBox
-    Friend WithEvents x03 As TextBox
-    Friend WithEvents Label29 As Label
-    Friend WithEvents Label31 As Label
-    Friend WithEvents Label32 As Label
     Friend WithEvents Label38 As Label
     Friend WithEvents blueHexadecimal2 As TextBox
     Friend WithEvents greenHexadecimal2 As TextBox
@@ -1178,33 +995,23 @@ Partial Class Form1
     Friend WithEvents Label40 As Label
     Friend WithEvents OFD As OpenFileDialog
     Friend WithEvents SFD As SaveFileDialog
-    Friend WithEvents mg2 As Label
-    Friend WithEvents mg4 As Label
     Friend WithEvents T3 As Timer
     Friend WithEvents xMax As Label
     Friend WithEvents yMax As Label
     Friend WithEvents Label49 As Label
     Friend WithEvents Label47 As Label
     Friend WithEvents Label48 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label23 As Label
-    Friend WithEvents x2 As TextBox
-    Friend WithEvents y2 As TextBox
-    Friend WithEvents Label27 As Label
-    Friend WithEvents Label25 As Label
-    Friend WithEvents x4 As TextBox
-    Friend WithEvents y4 As TextBox
-    Friend WithEvents Label26 As Label
     Friend WithEvents language As Button
     Friend WithEvents imageFormat As ComboBox
-    Friend WithEvents mg3 As Label
-    Friend WithEvents r5 As Label
-    Friend WithEvents g5 As Label
-    Friend WithEvents b5 As Label
-    Friend WithEvents b6 As Label
-    Friend WithEvents g6 As Label
-    Friend WithEvents r6 As Label
     Friend WithEvents folder As Button
     Friend WithEvents FBD As FolderBrowserDialog
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents TextBox6 As TextBox
 End Class
