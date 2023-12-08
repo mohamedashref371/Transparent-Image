@@ -760,6 +760,7 @@ Partial Class Form1
         Me.folder.TabIndex = 136
         Me.folder.Text = "استضافة مجلد"
         Me.folder.UseVisualStyleBackColor = True
+        Me.folder.Visible = False
         '
         'blueHexadecimal3
         '

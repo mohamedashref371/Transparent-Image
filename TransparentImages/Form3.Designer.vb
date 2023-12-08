@@ -343,13 +343,13 @@ Partial Class Form3
         'CB4
         '
         Me.CB4.FormattingEnabled = True
-        Me.CB4.Items.AddRange(New Object() {"يمين", "فوق"})
+        Me.CB4.Items.AddRange(New Object() {"يسار", "فوق"})
         Me.CB4.Location = New System.Drawing.Point(161, 244)
         Me.CB4.Name = "CB4"
         Me.CB4.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CB4.Size = New System.Drawing.Size(75, 21)
         Me.CB4.TabIndex = 26
-        Me.CB4.Text = "يمين"
+        Me.CB4.Text = "يسار"
         '
         'o3
         '

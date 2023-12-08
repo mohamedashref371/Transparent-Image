@@ -39,6 +39,7 @@
         If FBD.ShowDialog = DialogResult.OK Then
             folderOpen = FBD.SelectedPath
             listOfFiles = My.Computer.FileSystem.GetFiles(folderOpen).ToList()
+            If folderOpen = folderSave Then folderSave = ""
         End If
     End Sub
 
@@ -54,15 +55,113 @@
         End If
     End Sub
 
+    Dim fp As FastPixel
+    Dim alpha As Decimal
+    Dim tmpR, tmpG, tmpB As Integer
+    Dim back1check, img2check, back2check As Boolean
     Private Sub Start_Click(sender As Object, e As EventArgs) Handles start.Click
-        finalImg = New Bitmap(img1.Width, img1.Height)
-        For i = 0 To img1.Width
-            For j = 0 To img1.Height
+        back1check = back1 IsNot Nothing
+        img2check = img2 IsNot Nothing
+        back2check = back2 IsNot Nothing
 
+        If listOfFiles.Count > 0 AndAlso folderSave = "" Then
+            MessageBox.Show("اختر مجلد الحفظ")
+        ElseIf listOfFiles.Count > 0 Then
+
+        Else
+            finalImg = New Bitmap(img1.Width, img1.Height)
+            fp = New FastPixel(finalImg)
+            fp.Lock()
+            For i = 0 To img1.Width - 1
+                For j = 0 To img1.Height - 1
+#Region "Alpha Value"
+                    tmpR = If(back1check, back1.GetPixel(i, j).R, background1.BackColor.R) - If(back2check, back2.GetPixel(i, j).R, background2.BackColor.R)
+                    tmpG = If(back1check, back1.GetPixel(i, j).G, background1.BackColor.G) - If(back2check, back2.GetPixel(i, j).G, background2.BackColor.G)
+                    tmpB = If(back1check, back1.GetPixel(i, j).B, background1.BackColor.B) - If(back2check, back2.GetPixel(i, j).B, background2.BackColor.B)
+
+                    If tmpR <> 0 AndAlso tmpG <> 0 AndAlso tmpB <> 0 Then
+
+                        If Math.Abs(tmpR) >= Math.Abs(tmpG) AndAlso Math.Abs(tmpR) >= Math.Abs(tmpB) Then
+                            alpha = 1 - (img1.GetPixel(i, j).R - If(img2check, img2.GetPixel(i, j).R, image2.BackColor.R)) / tmpR
+                        ElseIf Math.Abs(tmpG) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpG) >= Math.Abs(tmpB) Then
+                            alpha = 1 - (img1.GetPixel(i, j).G - If(img2check, img2.GetPixel(i, j).G, image2.BackColor.G)) / tmpG
+                        ElseIf Math.Abs(tmpB) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpB) >= Math.Abs(tmpG) Then
+                            alpha = 1 - (img1.GetPixel(i, j).B - If(img2check, img2.GetPixel(i, j).B, image2.BackColor.B)) / tmpB
+                        End If
+                    Else
+                        alpha = 0 ' مؤقت
+                    End If
+#End Region
+#Region "Set Color"
+                    If alpha > 0 Then
+                        tmpR = (img1.GetPixel(i, j).R - (1 - alpha) * If(back1check, back1.GetPixel(i, j).R, background1.BackColor.R)) / alpha
+                        If tmpR < 0 Then
+                            tmpR = 0
+                        ElseIf tmpR > 255 Then
+                            tmpR = 255
+                        End If
+
+                        tmpG = (img1.GetPixel(i, j).G - (1 - alpha) * If(back1check, back1.GetPixel(i, j).G, background1.BackColor.G)) / alpha
+                        If tmpG < 0 Then
+                            tmpG = 0
+                        ElseIf tmpG > 255 Then
+                            tmpG = 255
+                        End If
+
+                        tmpB = (img1.GetPixel(i, j).B - (1 - alpha) * If(back1check, back1.GetPixel(i, j).B, background1.BackColor.B)) / alpha
+                        If tmpB < 0 Then
+                            tmpB = 0
+                        ElseIf tmpB > 255 Then
+                            tmpB = 255
+                        End If
+
+                        fp.SetPixel(i, j, Color.FromArgb(alpha * 255, tmpR, tmpG, tmpB))
+                    Else
+                        fp.SetPixel(i, j, img1.GetPixel(i, j))
+                    End If
+#End Region
+                Next
             Next
-        Next
-        finalImage.BackgroundImage = finalImg
+            fp.Unlock(True)
+            finalImage.BackgroundImage = finalImg
+        End If
     End Sub
+
+    'Function OperationOnTwoColorsValues(c1 As Decimal, c2 As Decimal, oper As Char) As Integer
+    '    If oper = "+"c Then
+    '        Return If(c1 + c2 <= 255, c1 + c2, 255)
+    '    ElseIf oper = "-"c Then
+    '        Return If(c1 - c2 >= 0, c1 - c2, 0)
+    '    ElseIf oper = "*"c Then
+    '        Return If(c1 * c2 <= 255, c1 * c2, 255)
+    '    ElseIf oper = "/"c Then
+    '        If c1 = 0 AndAlso c2 = 0 Then
+    '            Return 0
+    '        Else
+    '            Return If(c2 >= 1, c1 / c2, 255)
+    '        End If
+    '    Else
+    '        Return 0
+    '    End If
+    'End Function
+
+    'Function OperationOnTwoColors(c1 As Color, c2 As Color, oper As Char) As Color
+    '    If oper = "+"c Then
+    '        Return Color.FromArgb(If(c1.A + c2.A <= 255, c1.A + c2.A, 255), If(c1.R + c2.R <= 255, c1.R + c2.R, 255), If(c1.G + c2.G <= 255, c1.G + c2.G, 255), If(c1.B + c2.B <= 255, c1.B + c2.B, 255))
+    '    ElseIf oper = "-"c Then
+    '        Return Color.FromArgb(If(c1.A - c2.A >= 0, c1.A - c2.A, 0), If(c1.R - c2.R >= 0, c1.R - c2.R, 0), If(c1.G - c2.G >= 0, c1.G - c2.G, 0), If(c1.B - c2.B >= 0, c1.B - c2.B, 0))
+    '    ElseIf oper = "*"c Then
+    '        Return Color.FromArgb(If(c1.A * c2.A <= 255, c1.A * c2.A, 255), If(c1.R * c2.R <= 255, c1.R * c2.R, 255), If(c1.G * c2.G <= 255, c1.G * c2.G, 255), If(c1.B * c2.B <= 255, c1.B * c2.B, 255))
+    '    ElseIf oper = "/"c Then
+    '        If c1.A = 0 AndAlso c2.A = 0 OrElse c1.R = 0 AndAlso c2.R = 0 OrElse c1.G = 0 AndAlso c2.G = 0 OrElse c1.B = 0 AndAlso c2.B = 0 Then
+    '            Return Color.Empty
+    '        Else
+    '            Return Color.FromArgb(If(c2.A >= 1, c1.A / c2.A, 255), If(c2.R >= 1, c1.R / c2.R, 255), If(c2.G >= 1, c1.G / c2.G, 255), If(c2.B >= 1, c1.B / c2.B, 255))
+    '        End If
+    '    Else
+    '        Return Color.Empty
+    '    End If
+    'End Function
 
     Private Sub Lwh_Click(sender As Object, e As EventArgs) Handles help.Click
         If loadImage1.Enabled = True Then
