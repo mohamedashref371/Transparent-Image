@@ -4,6 +4,7 @@
     Dim img1, back1, img2, back2, finalImg, temp As Bitmap
     Dim folderOpen, folderSave As String
     Dim listOfFiles As New List(Of String)
+    Dim G5 As Graphics
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Computer.FileSystem.FileExists(hm + "lang") Then Lg2(sender, e)
@@ -38,10 +39,19 @@
         listOfFiles.Clear()
         If FBD.ShowDialog = DialogResult.OK Then
             folderOpen = FBD.SelectedPath
-            listOfFiles = My.Computer.FileSystem.GetFiles(folderOpen).ToList()
+            For Each file In My.Computer.FileSystem.GetFiles(folderOpen)
+                If IsPictureFile(file) Then
+                    listOfFiles.Add(file)
+                End If
+            Next
             If folderOpen = folderSave Then folderSave = ""
         End If
     End Sub
+
+    ReadOnly pictureExtensions As String() = {".bmp", ".gif", ".jpeg", ".jpg", ".png", ".tif", ".tiff", ".ico"}
+    Function IsPictureFile(filePath As String) As Boolean
+        Return pictureExtensions.Contains(IO.Path.GetExtension(filePath).ToLower())
+    End Function
 
     Private Sub Lg2(sender As Object, e As EventArgs) Handles language.Click
         If language.Text = "English" Then
@@ -58,57 +68,57 @@
     Dim fp As FastPixel
     Dim alpha As Decimal
     Dim tmpR, tmpG, tmpB As Integer
-    Dim back1check, img2check, back2check As Boolean
     Private Sub Start_Click(sender As Object, e As EventArgs) Handles start.Click
-        back1check = back1 IsNot Nothing
-        img2check = img2 IsNot Nothing
-        back2check = back2 IsNot Nothing
 
         If listOfFiles.Count > 0 AndAlso folderSave = "" Then
             MessageBox.Show("اختر مجلد الحفظ")
         ElseIf listOfFiles.Count > 0 Then
 
         Else
+            Dim image1color, image2color, background1color, background2color As Color
             finalImg = New Bitmap(img1.Width, img1.Height)
             fp = New FastPixel(finalImg)
             fp.Lock()
             For i = 0 To img1.Width - 1
                 For j = 0 To img1.Height - 1
 #Region "Alpha Value"
-                    tmpR = If(back1check, back1.GetPixel(i, j).R, background1.BackColor.R) - If(back2check, back2.GetPixel(i, j).R, background2.BackColor.R)
-                    tmpG = If(back1check, back1.GetPixel(i, j).G, background1.BackColor.G) - If(back2check, back2.GetPixel(i, j).G, background2.BackColor.G)
-                    tmpB = If(back1check, back1.GetPixel(i, j).B, background1.BackColor.B) - If(back2check, back2.GetPixel(i, j).B, background2.BackColor.B)
+                    image1color = img1.GetPixel(i, j) : image2color = img2.GetPixel(i, j)
+                    background1color = back1.GetPixel(i, j) : background2color = back2.GetPixel(i, j)
+
+                    tmpR = background1color.R - 1 * background2color.R
+                    tmpG = background1color.G - 1 * background2color.G
+                    tmpB = background1color.B - 1 * background2color.B
 
                     If tmpR <> 0 AndAlso tmpG <> 0 AndAlso tmpB <> 0 Then
 
                         If Math.Abs(tmpR) >= Math.Abs(tmpG) AndAlso Math.Abs(tmpR) >= Math.Abs(tmpB) Then
-                            alpha = 1 - (img1.GetPixel(i, j).R - If(img2check, img2.GetPixel(i, j).R, image2.BackColor.R)) / tmpR
+                            alpha = 1 - (image1color.R - 1 * image2color.R) / tmpR
                         ElseIf Math.Abs(tmpG) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpG) >= Math.Abs(tmpB) Then
-                            alpha = 1 - (img1.GetPixel(i, j).G - If(img2check, img2.GetPixel(i, j).G, image2.BackColor.G)) / tmpG
+                            alpha = 1 - (image1color.G - 1 * image2color.G) / tmpG
                         ElseIf Math.Abs(tmpB) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpB) >= Math.Abs(tmpG) Then
-                            alpha = 1 - (img1.GetPixel(i, j).B - If(img2check, img2.GetPixel(i, j).B, image2.BackColor.B)) / tmpB
+                            alpha = 1 - (image1color.B - 1 * image2color.B) / tmpB
                         End If
                     Else
-                        alpha = 0 ' مؤقت
+                        alpha = -1 ' مؤقت
                     End If
 #End Region
 #Region "Set Color"
                     If alpha > 0 Then
-                        tmpR = (img1.GetPixel(i, j).R - (1 - alpha) * If(back1check, back1.GetPixel(i, j).R, background1.BackColor.R)) / alpha
+                        tmpR = (image1color.R - (1 - alpha) * background1color.R) / alpha
                         If tmpR < 0 Then
                             tmpR = 0
                         ElseIf tmpR > 255 Then
                             tmpR = 255
                         End If
 
-                        tmpG = (img1.GetPixel(i, j).G - (1 - alpha) * If(back1check, back1.GetPixel(i, j).G, background1.BackColor.G)) / alpha
+                        tmpG = (image1color.G - (1 - alpha) * background1color.G) / alpha
                         If tmpG < 0 Then
                             tmpG = 0
                         ElseIf tmpG > 255 Then
                             tmpG = 255
                         End If
 
-                        tmpB = (img1.GetPixel(i, j).B - (1 - alpha) * If(back1check, back1.GetPixel(i, j).B, background1.BackColor.B)) / alpha
+                        tmpB = (image1color.B - (1 - alpha) * background1color.B) / alpha
                         If tmpB < 0 Then
                             tmpB = 0
                         ElseIf tmpB > 255 Then
@@ -116,14 +126,21 @@
                         End If
 
                         fp.SetPixel(i, j, Color.FromArgb(alpha * 255, tmpR, tmpG, tmpB))
+                    ElseIf alpha = 0 Then
+                        fp.SetPixel(i, j, Color.Transparent)
                     Else
-                        fp.SetPixel(i, j, img1.GetPixel(i, j))
+                        fp.SetPixel(i, j, image1color)
                     End If
 #End Region
                 Next
             Next
             fp.Unlock(True)
-            finalImage.BackgroundImage = finalImg
+
+            temp = New Bitmap(img1.Width, img1.Height)
+            G5 = Graphics.FromImage(temp)
+            G5.DrawImage(My.Resources.trpt2, 0, 0)
+            G5.DrawImage(finalImg, 0, 0)
+            finalImage.BackgroundImage = temp
         End If
     End Sub
 
@@ -169,30 +186,28 @@
             redDecimal2.Text = rd1.Next(0, 256)
             greenDecimal2.Text = rd1.Next(0, 256)
             blueDecimal2.Text = rd1.Next(0, 256)
-            Dim Bb5 As New Bitmap(256, 256)
-            Dim G5 As Graphics = Graphics.FromImage(Bb5)
+            img1 = New Bitmap(256, 256)
+            G5 = Graphics.FromImage(img1)
             G5.Clear(Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text))
             G5.DrawImage(My.Resources.zx0, 0, 0)
-            image1.BackgroundImage = Bb5
-            img1 = Bb5
-            BackColorFromImage1_Click(Nothing, Nothing)
+            image1.BackgroundImage = img1
+            BackgroundColorFromImage1_Click(Nothing, Nothing)
 
             redDecimal4.Text = rd1.Next(0, 256)
             greenDecimal4.Text = rd1.Next(0, 256)
             blueDecimal4.Text = rd1.Next(0, 256)
-            Bb5 = New Bitmap(256, 256)
-            G5 = Graphics.FromImage(Bb5)
+            img2 = New Bitmap(img1.Width, img1.Height)
+            G5 = Graphics.FromImage(img2)
             G5.Clear(Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text))
             G5.DrawImage(My.Resources.zx0, 0, 0)
-            image2.BackgroundImage = Bb5
-            img2 = Bb5
-            BackColorFromImage2_Click(Nothing, Nothing)
+            image2.BackgroundImage = img2
+            BackgroundColorFromImage2_Click(Nothing, Nothing)
 
-            Bb5 = New Bitmap(256, 256)
-            G5 = Graphics.FromImage(Bb5)
+            temp = New Bitmap(256, 256)
+            G5 = Graphics.FromImage(temp)
             G5.DrawImage(My.Resources.trpt2, 0, 0)
             G5.DrawImage(My.Resources.zx0, 0, 0)
-            finalImage.BackgroundImage = Bb5
+            finalImage.BackgroundImage = temp
             finalImg = My.Resources.zx0
         End If
     End Sub
@@ -254,28 +269,33 @@
         image1.Location = New Point(0, 0) : background1.Location = New Point(0, 0) : image2.Location = New Point(0, 0) : background2.Location = New Point(0, 0) : finalImage.Location = New Point(0, 0)
     End Sub
 
-    Private Sub BackColorFromImage1_Click(sender As Object, e As EventArgs) Handles backColorFromImage1.Click
+    Dim clr As Color
+    Private Sub BackgroundColorFromImage1_Click(sender As Object, e As EventArgs) Handles backColorFromImage1.Click
         If x1.Text = "" Then x1.Text = "0"
         If y1.Text = "" Then y1.Text = "0"
         If img1 IsNot Nothing AndAlso x1.Text < img1.Width AndAlso y1.Text < img1.Height Then
-            back1 = Nothing
-            background1.BackgroundImage = Nothing
-            Dim clr As Color = img1.GetPixel(x1.Text, y1.Text)
+            clr = img1.GetPixel(x1.Text, y1.Text)
+
+            back1 = New Bitmap(img1.Width, img1.Height)
+            Graphics.FromImage(back1).Clear(Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text))
+            background1.BackgroundImage = back1
+
             redDecimal2.Text = clr.R : greenDecimal2.Text = clr.G : blueDecimal2.Text = clr.B
-            background1.BackColor = clr
         End If
     End Sub
 
-    Private Sub BackColorFromImage2_Click(sender As Object, e As EventArgs) Handles backColorFromImage2.Click
+    Private Sub BackgroundColorFromImage2_Click(sender As Object, e As EventArgs) Handles backColorFromImage2.Click
         If x1.Text = "" Then x1.Text = "0"
         If y1.Text = "" Then y1.Text = "0"
 
         If img2 IsNot Nothing AndAlso x1.Text < img2.Width AndAlso y1.Text < img2.Height Then
-            back2 = Nothing
-            background2.BackgroundImage = Nothing
-            Dim clr As Color = img2.GetPixel(x1.Text, y1.Text)
+            clr = img2.GetPixel(x1.Text, y1.Text)
+
+            back2 = New Bitmap(img1.Width, img1.Height)
+            Graphics.FromImage(back2).Clear(Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text))
+            background2.BackgroundImage = back2
+
             redDecimal4.Text = clr.R : greenDecimal4.Text = clr.G : blueDecimal4.Text = clr.B
-            background2.BackColor = clr
         End If
     End Sub
 
@@ -289,20 +309,11 @@
                     image1.BackgroundImage = img1
                     image1.Width = img1.Width : image1.Height = img1.Height
                     LocationZero(sender, e)
-                    If back1 IsNot Nothing AndAlso (back1.Width < img1.Width OrElse back1.Height < img1.Height) Then
-                        back1 = Nothing
-                        background1.BackgroundImage = Nothing
-                    End If
-                    If back1 Is Nothing Then BackColorFromImage1_Click(Nothing, Nothing)
-                    If img2 IsNot Nothing AndAlso (img2.Width < img1.Width OrElse img2.Height < img1.Height) Then
-                        img2 = Nothing
-                        image2.BackgroundImage = Nothing
-                    End If
-                    If back2 IsNot Nothing AndAlso (back2.Width < img1.Width OrElse back2.Height < img1.Height) Then
-                        back2 = Nothing
-                        background2.BackgroundImage = Nothing
-                    End If
-                    If back2 Is Nothing Then BackColorFromImage2_Click(Nothing, Nothing)
+                    If back1.Width < img1.Width OrElse back1.Height < img1.Height Then SetBackcolorForBackground1_Click(Nothing, Nothing)
+                    If back1 Is Nothing Then BackgroundColorFromImage1_Click(Nothing, Nothing)
+                    If img2.Width < img1.Width OrElse img2.Height < img1.Height Then SetBackcolorForImage2_Click(Nothing, Nothing)
+                    If back2.Width < img1.Width OrElse back2.Height < img1.Height Then SetBackcolorForBackground2_Click(Nothing, Nothing)
+                    If back2 Is Nothing Then BackgroundColorFromImage2_Click(Nothing, Nothing)
                     xMax.Text = img1.Width : yMax.Text = img1.Height
                 Else
                     MsgBox("غير مسموح بصورة أقل من 16*16")
@@ -322,7 +333,6 @@
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
                     Else
                         back1 = temp
-                        background1.BackColor = Color.White
                         background1.BackgroundImage = back1
                         background1.Width = back1.Width : background1.Height = back1.Height
                         LocationZero(sender, e)
@@ -347,7 +357,7 @@
                         img2 = temp
                         image2.BackgroundImage = img2
                         image2.Width = img2.Width : image2.Height = img2.Height
-                        If back2 Is Nothing Then BackColorFromImage2_Click(Nothing, Nothing)
+                        If back2 Is Nothing Then BackgroundColorFromImage2_Click(Nothing, Nothing)
                         LocationZero(sender, e)
                     End If
                 Else
@@ -368,7 +378,6 @@
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
                     Else
                         back2 = temp
-                        background2.BackColor = Color.White
                         background2.BackgroundImage = back2
                         background2.Width = back2.Width : background2.Height = back2.Height
                         LocationZero(sender, e)
@@ -385,21 +394,21 @@
     '---------------------------------------------
 
     Private Sub SetBackcolorForBackground1_Click(sender As Object, e As EventArgs) Handles setBackcolorForBackground1.Click
-        back1 = Nothing
-        background1.BackgroundImage = Nothing
-        background1.BackColor = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
+        back1 = New Bitmap(img1.Width, img1.Height)
+        Graphics.FromImage(back1).Clear(Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text))
+        background1.BackgroundImage = back1
     End Sub
 
     Private Sub SetBackcolorForImage2_Click(sender As Object, e As EventArgs) Handles setBackcolorForImage2.Click
-        img2 = Nothing
-        image2.BackgroundImage = Nothing
-        image2.BackColor = Color.FromArgb(redDecimal3.Text, greenDecimal3.Text, blueDecimal3.Text)
+        img2 = New Bitmap(img1.Width, img1.Height)
+        Graphics.FromImage(img2).Clear(Color.FromArgb(redDecimal3.Text, greenDecimal3.Text, blueDecimal3.Text))
+        image2.BackgroundImage = img2
     End Sub
 
     Private Sub SetBackcolorForBackground2_Click(sender As Object, e As EventArgs) Handles setBackcolorForBackground2.Click
-        back2 = Nothing
-        background2.BackgroundImage = Nothing
-        background2.BackColor = Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text)
+        back2 = New Bitmap(img1.Width, img1.Height)
+        Graphics.FromImage(back2).Clear(Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text))
+        background2.BackgroundImage = back2
     End Sub
 
     Private Sub RedDecimal2_TextChanged(sender As Object, e As EventArgs) Handles redDecimal2.TextChanged
