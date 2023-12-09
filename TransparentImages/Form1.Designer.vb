@@ -110,6 +110,7 @@ Partial Class Form1
         Me.setBackcolorForBackground1 = New System.Windows.Forms.Button()
         Me.setBackcolorForBackground2 = New System.Windows.Forms.Button()
         Me.setBackcolorForImage2 = New System.Windows.Forms.Button()
+        Me.background1ColorCheck = New System.Windows.Forms.CheckBox()
         Me.panel11.SuspendLayout()
         CType(Me.image1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel12.SuspendLayout()
@@ -232,7 +233,7 @@ Partial Class Form1
         '
         'x1
         '
-        Me.x1.Location = New System.Drawing.Point(30, 156)
+        Me.x1.Location = New System.Drawing.Point(30, 161)
         Me.x1.Name = "x1"
         Me.x1.Size = New System.Drawing.Size(30, 20)
         Me.x1.TabIndex = 18
@@ -240,7 +241,7 @@ Partial Class Form1
         '
         'y1
         '
-        Me.y1.Location = New System.Drawing.Point(69, 156)
+        Me.y1.Location = New System.Drawing.Point(69, 161)
         Me.y1.Name = "y1"
         Me.y1.Size = New System.Drawing.Size(30, 20)
         Me.y1.TabIndex = 19
@@ -250,7 +251,7 @@ Partial Class Form1
         '
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Location = New System.Drawing.Point(60, 159)
+        Me.Label10.Location = New System.Drawing.Point(60, 164)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(11, 13)
         Me.Label10.TabIndex = 20
@@ -481,7 +482,7 @@ Partial Class Form1
         '
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.Transparent
-        Me.Label18.Location = New System.Drawing.Point(37, 116)
+        Me.Label18.Location = New System.Drawing.Point(37, 121)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(58, 26)
         Me.Label18.TabIndex = 45
@@ -626,7 +627,7 @@ Partial Class Form1
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(41, 142)
+        Me.Label39.Location = New System.Drawing.Point(41, 147)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(13, 13)
         Me.Label39.TabIndex = 95
@@ -635,7 +636,7 @@ Partial Class Form1
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(76, 142)
+        Me.Label40.Location = New System.Drawing.Point(76, 147)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(13, 13)
         Me.Label40.TabIndex = 96
@@ -844,7 +845,7 @@ Partial Class Form1
         '
         'backColorFromImage1
         '
-        Me.backColorFromImage1.Location = New System.Drawing.Point(27, 182)
+        Me.backColorFromImage1.Location = New System.Drawing.Point(28, 187)
         Me.backColorFromImage1.Name = "backColorFromImage1"
         Me.backColorFromImage1.Size = New System.Drawing.Size(75, 23)
         Me.backColorFromImage1.TabIndex = 146
@@ -853,7 +854,7 @@ Partial Class Form1
         '
         'backColorFromImage2
         '
-        Me.backColorFromImage2.Location = New System.Drawing.Point(29, 211)
+        Me.backColorFromImage2.Location = New System.Drawing.Point(28, 216)
         Me.backColorFromImage2.Name = "backColorFromImage2"
         Me.backColorFromImage2.Size = New System.Drawing.Size(75, 23)
         Me.backColorFromImage2.TabIndex = 147
@@ -886,6 +887,19 @@ Partial Class Form1
         Me.setBackcolorForImage2.TabIndex = 150
         Me.setBackcolorForImage2.Text = "لون الصورة"
         Me.setBackcolorForImage2.UseVisualStyleBackColor = True
+        '
+        'background1ColorCheck
+        '
+        Me.background1ColorCheck.AutoSize = True
+        Me.background1ColorCheck.Enabled = False
+        Me.background1ColorCheck.Location = New System.Drawing.Point(4, 73)
+        Me.background1ColorCheck.Name = "background1ColorCheck"
+        Me.background1ColorCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.background1ColorCheck.Size = New System.Drawing.Size(83, 43)
+        Me.background1ColorCheck.TabIndex = 151
+        Me.background1ColorCheck.Text = "لون الخلفية" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "من البيكسل" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "تلقائي"
+        Me.background1ColorCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.background1ColorCheck.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -968,6 +982,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label39)
         Me.Controls.Add(Me.Label40)
         Me.Controls.Add(Me.yMax)
+        Me.Controls.Add(Me.background1ColorCheck)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -1074,4 +1089,5 @@ Partial Class Form1
     Friend WithEvents setBackcolorForBackground1 As Button
     Friend WithEvents setBackcolorForBackground2 As Button
     Friend WithEvents setBackcolorForImage2 As Button
+    Friend WithEvents background1ColorCheck As CheckBox
 End Class

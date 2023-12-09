@@ -20,7 +20,7 @@
     End Sub
 
     Private Sub Pg_KeyPress(sender As Object, e As KeyPressEventArgs) Handles x1.KeyPress, y1.KeyPress, redDecimal2.KeyPress, greenDecimal2.KeyPress, blueDecimal2.KeyPress, redDecimal4.KeyPress, greenDecimal4.KeyPress, blueDecimal4.KeyPress
-        If e.KeyChar = "0" Or e.KeyChar = "1" Or e.KeyChar = "2" Or e.KeyChar = "3" Or e.KeyChar = "4" Or e.KeyChar = "5" Or e.KeyChar = "6" Or e.KeyChar = "7" Or e.KeyChar = "8" Or e.KeyChar = "9" Or e.KeyChar = "" Then
+        If e.KeyChar = "0" OrElse e.KeyChar = "1" OrElse e.KeyChar = "2" OrElse e.KeyChar = "3" OrElse e.KeyChar = "4" OrElse e.KeyChar = "5" OrElse e.KeyChar = "6" OrElse e.KeyChar = "7" OrElse e.KeyChar = "8" OrElse e.KeyChar = "9" OrElse e.KeyChar = "" Then
             Exit Sub
         Else
             e.KeyChar = ""
@@ -28,19 +28,20 @@
     End Sub
 
     Private Sub Pg2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles redHexadecimal2.KeyPress, greenHexadecimal2.KeyPress, blueHexadecimal2.KeyPress, redHexadecimal4.KeyPress, greenHexadecimal4.KeyPress, blueHexadecimal4.KeyPress
-        If e.KeyChar = "0" Or e.KeyChar = "1" Or e.KeyChar = "2" Or e.KeyChar = "3" Or e.KeyChar = "4" Or e.KeyChar = "5" Or e.KeyChar = "6" Or e.KeyChar = "7" Or e.KeyChar = "8" Or e.KeyChar = "9" Or e.KeyChar = "a" Or e.KeyChar = "b" Or e.KeyChar = "c" Or e.KeyChar = "d" Or e.KeyChar = "e" Or e.KeyChar = "f" Or e.KeyChar = "A" Or e.KeyChar = "B" Or e.KeyChar = "C" Or e.KeyChar = "D" Or e.KeyChar = "E" Or e.KeyChar = "F" Or e.KeyChar = "" Then
+        If e.KeyChar = "0" OrElse e.KeyChar = "1" OrElse e.KeyChar = "2" OrElse e.KeyChar = "3" OrElse e.KeyChar = "4" OrElse e.KeyChar = "5" OrElse e.KeyChar = "6" OrElse e.KeyChar = "7" OrElse e.KeyChar = "8" OrElse e.KeyChar = "9" OrElse e.KeyChar = "a" OrElse e.KeyChar = "b" OrElse e.KeyChar = "c" OrElse e.KeyChar = "d" OrElse e.KeyChar = "e" OrElse e.KeyChar = "f" OrElse e.KeyChar = "A" OrElse e.KeyChar = "B" OrElse e.KeyChar = "C" OrElse e.KeyChar = "D" OrElse e.KeyChar = "E" OrElse e.KeyChar = "F" OrElse e.KeyChar = "" Then
             Exit Sub
         Else
             e.KeyChar = ""
         End If
     End Sub
 
+    ReadOnly pictureExtensions As String() = {".bmp", ".gif", ".jpeg", ".jpg", ".png", ".tif", ".tiff", ".ico"}
     Private Sub Folder_Click(sender As Object, e As EventArgs) Handles folder.Click
         listOfFiles.Clear()
         If FBD.ShowDialog = DialogResult.OK Then
             folderOpen = FBD.SelectedPath
             For Each file In My.Computer.FileSystem.GetFiles(folderOpen)
-                If IsPictureFile(file) Then listOfFiles.Add(file)
+                If pictureExtensions.Contains(IO.Path.GetExtension(file).ToLower()) Then listOfFiles.Add(file)
             Next
             If listOfFiles.Count = 1 Then
                 LoadImage1_(listOfFiles(0))
@@ -48,17 +49,14 @@
             ElseIf listOfFiles.Count > 1 Then
                 length.Text = listOfFiles.Count
                 counter.Text = 0
+                background1ColorCheck.Enabled = True
             Else
+                background1ColorCheck.Enabled = False
                 length.Text = "∞"
             End If
             If folderOpen = folderSave Then folderSave = ""
         End If
     End Sub
-
-    ReadOnly pictureExtensions As String() = {".bmp", ".gif", ".jpeg", ".jpg", ".png", ".tif", ".tiff", ".ico"}
-    Function IsPictureFile(filePath As String) As Boolean
-        Return pictureExtensions.Contains(IO.Path.GetExtension(filePath).ToLower())
-    End Function
 
     Private Sub Lg2(sender As Object, e As EventArgs) Handles language.Click
         If language.Text = "English" Then
@@ -76,9 +74,18 @@
 
         If listOfFiles.Count > 0 AndAlso folderSave = "" Then
             MessageBox.Show("اختر مجلد الحفظ")
+
         ElseIf listOfFiles.Count > 0 Then
             For i = 0 To listOfFiles.Count - 1
-                TheGameBoss(New Bitmap(listOfFiles(i)))
+                img1 = New Bitmap(listOfFiles(i))
+                If background1ColorCheck.Checked AndAlso x1.Text < img1.Width AndAlso y1.Text < img1.Height Then
+                    background1color = img1.GetPixel(x1.Text, y1.Text)
+                    redDecimal2.Text = background1color.R
+                    greenDecimal2.Text = background1color.G
+                    blueDecimal2.Text = background1color.B
+                    BackgroundColorFromImage1_Click(Nothing, Nothing)
+                End If
+                TheGameBoss()
                 counter.Text += 1
                 If imageFormat.SelectedIndex = 1 Then
                     finalImg.Save(folderSave + "\" + listOfFiles(i).Split("\").Last, Imaging.ImageFormat.Icon)
@@ -86,8 +93,9 @@
                     finalImg.Save(folderSave + "\" + listOfFiles(i).Split("\").Last, Imaging.ImageFormat.Png)
                 End If
             Next
+
         Else
-            TheGameBoss(img1)
+            TheGameBoss()
 #Region "Display the output image"
             temp = New Bitmap(img1.Width, img1.Height)
             G5 = Graphics.FromImage(temp)
@@ -98,33 +106,40 @@
         End If
     End Sub
 
-    Dim fp As FastPixel
+    Dim fpi1, fpb1, fpi2, fpb2, fp As FastPixel
     Dim alpha As Decimal
     Dim tmpR, tmpG, tmpB As Integer
     Dim image1color, image2color, background1color, background2color As Color
-    Private Sub TheGameBoss(img1 As Bitmap)
+    Private Sub TheGameBoss()
         finalImg = New Bitmap(img1.Width, img1.Height)
 
+        fpi1 = New FastPixel(img1)
+        fpb1 = New FastPixel(back1)
+        fpi2 = New FastPixel(img2)
+        fpb2 = New FastPixel(back2)
         fp = New FastPixel(finalImg)
+
+        fpi1.Lock() : fpb1.Lock()
+        fpi2.Lock() : fpb2.Lock()
         fp.Lock()
         For i = 0 To img1.Width - 1
             For j = 0 To img1.Height - 1
 
 #Region "The Pixel Color"
-                image1color = img1.GetPixel(i, j)
+                image1color = fpi1.GetPixel(i, j)
                 If i < img2.Width AndAlso j < img2.Height Then
-                    image2color = img2.GetPixel(i, j)
+                    image2color = fpi2.GetPixel(i, j)
                 Else
                     image2color = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
                 End If
 
                 If i < back1.Width AndAlso j < back1.Height Then
-                    background1color = back1.GetPixel(i, j)
+                    background1color = fpb1.GetPixel(i, j)
                 Else
                     background1color = Color.FromArgb(redDecimal3.Text, greenDecimal3.Text, blueDecimal3.Text)
                 End If
                 If i < back2.Width AndAlso j < back2.Height Then
-                    background2color = back2.GetPixel(i, j)
+                    background2color = fpb2.GetPixel(i, j)
                 Else
                     background2color = Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text)
                 End If
@@ -182,6 +197,9 @@
 #End Region
             Next
         Next
+
+        fpi1.Unlock(True) : fpb1.Unlock(True)
+        fpi2.Unlock(True) : fpb2.Unlock(True)
         fp.Unlock(True)
     End Sub
 
@@ -278,11 +296,11 @@
     Private Sub BackgroundColorFromImage1_Click(sender As Object, e As EventArgs) Handles backColorFromImage1.Click
         If x1.Text = "" Then x1.Text = "0"
         If y1.Text = "" Then y1.Text = "0"
-        If img1 IsNot Nothing AndAlso x1.Text < img1.Width AndAlso y1.Text < img1.Height Then
+        If x1.Text < img1.Width AndAlso y1.Text < img1.Height Then
             clr = img1.GetPixel(x1.Text, y1.Text)
 
             back1 = New Bitmap(img1.Width, img1.Height)
-            Graphics.FromImage(back1).Clear(Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text))
+            Graphics.FromImage(back1).Clear(Color.FromArgb(clr.R, clr.G, clr.B))
             background1.BackgroundImage = back1
 
             redDecimal2.Text = clr.R : greenDecimal2.Text = clr.G : blueDecimal2.Text = clr.B
@@ -293,11 +311,11 @@
         If x1.Text = "" Then x1.Text = "0"
         If y1.Text = "" Then y1.Text = "0"
 
-        If img2 IsNot Nothing AndAlso x1.Text < img2.Width AndAlso y1.Text < img2.Height Then
+        If x1.Text < img2.Width AndAlso y1.Text < img2.Height Then
             clr = img2.GetPixel(x1.Text, y1.Text)
 
             back2 = New Bitmap(img1.Width, img1.Height)
-            Graphics.FromImage(back2).Clear(Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text))
+            Graphics.FromImage(back2).Clear(Color.FromArgb(clr.R, clr.G, clr.B))
             background2.BackgroundImage = back2
 
             redDecimal4.Text = clr.R : greenDecimal4.Text = clr.G : blueDecimal4.Text = clr.B
@@ -307,17 +325,23 @@
     Sub LoadImage1_(file As String)
         Try
             listOfFiles.Clear()
-            temp = Image.FromFile(file)
-            If temp.Width >= 16 And temp.Height >= 16 Then
+            background1ColorCheck.Enabled = False
+            temp = New Bitmap(file) 'Image.FromFile(file)
+            If temp.Width >= 16 AndAlso temp.Height >= 16 Then
                 img1 = temp
                 image1.BackgroundImage = img1
                 image1.Width = img1.Width : image1.Height = img1.Height
                 LocationZero()
-                If back1.Width < img1.Width OrElse back1.Height < img1.Height Then SetBackcolorForBackground1_Click(Nothing, Nothing)
-                If back1 Is Nothing Then BackgroundColorFromImage1_Click(Nothing, Nothing)
+                If back1.Width < img1.Width OrElse back1.Height < img1.Height Then
+                    'SetBackcolorForBackground1_Click(Nothing, Nothing)
+                    BackgroundColorFromImage1_Click(Nothing, Nothing)
+                End If
+
                 If img2.Width < img1.Width OrElse img2.Height < img1.Height Then SetBackcolorForImage2_Click(Nothing, Nothing)
-                If back2.Width < img1.Width OrElse back2.Height < img1.Height Then SetBackcolorForBackground2_Click(Nothing, Nothing)
-                If back2 Is Nothing Then BackgroundColorFromImage2_Click(Nothing, Nothing)
+                If back2.Width < img1.Width OrElse back2.Height < img1.Height Then
+                    'SetBackcolorForBackground2_Click(Nothing, Nothing)
+                    BackgroundColorFromImage2_Click(Nothing, Nothing)
+                End If
                 xMax.Text = img1.Width : yMax.Text = img1.Height
             Else
                 MsgBox("غير مسموح بصورة أقل من 16*16")
@@ -334,7 +358,7 @@
     Private Sub LoadBackground1_Click(sender As Object, e As EventArgs) Handles loadBackground1.Click
         Try
             If OFD.ShowDialog() = DialogResult.OK Then
-                temp = Image.FromFile(OFD.FileName)
+                temp = New Bitmap(OFD.FileName) 'Image.FromFile(OFD.FileName)
                 If temp.Width >= 16 AndAlso temp.Height >= 16 Then
                     If temp.Width < img1.Width OrElse temp.Height < img1.Height Then
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
@@ -356,7 +380,7 @@
     Private Sub LoadImage2_Click(sender As Object, e As EventArgs) Handles loadImage2.Click
         Try
             If OFD.ShowDialog() = DialogResult.OK Then
-                temp = Image.FromFile(OFD.FileName)
+                temp = New Bitmap(OFD.FileName) 'temp = Image.FromFile(OFD.FileName)
                 If temp.Width >= 16 AndAlso temp.Height >= 16 Then
                     If temp.Width < img1.Width OrElse temp.Height < img1.Height Then
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
@@ -364,7 +388,6 @@
                         img2 = temp
                         image2.BackgroundImage = img2
                         image2.Width = img2.Width : image2.Height = img2.Height
-                        If back2 Is Nothing Then BackgroundColorFromImage2_Click(Nothing, Nothing)
                         LocationZero()
                     End If
                 Else
@@ -379,9 +402,9 @@
     Private Sub LoadBackground2_Click(sender As Object, e As EventArgs) Handles loadBackground2.Click
         Try
             If OFD.ShowDialog() = DialogResult.OK Then
-                temp = Image.FromFile(OFD.FileName)
-                If temp.Width >= 16 And temp.Height >= 16 Then
-                    If temp.Width < img1.Width Or temp.Height < img1.Height Then
+                temp = New Bitmap(OFD.FileName) 'Image.FromFile(OFD.FileName)
+                If temp.Width >= 16 AndAlso temp.Height >= 16 Then
+                    If temp.Width < img1.Width OrElse temp.Height < img1.Height Then
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
                     Else
                         back2 = temp
