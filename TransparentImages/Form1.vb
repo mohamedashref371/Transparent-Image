@@ -3,7 +3,7 @@
     ReadOnly rd1 As New Random
     Dim img1, back1, img2, back2, finalImg, temp As Bitmap
     Dim folderOpen, folderSave As String
-    Dim listOfFiles As New List(Of String)
+    ReadOnly listOfFiles As New List(Of String)
     Dim G5 As Graphics
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -40,10 +40,17 @@
         If FBD.ShowDialog = DialogResult.OK Then
             folderOpen = FBD.SelectedPath
             For Each file In My.Computer.FileSystem.GetFiles(folderOpen)
-                If IsPictureFile(file) Then
-                    listOfFiles.Add(file)
-                End If
+                If IsPictureFile(file) Then listOfFiles.Add(file)
             Next
+            If listOfFiles.Count = 1 Then
+                LoadImage1_(listOfFiles(0))
+                length.Text = "∞"
+            ElseIf listOfFiles.Count > 1 Then
+                length.Text = listOfFiles.Count
+                counter.Text = 0
+            Else
+                length.Text = "∞"
+            End If
             If folderOpen = folderSave Then folderSave = ""
         End If
     End Sub
@@ -65,120 +72,118 @@
         End If
     End Sub
 
-    Dim fp As FastPixel
-    Dim alpha As Decimal
-    Dim tmpR, tmpG, tmpB As Integer
     Private Sub Start_Click(sender As Object, e As EventArgs) Handles start.Click
 
         If listOfFiles.Count > 0 AndAlso folderSave = "" Then
             MessageBox.Show("اختر مجلد الحفظ")
         ElseIf listOfFiles.Count > 0 Then
-
-        Else
-            Dim image1color, image2color, background1color, background2color As Color
-            finalImg = New Bitmap(img1.Width, img1.Height)
-            fp = New FastPixel(finalImg)
-            fp.Lock()
-            For i = 0 To img1.Width - 1
-                For j = 0 To img1.Height - 1
-#Region "Alpha Value"
-                    image1color = img1.GetPixel(i, j) : image2color = img2.GetPixel(i, j)
-                    background1color = back1.GetPixel(i, j) : background2color = back2.GetPixel(i, j)
-
-                    tmpR = background1color.R - 1 * background2color.R
-                    tmpG = background1color.G - 1 * background2color.G
-                    tmpB = background1color.B - 1 * background2color.B
-
-                    If tmpR <> 0 AndAlso tmpG <> 0 AndAlso tmpB <> 0 Then
-
-                        If Math.Abs(tmpR) >= Math.Abs(tmpG) AndAlso Math.Abs(tmpR) >= Math.Abs(tmpB) Then
-                            alpha = 1 - (image1color.R - 1 * image2color.R) / tmpR
-                        ElseIf Math.Abs(tmpG) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpG) >= Math.Abs(tmpB) Then
-                            alpha = 1 - (image1color.G - 1 * image2color.G) / tmpG
-                        ElseIf Math.Abs(tmpB) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpB) >= Math.Abs(tmpG) Then
-                            alpha = 1 - (image1color.B - 1 * image2color.B) / tmpB
-                        End If
-                    Else
-                        alpha = -1 ' مؤقت
-                    End If
-#End Region
-#Region "Set Color"
-                    If alpha > 0 Then
-                        tmpR = (image1color.R - (1 - alpha) * background1color.R) / alpha
-                        If tmpR < 0 Then
-                            tmpR = 0
-                        ElseIf tmpR > 255 Then
-                            tmpR = 255
-                        End If
-
-                        tmpG = (image1color.G - (1 - alpha) * background1color.G) / alpha
-                        If tmpG < 0 Then
-                            tmpG = 0
-                        ElseIf tmpG > 255 Then
-                            tmpG = 255
-                        End If
-
-                        tmpB = (image1color.B - (1 - alpha) * background1color.B) / alpha
-                        If tmpB < 0 Then
-                            tmpB = 0
-                        ElseIf tmpB > 255 Then
-                            tmpB = 255
-                        End If
-
-                        fp.SetPixel(i, j, Color.FromArgb(alpha * 255, tmpR, tmpG, tmpB))
-                    ElseIf alpha = 0 Then
-                        fp.SetPixel(i, j, Color.Transparent)
-                    Else
-                        fp.SetPixel(i, j, image1color)
-                    End If
-#End Region
-                Next
+            For i = 0 To listOfFiles.Count - 1
+                TheGameBoss(New Bitmap(listOfFiles(i)))
+                counter.Text += 1
+                If imageFormat.SelectedIndex = 1 Then
+                    finalImg.Save(folderSave + "\" + listOfFiles(i).Split("\").Last, Imaging.ImageFormat.Icon)
+                Else
+                    finalImg.Save(folderSave + "\" + listOfFiles(i).Split("\").Last, Imaging.ImageFormat.Png)
+                End If
             Next
-            fp.Unlock(True)
-
+        Else
+            TheGameBoss(img1)
+#Region "Display the output image"
             temp = New Bitmap(img1.Width, img1.Height)
             G5 = Graphics.FromImage(temp)
             G5.DrawImage(My.Resources.trpt2, 0, 0)
             G5.DrawImage(finalImg, 0, 0)
             finalImage.BackgroundImage = temp
+#End Region
         End If
     End Sub
 
-    'Function OperationOnTwoColorsValues(c1 As Decimal, c2 As Decimal, oper As Char) As Integer
-    '    If oper = "+"c Then
-    '        Return If(c1 + c2 <= 255, c1 + c2, 255)
-    '    ElseIf oper = "-"c Then
-    '        Return If(c1 - c2 >= 0, c1 - c2, 0)
-    '    ElseIf oper = "*"c Then
-    '        Return If(c1 * c2 <= 255, c1 * c2, 255)
-    '    ElseIf oper = "/"c Then
-    '        If c1 = 0 AndAlso c2 = 0 Then
-    '            Return 0
-    '        Else
-    '            Return If(c2 >= 1, c1 / c2, 255)
-    '        End If
-    '    Else
-    '        Return 0
-    '    End If
-    'End Function
+    Dim fp As FastPixel
+    Dim alpha As Decimal
+    Dim tmpR, tmpG, tmpB As Integer
+    Dim image1color, image2color, background1color, background2color As Color
+    Private Sub TheGameBoss(img1 As Bitmap)
+        finalImg = New Bitmap(img1.Width, img1.Height)
 
-    'Function OperationOnTwoColors(c1 As Color, c2 As Color, oper As Char) As Color
-    '    If oper = "+"c Then
-    '        Return Color.FromArgb(If(c1.A + c2.A <= 255, c1.A + c2.A, 255), If(c1.R + c2.R <= 255, c1.R + c2.R, 255), If(c1.G + c2.G <= 255, c1.G + c2.G, 255), If(c1.B + c2.B <= 255, c1.B + c2.B, 255))
-    '    ElseIf oper = "-"c Then
-    '        Return Color.FromArgb(If(c1.A - c2.A >= 0, c1.A - c2.A, 0), If(c1.R - c2.R >= 0, c1.R - c2.R, 0), If(c1.G - c2.G >= 0, c1.G - c2.G, 0), If(c1.B - c2.B >= 0, c1.B - c2.B, 0))
-    '    ElseIf oper = "*"c Then
-    '        Return Color.FromArgb(If(c1.A * c2.A <= 255, c1.A * c2.A, 255), If(c1.R * c2.R <= 255, c1.R * c2.R, 255), If(c1.G * c2.G <= 255, c1.G * c2.G, 255), If(c1.B * c2.B <= 255, c1.B * c2.B, 255))
-    '    ElseIf oper = "/"c Then
-    '        If c1.A = 0 AndAlso c2.A = 0 OrElse c1.R = 0 AndAlso c2.R = 0 OrElse c1.G = 0 AndAlso c2.G = 0 OrElse c1.B = 0 AndAlso c2.B = 0 Then
-    '            Return Color.Empty
-    '        Else
-    '            Return Color.FromArgb(If(c2.A >= 1, c1.A / c2.A, 255), If(c2.R >= 1, c1.R / c2.R, 255), If(c2.G >= 1, c1.G / c2.G, 255), If(c2.B >= 1, c1.B / c2.B, 255))
-    '        End If
-    '    Else
-    '        Return Color.Empty
-    '    End If
-    'End Function
+        fp = New FastPixel(finalImg)
+        fp.Lock()
+        For i = 0 To img1.Width - 1
+            For j = 0 To img1.Height - 1
+
+#Region "The Pixel Color"
+                image1color = img1.GetPixel(i, j)
+                If i < img2.Width AndAlso j < img2.Height Then
+                    image2color = img2.GetPixel(i, j)
+                Else
+                    image2color = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
+                End If
+
+                If i < back1.Width AndAlso j < back1.Height Then
+                    background1color = back1.GetPixel(i, j)
+                Else
+                    background1color = Color.FromArgb(redDecimal3.Text, greenDecimal3.Text, blueDecimal3.Text)
+                End If
+                If i < back2.Width AndAlso j < back2.Height Then
+                    background2color = back2.GetPixel(i, j)
+                Else
+                    background2color = Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text)
+                End If
+#End Region
+
+#Region "Alpha Value"
+                tmpR = background1color.R - 1 * background2color.R
+                tmpG = background1color.G - 1 * background2color.G
+                tmpB = background1color.B - 1 * background2color.B
+
+                If tmpR <> 0 AndAlso tmpG <> 0 AndAlso tmpB <> 0 Then
+
+                    If Math.Abs(tmpR) >= Math.Abs(tmpG) AndAlso Math.Abs(tmpR) >= Math.Abs(tmpB) Then
+                        alpha = 1 - (image1color.R - 1 * image2color.R) / tmpR
+                    ElseIf Math.Abs(tmpG) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpG) >= Math.Abs(tmpB) Then
+                        alpha = 1 - (image1color.G - 1 * image2color.G) / tmpG
+                    ElseIf Math.Abs(tmpB) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpB) >= Math.Abs(tmpG) Then
+                        alpha = 1 - (image1color.B - 1 * image2color.B) / tmpB
+                    End If
+                Else
+                    alpha = -1 ' مؤقت
+                End If
+#End Region
+
+#Region "Alpha is not equal to zero"
+                If alpha > 0 Then
+                    tmpR = (image1color.R - (1 - alpha) * background1color.R) / alpha
+                    If tmpR < 0 Then
+                        tmpR = 0
+                    ElseIf tmpR > 255 Then
+                        tmpR = 255
+                    End If
+
+                    tmpG = (image1color.G - (1 - alpha) * background1color.G) / alpha
+                    If tmpG < 0 Then
+                        tmpG = 0
+                    ElseIf tmpG > 255 Then
+                        tmpG = 255
+                    End If
+
+                    tmpB = (image1color.B - (1 - alpha) * background1color.B) / alpha
+                    If tmpB < 0 Then
+                        tmpB = 0
+                    ElseIf tmpB > 255 Then
+                        tmpB = 255
+                    End If
+#End Region
+#Region "Set Color"
+                    fp.SetPixel(i, j, Color.FromArgb(alpha * 255, tmpR, tmpG, tmpB))
+                ElseIf alpha = 0 Then
+                    fp.SetPixel(i, j, Color.Transparent)
+                Else
+                    fp.SetPixel(i, j, image1color)
+                End If
+#End Region
+            Next
+        Next
+        fp.Unlock(True)
+    End Sub
 
     Private Sub Lwh_Click(sender As Object, e As EventArgs) Handles help.Click
         If loadImage1.Enabled = True Then
@@ -264,7 +269,7 @@
         End If
     End Sub
 
-    Private Sub LocationZero(sender As Object, e As EventArgs)
+    Private Sub LocationZero()
         VSB.Value = 0 : HSB.Value = 0
         image1.Location = New Point(0, 0) : background1.Location = New Point(0, 0) : image2.Location = New Point(0, 0) : background2.Location = New Point(0, 0) : finalImage.Location = New Point(0, 0)
     End Sub
@@ -299,29 +304,31 @@
         End If
     End Sub
 
-    Private Sub LoadImage1_Click(sender As Object, e As EventArgs) Handles loadImage1.Click
+    Sub LoadImage1_(file As String)
         Try
-            If OFD.ShowDialog() = DialogResult.OK Then
-                listOfFiles.Clear()
-                temp = Image.FromFile(OFD.FileName)
-                If temp.Width >= 16 And temp.Height >= 16 Then
-                    img1 = temp
-                    image1.BackgroundImage = img1
-                    image1.Width = img1.Width : image1.Height = img1.Height
-                    LocationZero(sender, e)
-                    If back1.Width < img1.Width OrElse back1.Height < img1.Height Then SetBackcolorForBackground1_Click(Nothing, Nothing)
-                    If back1 Is Nothing Then BackgroundColorFromImage1_Click(Nothing, Nothing)
-                    If img2.Width < img1.Width OrElse img2.Height < img1.Height Then SetBackcolorForImage2_Click(Nothing, Nothing)
-                    If back2.Width < img1.Width OrElse back2.Height < img1.Height Then SetBackcolorForBackground2_Click(Nothing, Nothing)
-                    If back2 Is Nothing Then BackgroundColorFromImage2_Click(Nothing, Nothing)
-                    xMax.Text = img1.Width : yMax.Text = img1.Height
-                Else
-                    MsgBox("غير مسموح بصورة أقل من 16*16")
-                End If
+            listOfFiles.Clear()
+            temp = Image.FromFile(file)
+            If temp.Width >= 16 And temp.Height >= 16 Then
+                img1 = temp
+                image1.BackgroundImage = img1
+                image1.Width = img1.Width : image1.Height = img1.Height
+                LocationZero()
+                If back1.Width < img1.Width OrElse back1.Height < img1.Height Then SetBackcolorForBackground1_Click(Nothing, Nothing)
+                If back1 Is Nothing Then BackgroundColorFromImage1_Click(Nothing, Nothing)
+                If img2.Width < img1.Width OrElse img2.Height < img1.Height Then SetBackcolorForImage2_Click(Nothing, Nothing)
+                If back2.Width < img1.Width OrElse back2.Height < img1.Height Then SetBackcolorForBackground2_Click(Nothing, Nothing)
+                If back2 Is Nothing Then BackgroundColorFromImage2_Click(Nothing, Nothing)
+                xMax.Text = img1.Width : yMax.Text = img1.Height
+            Else
+                MsgBox("غير مسموح بصورة أقل من 16*16")
             End If
         Catch
             MsgBox("حدث خطأ")
         End Try
+    End Sub
+
+    Private Sub LoadImage1_Click(sender As Object, e As EventArgs) Handles loadImage1.Click
+        If OFD.ShowDialog() = DialogResult.OK Then LoadImage1_(OFD.FileName)
     End Sub
 
     Private Sub LoadBackground1_Click(sender As Object, e As EventArgs) Handles loadBackground1.Click
@@ -335,7 +342,7 @@
                         back1 = temp
                         background1.BackgroundImage = back1
                         background1.Width = back1.Width : background1.Height = back1.Height
-                        LocationZero(sender, e)
+                        LocationZero()
                     End If
                 Else
                     MsgBox("غير مسموح بصورة أقل من 16*16")
@@ -358,7 +365,7 @@
                         image2.BackgroundImage = img2
                         image2.Width = img2.Width : image2.Height = img2.Height
                         If back2 Is Nothing Then BackgroundColorFromImage2_Click(Nothing, Nothing)
-                        LocationZero(sender, e)
+                        LocationZero()
                     End If
                 Else
                     MsgBox("غير مسموح بصورة أقل من 16*16")
@@ -380,7 +387,7 @@
                         back2 = temp
                         background2.BackgroundImage = back2
                         background2.Width = back2.Width : background2.Height = back2.Height
-                        LocationZero(sender, e)
+                        LocationZero()
                     End If
                 Else
                     MsgBox("غير مسموح بصورة أقل من 16*16")
@@ -551,4 +558,22 @@
             about.ForeColor = Color.Black
         End If
     End Sub
+
+    'Function OperationOnTwoColors(c1 As Color, c2 As Color, oper As Char) As Color
+    '    If oper = "+"c Then
+    '        Return Color.FromArgb(If(c1.A + c2.A <= 255, c1.A + c2.A, 255), If(c1.R + c2.R <= 255, c1.R + c2.R, 255), If(c1.G + c2.G <= 255, c1.G + c2.G, 255), If(c1.B + c2.B <= 255, c1.B + c2.B, 255))
+    '    ElseIf oper = "-"c Then
+    '        Return Color.FromArgb(If(c1.A - c2.A >= 0, c1.A - c2.A, 0), If(c1.R - c2.R >= 0, c1.R - c2.R, 0), If(c1.G - c2.G >= 0, c1.G - c2.G, 0), If(c1.B - c2.B >= 0, c1.B - c2.B, 0))
+    '    ElseIf oper = "*"c Then
+    '        Return Color.FromArgb(If(c1.A * c2.A <= 255, c1.A * c2.A, 255), If(c1.R * c2.R <= 255, c1.R * c2.R, 255), If(c1.G * c2.G <= 255, c1.G * c2.G, 255), If(c1.B * c2.B <= 255, c1.B * c2.B, 255))
+    '    ElseIf oper = "/"c Then
+    '        If c1.A = 0 AndAlso c2.A = 0 OrElse c1.R = 0 AndAlso c2.R = 0 OrElse c1.G = 0 AndAlso c2.G = 0 OrElse c1.B = 0 AndAlso c2.B = 0 Then
+    '            Return Color.Empty
+    '        Else
+    '            Return Color.FromArgb(If(c2.A >= 1, c1.A / c2.A, 255), If(c2.R >= 1, c1.R / c2.R, 255), If(c2.G >= 1, c1.G / c2.G, 255), If(c2.B >= 1, c1.B / c2.B, 255))
+    '        End If
+    '    Else
+    '        Return Color.Empty
+    '    End If
+    'End Function
 End Class

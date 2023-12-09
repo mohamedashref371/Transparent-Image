@@ -75,8 +75,8 @@ Partial Class Form1
         Me.blueHexadecimal4 = New System.Windows.Forms.TextBox()
         Me.greenHexadecimal4 = New System.Windows.Forms.TextBox()
         Me.redHexadecimal4 = New System.Windows.Forms.TextBox()
-        Me.Lb1 = New System.Windows.Forms.Label()
-        Me.Lb2 = New System.Windows.Forms.Label()
+        Me.counter = New System.Windows.Forms.Label()
+        Me.length = New System.Windows.Forms.Label()
         Me.Lb3 = New System.Windows.Forms.Label()
         Me.about = New System.Windows.Forms.Button()
         Me.T2 = New System.Windows.Forms.Timer(Me.components)
@@ -84,7 +84,7 @@ Partial Class Form1
         Me.Label40 = New System.Windows.Forms.Label()
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.SFD = New System.Windows.Forms.SaveFileDialog()
-        Me.T3 = New System.Windows.Forms.Timer(Me.components)
+        Me.filesTimer = New System.Windows.Forms.Timer(Me.components)
         Me.xMax = New System.Windows.Forms.Label()
         Me.yMax = New System.Windows.Forms.Label()
         Me.Label49 = New System.Windows.Forms.Label()
@@ -574,27 +574,27 @@ Partial Class Form1
         Me.redHexadecimal4.TabIndex = 88
         Me.redHexadecimal4.Text = "ff"
         '
-        'Lb1
+        'counter
         '
-        Me.Lb1.AutoSize = True
-        Me.Lb1.BackColor = System.Drawing.Color.Transparent
-        Me.Lb1.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.Lb1.Location = New System.Drawing.Point(242, 517)
-        Me.Lb1.Name = "Lb1"
-        Me.Lb1.Size = New System.Drawing.Size(18, 19)
-        Me.Lb1.TabIndex = 91
-        Me.Lb1.Text = "0"
+        Me.counter.AutoSize = True
+        Me.counter.BackColor = System.Drawing.Color.Transparent
+        Me.counter.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.counter.Location = New System.Drawing.Point(242, 517)
+        Me.counter.Name = "counter"
+        Me.counter.Size = New System.Drawing.Size(18, 19)
+        Me.counter.TabIndex = 91
+        Me.counter.Text = "0"
         '
-        'Lb2
+        'length
         '
-        Me.Lb2.AutoSize = True
-        Me.Lb2.BackColor = System.Drawing.Color.Transparent
-        Me.Lb2.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.Lb2.Location = New System.Drawing.Point(331, 517)
-        Me.Lb2.Name = "Lb2"
-        Me.Lb2.Size = New System.Drawing.Size(24, 19)
-        Me.Lb2.TabIndex = 92
-        Me.Lb2.Text = "∞"
+        Me.length.AutoSize = True
+        Me.length.BackColor = System.Drawing.Color.Transparent
+        Me.length.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.length.Location = New System.Drawing.Point(331, 517)
+        Me.length.Name = "length"
+        Me.length.Size = New System.Drawing.Size(24, 19)
+        Me.length.TabIndex = 92
+        Me.length.Text = "∞"
         '
         'Lb3
         '
@@ -650,9 +650,9 @@ Partial Class Form1
         Me.SFD.FileName = "Image1"
         Me.SFD.Filter = "PNG Files|*.png"
         '
-        'T3
+        'filesTimer
         '
-        Me.T3.Interval = 1
+        Me.filesTimer.Interval = 1
         '
         'xMax
         '
@@ -916,8 +916,8 @@ Partial Class Form1
         Me.Controls.Add(Me.Label49)
         Me.Controls.Add(Me.xMax)
         Me.Controls.Add(Me.about)
-        Me.Controls.Add(Me.Lb1)
-        Me.Controls.Add(Me.Lb2)
+        Me.Controls.Add(Me.counter)
+        Me.Controls.Add(Me.length)
         Me.Controls.Add(Me.Lb3)
         Me.Controls.Add(Me.blueHexadecimal4)
         Me.Controls.Add(Me.greenHexadecimal4)
@@ -1041,8 +1041,8 @@ Partial Class Form1
     Friend WithEvents blueHexadecimal4 As TextBox
     Friend WithEvents greenHexadecimal4 As TextBox
     Friend WithEvents redHexadecimal4 As TextBox
-    Friend WithEvents Lb1 As Label
-    Friend WithEvents Lb2 As Label
+    Friend WithEvents counter As Label
+    Friend WithEvents length As Label
     Friend WithEvents Lb3 As Label
     Friend WithEvents about As Button
     Friend WithEvents T2 As Timer
@@ -1050,7 +1050,7 @@ Partial Class Form1
     Friend WithEvents Label40 As Label
     Friend WithEvents OFD As OpenFileDialog
     Friend WithEvents SFD As SaveFileDialog
-    Friend WithEvents T3 As Timer
+    Friend WithEvents filesTimer As Timer
     Friend WithEvents xMax As Label
     Friend WithEvents yMax As Label
     Friend WithEvents Label49 As Label
