@@ -16,7 +16,7 @@ rsltG = (1 - a) * G + a * g<br>
 rsltB = (1 - a) * B + a * b
 
 And now...
-let background1 = rgb(R1, G1, B1), result1 = rgb(rsltR1, rsltG1, rsltB1);
+let background1 = rgb(R1, G1, B1), result1 = rgb(rsltR1, rsltG1, rsltB1);<br>
 let background2 = rgb(R2, G2, B2), result2 = rgb(rsltR2, rsltG2, rsltB2);
 
 And we want to infer the originalColor.
