@@ -10,7 +10,7 @@
     End Sub
 
     Private Sub Ckh_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ckh.LinkClicked
-        Process.Start("http://www.mediafire.com/file/zy4teu5v14uf7ls")
+        Process.Start("https://github.com/mohamedashref371/Transparent-Image")
     End Sub
 
     Private Sub A_Click(sender As Object, e As EventArgs) Handles A.Click
