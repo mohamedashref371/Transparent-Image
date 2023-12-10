@@ -83,10 +83,11 @@
                     redDecimal2.Text = background1color.R
                     greenDecimal2.Text = background1color.G
                     blueDecimal2.Text = background1color.B
-                    BackgroundColorFromImage1_Click(Nothing, Nothing)
+                    SetBackcolorForBackground1_Click(Nothing, Nothing)
                 End If
                 TheGameBoss()
                 counter.Text += 1
+                Refresh() : Application.DoEvents()
                 If imageFormat.SelectedIndex = 1 Then
                     finalImg.Save(folderSave + "\" + listOfFiles(i).Split("\").Last, Imaging.ImageFormat.Icon)
                 Else
@@ -106,40 +107,30 @@
         End If
     End Sub
 
-    Dim fpi1, fpb1, fpi2, fpb2, fp As FastPixel
     Dim alpha As Decimal
     Dim tmpR, tmpG, tmpB As Integer
     Dim image1color, image2color, background1color, background2color As Color
     Private Sub TheGameBoss()
         finalImg = New Bitmap(img1.Width, img1.Height)
 
-        fpi1 = New FastPixel(img1)
-        fpb1 = New FastPixel(back1)
-        fpi2 = New FastPixel(img2)
-        fpb2 = New FastPixel(back2)
-        fp = New FastPixel(finalImg)
-
-        fpi1.Lock() : fpb1.Lock()
-        fpi2.Lock() : fpb2.Lock()
-        fp.Lock()
         For i = 0 To img1.Width - 1
             For j = 0 To img1.Height - 1
 
 #Region "The Pixel Color"
-                image1color = fpi1.GetPixel(i, j)
-                If i < img2.Width AndAlso j < img2.Height Then
-                    image2color = fpi2.GetPixel(i, j)
+                image1color = img1.GetPixel(i, j)
+                If i < back1.Width AndAlso j < back1.Height Then
+                    background1color = back1.GetPixel(i, j)
                 Else
-                    image2color = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
+                    background1color = Color.FromArgb(redDecimal2.Text, greenDecimal2.Text, blueDecimal2.Text)
                 End If
 
-                If i < back1.Width AndAlso j < back1.Height Then
-                    background1color = fpb1.GetPixel(i, j)
+                If i < img2.Width AndAlso j < img2.Height Then
+                    image2color = img2.GetPixel(i, j)
                 Else
-                    background1color = Color.FromArgb(redDecimal3.Text, greenDecimal3.Text, blueDecimal3.Text)
+                    image2color = Color.FromArgb(redDecimal3.Text, greenDecimal3.Text, blueDecimal3.Text)
                 End If
                 If i < back2.Width AndAlso j < back2.Height Then
-                    background2color = fpb2.GetPixel(i, j)
+                    background2color = back2.GetPixel(i, j)
                 Else
                     background2color = Color.FromArgb(redDecimal4.Text, greenDecimal4.Text, blueDecimal4.Text)
                 End If
@@ -150,17 +141,25 @@
                 tmpG = background1color.G - 1 * background2color.G
                 tmpB = background1color.B - 1 * background2color.B
 
+                alpha = -371
                 If tmpR <> 0 AndAlso tmpG <> 0 AndAlso tmpB <> 0 Then
 
                     If Math.Abs(tmpR) >= Math.Abs(tmpG) AndAlso Math.Abs(tmpR) >= Math.Abs(tmpB) Then
                         alpha = 1 - (image1color.R - 1 * image2color.R) / tmpR
-                    ElseIf Math.Abs(tmpG) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpG) >= Math.Abs(tmpB) Then
+                    End If
+                    If alpha < 0 OrElse alpha > 1 OrElse Math.Abs(tmpG) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpG) >= Math.Abs(tmpB) Then
                         alpha = 1 - (image1color.G - 1 * image2color.G) / tmpG
-                    ElseIf Math.Abs(tmpB) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpB) >= Math.Abs(tmpG) Then
+                    End If
+                    If alpha < 0 OrElse alpha > 1 OrElse Math.Abs(tmpB) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpB) >= Math.Abs(tmpG) Then
                         alpha = 1 - (image1color.B - 1 * image2color.B) / tmpB
                     End If
                 Else
-                    alpha = -1 ' مؤقت
+
+                End If
+                If alpha > 1 Then
+                    alpha = 1
+                ElseIf alpha < 0 AndAlso alpha <> -371 Then
+                    alpha = 0
                 End If
 #End Region
 
@@ -188,19 +187,13 @@
                     End If
 #End Region
 #Region "Set Color"
-                    fp.SetPixel(i, j, Color.FromArgb(alpha * 255, tmpR, tmpG, tmpB))
-                ElseIf alpha = 0 Then
-                    fp.SetPixel(i, j, Color.Transparent)
-                Else
-                    fp.SetPixel(i, j, image1color)
+                    finalImg.SetPixel(i, j, Color.FromArgb(alpha * 255, tmpR, tmpG, tmpB))
+                ElseIf alpha < 0 Then
+                    finalImg.SetPixel(i, j, image1color)
                 End If
 #End Region
             Next
         Next
-
-        fpi1.Unlock(True) : fpb1.Unlock(True)
-        fpi2.Unlock(True) : fpb2.Unlock(True)
-        fp.Unlock(True)
     End Sub
 
     Private Sub Lwh_Click(sender As Object, e As EventArgs) Handles help.Click
@@ -380,7 +373,7 @@
     Private Sub LoadImage2_Click(sender As Object, e As EventArgs) Handles loadImage2.Click
         Try
             If OFD.ShowDialog() = DialogResult.OK Then
-                temp = New Bitmap(OFD.FileName) 'temp = Image.FromFile(OFD.FileName)
+                temp = New Bitmap(OFD.FileName) 'Image.FromFile(OFD.FileName)
                 If temp.Width >= 16 AndAlso temp.Height >= 16 Then
                     If temp.Width < img1.Width OrElse temp.Height < img1.Height Then
                         MsgBox("الصورة أصغر من الصورة الرئيسية")
