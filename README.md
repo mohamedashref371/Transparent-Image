@@ -21,8 +21,8 @@ let background2 = rgb(R2, G2, B2), result2 = rgb(rsltR2, rsltG2, rsltB2);
 
 And we want to infer the originalColor.
 
-rsltR1 = (1 - a) * R1 + a * r   ==> (1)<br>
-rsltR2 = (1 - a) * R2 + a * r   ==> (2)
+rsltR1 = (1 - a) * R1 + a * r &nbsp;&nbsp;&nbsp; ==> (1)<br>
+rsltR2 = (1 - a) * R2 + a * r &nbsp;&nbsp;&nbsp; ==> (2)
 
 By subtracting equation 2 from equation 1<br>
 rsltR1 - rsltR2 = (1 - a) * R1 - (1 - a) * R2 = (1 - a)(R1 - R2)
