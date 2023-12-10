@@ -10,7 +10,7 @@ Explanation of mathematical equations:
 
 let background = rgb(R, G, B), originalColor = rgba(r, g, b, a);
 
-When the color is displayed on the background, the result is rgb(rsltR, rsltG, rsltB)<br>
+When the color is displayed on the background, <br>the result is rgb(rsltR, rsltG, rsltB)<br>
 rsltR = (1 - a) * R + a * r<br>
 rsltG = (1 - a) * G + a * g<br>
 rsltB = (1 - a) * B + a * b
