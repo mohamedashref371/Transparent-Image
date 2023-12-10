@@ -27,7 +27,7 @@ rsltR2 = (1 - a) * R2 + a * r &nbsp;&nbsp;&nbsp; ==> (2)
 By subtracting equation 2 from equation 1<br>
 rsltR1 - rsltR2 = (1 - a) * R1 - (1 - a) * R2 = (1 - a)(R1 - R2)
 
-So a = 1 - (rsltR1 - rsltR2)/(R1 - R2)
+So &nbsp;&nbsp;&nbsp; a = 1 - (rsltR1 - rsltR2)/(R1 - R2)
 
 And From equation 1<br>
 r = (rsltR1 - (1 - a) * R1)/a
