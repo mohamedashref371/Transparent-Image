@@ -118,6 +118,8 @@
 
 #Region "The Pixel Color"
                 image1color = img1.GetPixel(i, j)
+                If image1color.A = 0 Then Continue For
+
                 If i < back1.Width AndAlso j < back1.Height Then
                     background1color = back1.GetPixel(i, j)
                 Else
@@ -153,9 +155,8 @@
                     If alpha < 0 OrElse alpha > 1 OrElse Math.Abs(tmpB) >= Math.Abs(tmpR) AndAlso Math.Abs(tmpB) >= Math.Abs(tmpG) Then
                         alpha = 1 - (image1color.B - 1 * image2color.B) / tmpB
                     End If
-                Else
-
                 End If
+
                 If alpha > 1 Then
                     alpha = 1
                 ElseIf alpha < 0 AndAlso alpha <> -371 Then
